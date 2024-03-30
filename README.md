@@ -5,5 +5,5 @@ Numerical simulations are computations we run on a computer with programs implem
 **Modalities:** The course will take place online in synchronous mode.
 
 **Web pages:** The material is available in web format on
-[GitHub Pages](https://cirdans-home.github.io/recipesforenvsciences2023/intro.html),
-updated information on the course are available on [my website](https://fdurastante.github.io/courses/numrecipes2023.html#about).
+[GitHub Pages](https://cirdans-home.github.io/recipesforenvsciences2024/intro.html),
+updated information on the course are available on [my website](https://fdurastante.github.io/courses/numrecipes2024.html#about).
