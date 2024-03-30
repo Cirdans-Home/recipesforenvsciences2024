@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Fitting data to models &#8212; Numerical recipes for environmental sciences with MATLAB</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graphs and Networks" href="graphsandnetworks.html" />
+    <link rel="prev" title="Modeling evolutionary problems" href="odes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Numerical recipes for environmental sciences with MATLAB</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Numerical recipes for environmental sciences with MATLAB
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intromatlab.html">
+   An introduction to MATLAB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ioplot.html">
+   Reading, writing and plotting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="odes.html">
+   Modeling evolutionary problems
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Fitting data to models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphsandnetworks.html">
+   Graphs and Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images.html">
+   Working with images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearalgebra.html">
+   Linear Algebra
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Cirdans-Home/recipesforenvsciences2024/main?urlpath=tree/src/parameterfitting.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024/issues/new?title=Issue%20on%20page%20%2Fparameterfitting.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/parameterfitting.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/parameterfitting.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#least-square-approach">
+   Least square approach
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitting-data-to-a-differential-model">
+   Fitting data to a differential model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Fitting data to models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#least-square-approach">
+   Least square approach
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitting-data-to-a-differential-model">
+   Fitting data to a differential model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="fitting-data-to-models">
+<h1>Fitting data to models<a class="headerlink" href="#fitting-data-to-models" title="Permalink to this headline">#</a></h1>
+<p>Parametric fitting involves finding coefficients (parameters) for one or more
+models that you want to fit to some experimental data.</p>
+<p>In general we assume data to be statistical in nature, this means that we can
+assume it to be divided into two components:</p>
+<div class="math notranslate nohighlight">
+\[\text{``data''}\;=\;\text{``true value''}\;+\;\text{``statistical error''},\]</div>
+<p>the other fundamental part is that we are assuming the deterministic component
+to be given by a model for which the random component is described as an error
+associated with the data:</p>
+<div class="math notranslate nohighlight">
+\[\text{``data''}\;=\;\text{``model''}\;+\;\text{``error''}.\]</div>
+<p>The model is a function of the independent data (predictor) and one or more
+coefficients, that are the quantities we want to compute. The error represents
+random variations in the data. For doing a mathematical analysis one usually
+assumes that they follow a specific probability distribution - in most of the
+case Gaussian. The source of the error can be varied, but it is always present,
+errors are bound to happen when you are dealing with measured data.</p>
+<section id="least-square-approach">
+<h2>Least square approach<a class="headerlink" href="#least-square-approach" title="Permalink to this headline">#</a></h2>
+<p>To write down formally the idea we have discussed we can express a general
+<strong>nonlinear regression model</strong> as</p>
+<div class="math notranslate nohighlight">
+\[Y_n = f(x_n, \theta) + Z_n,\]</div>
+<p>where <span class="math notranslate nohighlight">\(f\)</span> is the model we want to <em>fit</em>, <span class="math notranslate nohighlight">\(x_n\)</span> is a vector of the associated
+variable, <span class="math notranslate nohighlight">\(Y_n\)</span> are the attained measurements, <span class="math notranslate nohighlight">\(\theta\)</span> is a vector of
+parameters defining the model, and <span class="math notranslate nohighlight">\(Z_n\)</span> is the error term.</p>
+<p>To be more practical and less formal, let us start with the tale of a certain
+Count Rumford of Bavaria (see <span id="id1">[<a class="reference internal" href="#id4" title="Douglas M. Bates and Donald G. Watts. Nonlinear regression analysis and its applications. Wiley Series in Probability and Mathematical Statistics: Applied Probability and Statistics. John Wiley &amp; Sons, Inc., New York, 1988. ISBN 0-471-81643-4. URL: https://doi.org/10.1002/9780470316757, doi:10.1002/9780470316757.">BW88</a>]</span>). He was one of the early experimenters on the physics
+of heat. In 1798 he performed the following experiment, he heated a cannon barrel
+to a temperature of <span class="math notranslate nohighlight">\(130^\circ\,{\rm F}\)</span> and then let it cool to the room
+temperature of <span class="math notranslate nohighlight">\(60^\circ\,{\rm F}\)</span> while taking measure of temperature at
+different time intervals:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">126</span><span class="w"> </span><span class="c">% Time (min) and Temperature (°F)</span><span class="w"></span>
+<span class="w">  </span><span class="mi">5</span><span class="w"> </span><span class="mi">125</span><span class="w"></span>
+<span class="w">  </span><span class="mi">7</span><span class="w"> </span><span class="mi">123</span><span class="w"></span>
+<span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="mi">120</span><span class="w"></span>
+<span class="w">  </span><span class="mi">14</span><span class="w"> </span><span class="mi">119</span><span class="w"></span>
+<span class="w">  </span><span class="mi">16</span><span class="w"> </span><span class="mi">118</span><span class="w"></span>
+<span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="mi">116</span><span class="w"></span>
+<span class="w">  </span><span class="mi">24</span><span class="w"> </span><span class="mi">115</span><span class="w"></span>
+<span class="w">  </span><span class="mi">28</span><span class="w"> </span><span class="mi">114</span><span class="w"></span>
+<span class="w">  </span><span class="mi">31</span><span class="w"> </span><span class="mi">113</span><span class="w"></span>
+<span class="w">  </span><span class="mi">34</span><span class="w"> </span><span class="mi">112</span><span class="w"></span>
+<span class="w">  </span><span class="mf">37.5</span><span class="w"> </span><span class="mi">111</span><span class="w"></span>
+<span class="w">  </span><span class="mi">41</span><span class="w"> </span><span class="mi">110</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To interpret these data we can use Newton’s law of cooling, which states that</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial f}{\partial t} = - \theta(f-T_0),\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_0\)</span> is the ambient temperature. This is one of the few differential
+equations we actually know how to solve, and indeed we can express</p>
+<div class="math notranslate nohighlight">
+\[f(t,\theta) = T_0 + (T_f - T_0) e^{-\theta t} = 60 + 70 e^{-\theta t}.\]</div>
+<p>This model now depends <em>nonlinearly</em> on just one parameter <span class="math notranslate nohighlight">\(\theta\)</span> that is
+the one that we have to fit to our data. Mathematically this means that we
+want to find <span class="math notranslate nohighlight">\(\theta\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[  \min \sum_{j=1}^{\text{# of data}}|f(t_j,\theta) - T_j|^2,\]</div>
+<p>that is we want to solve a <strong>least square</strong> problem. Typically, together with
+the previous <em>objective function</em> we have also some <em>constraints</em> on the
+parameters. For example in this case we may want to impose the constraint of
+having <span class="math notranslate nohighlight">\(\theta &gt; 0\)</span>.</p>
+<p>To solve these type of problems MATLAB offers a function called <code class="docutils literal notranslate"><span class="pre">fit</span></code>. Let us
+look at its usage:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">fo</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fitoptions</span><span class="p">(</span><span class="s">&#39;Method&#39;</span><span class="p">,</span><span class="s">&#39;NonlinearLeastSquares&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;Lower&#39;</span><span class="p">,[</span><span class="mi">0</span><span class="p">],</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;Upper&#39;</span><span class="p">,[</span><span class="nb">Inf</span><span class="p">],</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;StartPoint&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">ft</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fittype</span><span class="p">(</span><span class="s">&#39;60 + 70*exp(-a*x)&#39;</span><span class="p">,</span><span class="s">&#39;options&#39;</span><span class="p">,</span><span class="n">fo</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="n">curve</span><span class="p">,</span><span class="n">gof</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">ft</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>First we have set up some options for the <code class="docutils literal notranslate"><span class="pre">fit</span></code> function:</p></li>
+</ol>
+<ul class="simple">
+<li><p>in the <code class="docutils literal notranslate"><span class="pre">'Method'</span></code> field we have selected the <code class="docutils literal notranslate"><span class="pre">'NonlinearLeastSquares'</span></code>
+options. This tells MATLAB that we want to solve the problem in the
+mathematical formulation given above.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">'Lower'</span></code> and <code class="docutils literal notranslate"><span class="pre">'Upper'</span></code> keywords denote the bound on the parameters in
+the order in which they appear in the model. In our case we have just one
+parameter <span class="math notranslate nohighlight">\(\theta\)</span> so we request that <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">\leq</span> <span class="pre">\theta</span> <span class="pre">\leq</span> <span class="pre">\infty</span></code>, that is
+<span class="math notranslate nohighlight">\(\theta \geq 0\)</span>.</p></li>
+<li><p>Finally, with the keyword <code class="docutils literal notranslate"><span class="pre">'StartPoint'</span></code> we tell the algorithm what is the
+starting point of the <em>iterative procedure</em> producing the solution. <strong>Having
+good starting points for the parameters could be crucial!</strong>.</p></li>
+</ul>
+<ol class="simple">
+<li><p>Then we fix the model we want to fit, the variable is always denote as <code class="docutils literal notranslate"><span class="pre">x</span></code>
+while the other letters appearing in the expression are interpreted as
+the parameters</p></li>
+<li><p>We finally launch the <em>fit</em> operation with the command of the same name by
+passing to it the data and the model we have defined.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>% Array containing the data
+data = [ 4 126 % Time (min) and Temperature (°F)
+  5 125
+  7 123
+  12 120
+  14 119
+  16 118
+  20 116
+  24 115
+  28 114
+  31 113
+  34 112
+  37.5 111
+  41 110
+];
+fo = fitoptions(&#39;Method&#39;,&#39;NonlinearLeastSquares&#39;,...
+               &#39;Lower&#39;,[0],...
+               &#39;Upper&#39;,[Inf],...
+               &#39;StartPoint&#39;,[1]);
+ft = fittype(&#39;60 + 70*exp(-a*x)&#39;,&#39;options&#39;,fo);
+[curve,gof] = fit(data(:,1),data(:,2),ft);
+% We plot the results
+figure(1)
+plot(curve,data(:,1),data(:,2))
+xlabel(&#39;Time (m)&#39;);
+ylabel(&#39;Temperature (°F)&#39;);
+</pre></div>
+</div>
+</div>
+</div>
+<p>The other information we can extract from the fit are contained in the two
+outputs of the <code class="docutils literal notranslate"><span class="pre">fit</span></code> function, namely:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">disp</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
+<span class="n">disp</span><span class="p">(</span><span class="n">gof</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="parameterfitting-exercise-0">
+
+<p class="admonition-title"><span class="caption-number">Exercise 6 </span> (Puromycin)</p>
+<section id="exercise-content">
+<p>We use some data on the “velocity” of an enzymatic reaction. Specifically we
+have measured the number of counts per minute of radioactive product from the
+reaction as a function of substrate concentration in parts per million (ppm).
+From these counts the initial rate, or “velocity”, of the reaction was
+calculated (<span class="math notranslate nohighlight">\(\text{counts}/\text{min}^2\)</span>). The experiment was conducted once
+with the enzyme treated with Puromycin and once with the untreated enzyme.</p>
+<p>The <em>velocity</em> is assumed to depend on the substrate concentration according to
+the Michaelis-Menten, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[f(x,\theta) = \frac{\theta_1 x}{\theta_2 + x},\]</div>
+<p>we want to</p>
+<ol class="simple">
+<li><p>Compute the parameters <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span> in the two cases (with and
+without using Puromycin),</p></li>
+<li><p>Verify the hypothesis on the fact that the ultimate velocity parameter
+<span class="math notranslate nohighlight">\(\theta_1\)</span> should be affected by the introduction of the Puromycin, but not
+the half-velocity parameter <span class="math notranslate nohighlight">\(\theta_2\)</span>.</p></li>
+</ol>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="c">% substrate treated untreated</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.02</span><span class="w"> </span><span class="mi">76</span><span class="w"> </span><span class="mi">67</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.02</span><span class="w"> </span><span class="mi">47</span><span class="w"> </span><span class="mi">51</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.06</span><span class="w"> </span><span class="mi">97</span><span class="w"> </span><span class="mi">84</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.06</span><span class="w"> </span><span class="mi">107</span><span class="w"> </span><span class="mi">86</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.11</span><span class="w"> </span><span class="mi">123</span><span class="w"> </span><span class="mi">98</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.11</span><span class="w"> </span><span class="mi">139</span><span class="w"> </span><span class="mi">115</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.22</span><span class="w"> </span><span class="mi">159</span><span class="w"> </span><span class="mi">131</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.22</span><span class="w"> </span><span class="mi">152</span><span class="w"> </span><span class="mi">124</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.56</span><span class="w"> </span><span class="mi">191</span><span class="w"> </span><span class="mi">144</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.56</span><span class="w"> </span><span class="mi">201</span><span class="w"> </span><span class="mi">158</span><span class="w"></span>
+<span class="w">  </span><span class="mf">1.10</span><span class="w"> </span><span class="mi">207</span><span class="w"> </span><span class="mi">160</span><span class="w"></span>
+<span class="w">  </span><span class="mf">1.10</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="nb">NaN</span><span class="w">   </span>
+<span class="w"> </span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="parameterfitting-exercise-1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 7 </span> (Growth of leaves)</p>
+<section id="exercise-content">
+<p>Try to find parameters for the Richards model for the growth of leaves, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[f(x,\theta) = \frac{\theta_1}{(1+ \theta_2 e^{-\theta_3 x})^{1/\theta4}},\]</div>
+<p>on the following data</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="c">% Time (days) Leaf length (cm)</span><span class="w"></span>
+<span class="w">  </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">1.3</span><span class="w"></span>
+<span class="w">  </span><span class="mf">1.5</span><span class="w"> </span><span class="mf">1.3</span><span class="w"></span>
+<span class="w">  </span><span class="mf">2.5</span><span class="w"> </span><span class="mf">1.9</span><span class="w"></span>
+<span class="w">  </span><span class="mf">3.5</span><span class="w"> </span><span class="mf">3.4</span><span class="w"></span>
+<span class="w">  </span><span class="mf">4.5</span><span class="w"> </span><span class="mf">5.3</span><span class="w"></span>
+<span class="w">  </span><span class="mf">5.5</span><span class="w"> </span><span class="mf">7.1</span><span class="w"></span>
+<span class="w">  </span><span class="mf">6.5</span><span class="w"> </span><span class="mf">10.6</span><span class="w"></span>
+<span class="w">  </span><span class="mf">7.5</span><span class="w"> </span><span class="mf">16.0</span><span class="w"></span>
+<span class="w">  </span><span class="mf">8.5</span><span class="w"> </span><span class="mf">16.4</span><span class="w"></span>
+<span class="w">  </span><span class="mf">9.5</span><span class="w"> </span><span class="mf">18.3</span><span class="w"></span>
+<span class="w">  </span><span class="mf">10.5</span><span class="w"> </span><span class="mf">20.9</span><span class="w"></span>
+<span class="w">  </span><span class="mf">11.5</span><span class="w"> </span><span class="mf">20.5</span><span class="w"></span>
+<span class="w">  </span><span class="mf">12.5</span><span class="w"> </span><span class="mf">21.3</span><span class="w"></span>
+<span class="w">  </span><span class="mf">13.5</span><span class="w"> </span><span class="mf">21.2</span><span class="w"></span>
+<span class="w">  </span><span class="mf">14.5</span><span class="w"> </span><span class="mf">20.9</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</div>
+</section>
+<section id="fitting-data-to-a-differential-model">
+<h2>Fitting data to a differential model<a class="headerlink" href="#fitting-data-to-a-differential-model" title="Permalink to this headline">#</a></h2>
+<p>Until now we have always assumed to explicitly know the model. Nevertheless,
+such models often come as the solution of a differential equation. As we have
+hinted in the last topic, an explicit solution of a differential equation is
+usually hard to come by.</p>
+<p>We could be in the case of having a problem of the form</p>
+<div class="math notranslate nohighlight">
+\[x' = f(x,\theta), \quad x \in \mathbb{R}^d, \; t \in [0,t_{\max}], \quad x(0) = x_0,\]</div>
+<p>depending on a set of parameters <span class="math notranslate nohighlight">\(\theta in \mathbb{R}^m\)</span>. Then we have
+observations at discrete time points <span class="math notranslate nohighlight">\(t_1,\ldots,t_p \in [0,t_{\max}]\)</span> in the
+form</p>
+<div class="math notranslate nohighlight">
+\[(t_1,g(x^{(1)})), (t_2,g(x^{(2)})), \ldots, (t_p,g(x^{(p)})),\]</div>
+<p>for a function <span class="math notranslate nohighlight">\(g(\cdot)\)</span> representing some observable of the system. We can
+state this problem again in a <strong>least square</strong> formulation as</p>
+<div class="math notranslate nohighlight">
+\[\text{ find }\theta \in \mathbb{R}^m \,:\, \min \sum_{i=1}^{p} \| g(x(t_i,\theta)) - g(x^{(i)}) \|^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\|g(x)-g(y)\| = \sum_{i=1}^{n} |g_i(x) - g_i(y)|^2\)</span>. Thus, by manipulating
+a bit the quantities we have, we can use again the same strategy we have seen
+before.</p>
+<p>Let us use this procedure to <strong>estimate the parameters of a SIR model</strong>. Let us
+proceed step-by-step</p>
+<ul class="simple">
+<li><p>first of all we need the dynamic of the system, since we will work with
+uncertain data, we will run this time all three differential equations</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">We</span> <span class="n">order</span> <span class="n">the</span> <span class="n">variables</span> <span class="k">as</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">S</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">I</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
+<span class="o">%</span> <span class="k">lambda</span> <span class="o">=</span> <span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">gamma</span> <span class="o">=</span> <span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sirModel</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span> <span class="p">[</span><span class="o">-</span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="o">...</span>
+    <span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="o">...</span>
+    <span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>then we use the function we have seen in the last topic for integrating
+differential equations, this will be our workhorse, here we are using the
+computational resources</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sirSOL</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="n">deval</span><span class="p">(</span><span class="n">ode45</span><span class="p">(</span> <span class="o">@</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">sirModel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">theta</span><span class="p">),</span><span class="n">t</span><span class="p">,</span><span class="n">IC</span><span class="p">),</span><span class="n">t</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>now we generate our noisy data, that will represent the measurements taken
+on the field</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">we</span> <span class="n">fix</span> <span class="n">the</span> <span class="n">random</span> <span class="n">number</span> <span class="n">generator</span> <span class="n">so</span> <span class="n">that</span> <span class="n">we</span> <span class="n">generate</span> <span class="n">always</span> <span class="n">the</span> <span class="n">same</span> <span class="n">random</span> <span class="n">numbers</span><span class="p">:</span>
+<span class="n">rng</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">numpts</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span>
+<span class="n">tdata</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sort</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">rand</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">))];</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">ndataSIR</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">]);</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">]);</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">])];</span>
+
+<span class="k">lambda</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">S0</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+<span class="n">I0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">R0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span><span class="p">;</span> <span class="n">gamma</span><span class="p">];</span>
+<span class="n">IC</span> <span class="o">=</span> <span class="p">[</span><span class="n">S0</span><span class="p">;</span> <span class="n">I0</span><span class="p">;</span> <span class="n">R0</span><span class="p">];</span>
+<span class="n">SIRData</span> <span class="o">=</span> <span class="n">sirSOL</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">tdata</span><span class="p">)</span> <span class="o">+</span> <span class="n">ndataSIR</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>now the matrix <code class="docutils literal notranslate"><span class="pre">SIRData</span></code> contains the noisy data of our system with
+given parameters (that are indeed the parameters that we will try to guess back).
+To march the optimization procedure we will focus only on the data for
+for <span class="math notranslate nohighlight">\(I(t)\)</span> and <span class="math notranslate nohighlight">\(N(t)\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIRDatared</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">SIRData</span><span class="p">;</span>
+
+<span class="o">%</span> <span class="n">Let</span> <span class="n">us</span> <span class="n">look</span> <span class="n">at</span> <span class="n">the</span> <span class="n">data</span> <span class="n">we</span> <span class="n">have</span> <span class="n">obtained</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRDatared</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRDatared</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s1">&#39;I^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;S^*(t) + I^*(t) + R^*(t)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We can now build the <strong>objective</strong> function we wish to optimize</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIRthetaSol</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">sirSOL</span><span class="p">([</span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span><span class="n">IC</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span> <span class="p">(</span><span class="n">SIRthetaSol</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">tdata</span><span class="p">)</span> <span class="o">-</span> <span class="n">SIRDatared</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>that we optimize by means of the <code class="docutils literal notranslate"><span class="pre">fmincon</span></code> function. Moreover, we tell to it
+to print some information on the procedure, and we request that the parameters
+<span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> to be in between <span class="math notranslate nohighlight">\([0,0]\)</span> and <span class="math notranslate nohighlight">\([1,4]\)</span> respectively.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">optimset</span><span class="p">(</span><span class="s1">&#39;Display&#39;</span><span class="p">,</span><span class="s1">&#39;iter&#39;</span><span class="p">);</span>
+<span class="p">[</span><span class="n">SIRtheta</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+    <span class="n">fmincon</span><span class="p">(</span><span class="n">objective</span><span class="p">,[</span><span class="mf">0.1</span> <span class="mi">4</span><span class="p">],[],[],[],[],[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span> <span class="mi">4</span><span class="p">],[],</span><span class="n">options</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>In the final step we can print the results we have obtained to screen:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tsol</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">tdata</span><span class="p">),</span><span class="mi">400</span><span class="p">);</span>
+<span class="n">SIRSOL</span> <span class="o">=</span> <span class="n">sirSOL</span><span class="p">(</span><span class="n">SIRtheta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">tsol</span><span class="p">);</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s1">&#39;b*&#39;</span><span class="p">,</span><span class="o">...</span>
+    <span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s1">&#39;rx&#39;</span><span class="p">,</span><span class="o">...</span>
+    <span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s1">&#39;g^&#39;</span><span class="p">,</span><span class="o">...</span>
+    <span class="n">tdata</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">SIRData</span><span class="p">),</span><span class="s1">&#39;k.&#39;</span><span class="p">,</span><span class="o">...</span>
+    <span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="o">...</span>
+    <span class="n">tsol</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">SIRSOL</span><span class="p">),</span><span class="s1">&#39;k--&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">({</span><span class="s1">&#39;S^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;I^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;R^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;N^*(t)&#39;</span><span class="p">,</span><span class="o">...</span>
+    <span class="s1">&#39;S(t)&#39;</span><span class="p">,</span><span class="s1">&#39;I(t)&#39;</span><span class="p">,</span><span class="s1">&#39;R(t)&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">},</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span><span class="s1">&#39;eastoutside&#39;</span><span class="p">)</span>
+<span class="n">axis</span> <span class="n">tight</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id2">
+<dl class="citation">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">BW88</a></span></dt>
+<dd><p>Douglas M. Bates and Donald G. Watts. <em>Nonlinear regression analysis and its applications</em>. Wiley Series in Probability and Mathematical Statistics: Applied Probability and Statistics. John Wiley &amp; Sons, Inc., New York, 1988. ISBN 0-471-81643-4. URL: <a class="reference external" href="https://doi.org/10.1002/9780470316757">https://doi.org/10.1002/9780470316757</a>, <a class="reference external" href="https://doi.org/10.1002/9780470316757">doi:10.1002/9780470316757</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "matlab"
+        },
+        kernelOptions: {
+            kernelName: "matlab",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'matlab'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="odes.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Modeling evolutionary problems</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="graphsandnetworks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Graphs and Networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Fabio Durastante<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

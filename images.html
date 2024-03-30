@@ -1,0 +1,894 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Working with images &#8212; Numerical recipes for environmental sciences with MATLAB</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Linear Algebra" href="linearalgebra.html" />
+    <link rel="prev" title="Graphs and Networks" href="graphsandnetworks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Numerical recipes for environmental sciences with MATLAB</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Numerical recipes for environmental sciences with MATLAB
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intromatlab.html">
+   An introduction to MATLAB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ioplot.html">
+   Reading, writing and plotting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="odes.html">
+   Modeling evolutionary problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parameterfitting.html">
+   Fitting data to models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphsandnetworks.html">
+   Graphs and Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Working with images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearalgebra.html">
+   Linear Algebra
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Cirdans-Home/recipesforenvsciences2024/main?urlpath=tree/src/images.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024/issues/new?title=Issue%20on%20page%20%2Fimages.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/images.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/images.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#denoising-images">
+   Denoising images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deblurring-images">
+   Deblurring images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Working with images</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#denoising-images">
+   Denoising images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deblurring-images">
+   Deblurring images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-images">
+<h1>Working with images<a class="headerlink" href="#working-with-images" title="Permalink to this headline">#</a></h1>
+<p>Up to now we have worked with numerical data (data from experiments to be
+adapted to models, simulations of differential equations) and relational data
+(networks). This isn’t the only type of data you can happen to be dealing with.
+Another rather frequent occurrence is that of having to analyze images from
+various sources. We will deal here with the solution of some problems that
+concern them.</p>
+<p>The <strong>first issue</strong> we have to solve, is indeed interfacing the computer with
+this type of data. MATLAB commands can <em>read</em>, <em>write</em>, and <em>display</em> several
+types of image file formats:</p>
+<ul class="simple">
+<li><p>BMP</p></li>
+<li><p>GIF</p></li>
+<li><p>HDF</p></li>
+<li><p>JPEG</p></li>
+<li><p>PCX</p></li>
+<li><p>PNG</p></li>
+<li><p>TIFF</p></li>
+<li><p>XWD</p></li>
+</ul>
+<p>Let us start by downloading from the internet a cat photo and loading it into
+MATLAB:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Download</span> <span class="n">an</span> <span class="n">image</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">web</span>
+<span class="n">websave</span><span class="p">(</span><span class="s1">&#39;cat.jpg&#39;</span><span class="p">,</span><span class="s1">&#39;https://upload.wikimedia.org/wikipedia/commons/5/52/Panthera_leo_stretching_</span><span class="si">%28E</span><span class="s1">tosha%2C_2012%29.jpg&#39;</span><span class="p">);</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;cat.jpg&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we have seen many times, the fundamental data in MATLAB is the <em>array</em>, and
+thus the variable <code class="docutils literal notranslate"><span class="pre">A</span></code> we have obtained with the <code class="docutils literal notranslate"><span class="pre">imread</span></code> command is indeed a
+type of array. In many cases, images can be represented by using matrices, in
+which entry corresponds to a <em>single pixel</em> of the given image. Some images,
+for example RGB color images, require instead a tensor to be represented, that
+is, if you prefer, a three-dimensional array. In the first plane (with respect
+to the third dimension) we represent the red pixel intensities, in the second
+one we represent the green pixel intensities, and finally in the third one
+the blue pixel intensities.</p>
+<p>Indeed, if we query for the variable we have just created, we find as much</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">whos</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>that is <span class="math notranslate nohighlight">\(A\)</span> is a vector of integers of sizes <span class="math notranslate nohighlight">\(2000 \times 3000 \times 3\)</span>. We can
+look at the figure it represents by doing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Other general utility functions that we can consider are</p>
+<ul class="simple">
+<li><p>converting an RGB image to grayscale</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Agray</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">Agray</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>create a <em>tiled image</em> from multiple images</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Agray</span><span class="p">});</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>cropping and saving a reduced size image</p></li>
+</ul>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">image</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="s">image</span><span class="p">;</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">ginput</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="c">% Get the x and y corner coordinates as integers</span><span class="w"></span>
+<span class="n">sp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="nb">floor</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span><span class="w"> </span><span class="c">%xmin</span><span class="w"></span>
+<span class="n">sp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="nb">floor</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">)));</span><span class="w"> </span><span class="c">%ymin</span><span class="w"></span>
+<span class="n">sp</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span><span class="w">   </span><span class="c">%xmax</span><span class="w"></span>
+<span class="n">sp</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">)));</span><span class="w">   </span><span class="c">%ymax</span><span class="w"></span>
+<span class="n">CroppedA</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">sp</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span><span class="n">sp</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="n">sp</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="w"> </span><span class="n">sp</span><span class="p">(</span><span class="mi">3</span><span class="p">),:);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">;</span><span class="w"> </span><span class="nb">image</span><span class="p">(</span><span class="n">CroppedA</span><span class="p">);</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="s">image</span><span class="w"></span>
+<span class="nb">imwrite</span><span class="p">(</span><span class="n">CroppedA</span><span class="p">,</span><span class="s">&#39;cropped_cat.jpg&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/cropped_cat.jpg"><img alt="cropped cat" class="align-center" src="_images/cropped_cat.jpg" style="width: 80%;" /></a>
+<p>in which we have used the <code class="docutils literal notranslate"><span class="pre">ginput</span></code> command to get the coordinates of some
+points from the figure, and the <code class="docutils literal notranslate"><span class="pre">imwrite</span></code> command to save the cropped figure
+to a file.</p>
+<ul class="simple">
+<li><p>obtaining information about graphics files (maybe useful before loading them)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">iminfo</span> <span class="o">=</span> <span class="n">imfinfo</span><span class="p">(</span><span class="s1">&#39;cat.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>resizing images, if you want to enlarge a figure you need to <em>guess</em> somehow
+the value of the missing pixels, similarly, if you reduce it, you have to
+<em>decide</em> how to modify the remaining ones. This is done via an <em>interpolation kernel</em>
+function that calculates the value of a pixel using a weighted average of
+neighboring pixel values</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Ares</span> <span class="o">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;Method&quot;</span><span class="p">,</span><span class="s2">&quot;bicubic&quot;</span><span class="p">);</span>
+<span class="n">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span> <span class="n">axis</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Ares</span> <span class="o">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;Method&quot;</span><span class="p">,</span><span class="s2">&quot;bilinear&quot;</span><span class="p">);</span>
+<span class="n">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span> <span class="n">axis</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Ares</span> <span class="o">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Method&quot;</span><span class="p">,</span><span class="s2">&quot;nearest&quot;</span><span class="p">);</span>
+<span class="n">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span> <span class="n">axis</span> <span class="n">image</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="denoising-images">
+<h2>Denoising images<a class="headerlink" href="#denoising-images" title="Permalink to this headline">#</a></h2>
+<p>A part from photos of cats sometimes we get photos from experimental instruments
+that are littered with noise, and that we wish to remove. This may be either for
+simply having a better looking photo, or as a first step in a following analysis.</p>
+<p>From the <strong>wavelet Toolbox</strong> you can use the following procedure to <em>denoise</em> an
+image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Anoise</span> <span class="o">=</span> <span class="n">imnoise</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">);</span>
+<span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Anoise</span><span class="p">});</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
+<span class="n">Adenoise</span> <span class="o">=</span> <span class="n">wdenoise2</span><span class="p">(</span><span class="n">Anoise</span><span class="p">);</span>
+<span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Anoise</span><span class="p">,</span><span class="n">uint8</span><span class="p">(</span><span class="n">Adenoise</span><span class="p">)});</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A <strong>wavelet transforms</strong> of a given signal of finite energy acts as a projection
+on a continuous family of <em>frequency bands</em>. We can represent, for instance, the
+signal could be represented on every frequency band <span class="math notranslate nohighlight">\([f,2f]\)</span> for all <span class="math notranslate nohighlight">\(f &gt; 0\)</span>,
+for example for <span class="math notranslate nohighlight">\(f = 1\)</span> one could select the function</p>
+<div class="math notranslate nohighlight">
+\[\phi(t) = \frac{\sin(2\pi t) - \sin(\pi t)}{\pi t},\]</div>
+<p>and for the bands <span class="math notranslate nohighlight">\([1/a,2/a]\)</span> by the function</p>
+<div class="math notranslate nohighlight">
+\[\phi_{a,b} = \frac{1}{\sqrt{a}} \phi\left(\frac{t-b}{a}\right), \quad b \in \mathbb{R}.\]</div>
+<p>Then a signal <span class="math notranslate nohighlight">\(x(t)\)</span> can be decomposed as</p>
+<div class="math notranslate nohighlight">
+\[x_a(t) = \int_{\mathbb{R}} W_\phi\{x\}(a,b) \cdot \phi_{a,b}(t)\,\textrm{d}b, \quad W_\phi\{x\}(a,b) = \int_{\mathbb{R}} x(t) \phi_{a,b}(t)\,\textrm{d}t.\]</div>
+<p>Since it is <em>computationally intractable</em> to analyze a continuous signal this
+way, we usually reduce to a <em>smaller set of discrete coefficients</em></p>
+<div class="math notranslate nohighlight">
+\[x(t) = \sum_{m \in \mathbb{Z}}\sum_{n \in mathbb{Z}} C_{m,n} \phi_{m,n}(t), \quad \phi_{m,n}(t) = \frac{1}{\sqrt{a^m}} \phi\left(\frac{t-nb}{a^m}\right), \quad C_{m,n} = \int_{\mathbb{R}} x(t) \phi_{m,n}(t)\,\textrm{d}t.\]</div>
+<p>In any case, when we have computed the coefficient, what we do to <em>denoise the image</em>
+is to throw away the “small one” that are mostly noises, while the “large ones”
+contain actual signal.</p>
+</div>
+<p>Further options can be analyzed by looking at the <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">wdenoise2</span></code>.</p>
+<p>This is a classic way of solving this kind of problem. In recent times, another
+widely used approach is that of <strong>neural networks</strong>. The <strong>Image Processing MATLAB Toolbox</strong>
+has a <em>pretrained</em> neural network for denoising <em>black and white</em> images, it can
+be called by doing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Agray</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="n">Agraynoise</span> <span class="o">=</span> <span class="n">imnoise</span><span class="p">(</span><span class="n">Agray</span><span class="p">,</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">);</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">denoisingNetwork</span><span class="p">(</span><span class="s1">&#39;DnCNN&#39;</span><span class="p">);</span>
+<span class="n">Adenoisenet</span> <span class="o">=</span> <span class="n">denoiseImage</span><span class="p">(</span><span class="n">Agraynoise</span><span class="p">,</span><span class="n">net</span><span class="p">);</span>
+<span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">Agray</span><span class="p">,</span><span class="n">Agraynoise</span><span class="p">,</span><span class="n">uint8</span><span class="p">(</span><span class="n">Adenoisenet</span><span class="p">)});</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>the network <code class="docutils literal notranslate"><span class="pre">denoisingNetwork('DnCNN')</span></code> is a rather complex object whose
+structure can be investigated by doing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">disp</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">Layers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could <strong>train</strong> a new network for this task, but this is a rater complex
+topic, and a computationally intensive task. Therefore, we are not going to
+pursue it.</p>
+</section>
+<section id="deblurring-images">
+<h2>Deblurring images<a class="headerlink" href="#deblurring-images" title="Permalink to this headline">#</a></h2>
+<p>The <strong>blurring</strong> of an image can be caused by many factors, the classical are</p>
+<ul class="simple">
+<li><p>a movement during the image capture process, e.g., a slight movement of the
+camera or even a micro-movement if long exposure times are used,</p></li>
+<li><p>an out-of-focus optics,</p></li>
+<li><p>the use of a wide-angle lens,</p></li>
+<li><p>an atmospheric turbulence for telescopic images,</p></li>
+<li><p>a too a short exposure time, e.g., the phenomena is very fast,</p></li>
+<li><p>the presence of scattered light and light distortion in confocal microscopy.</p></li>
+</ul>
+<p>As many other things we have seen until now in this course, a <strong>blurred image</strong>
+can be described (at least approximately) by a <em>linear equation</em>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = H \mathbf{x} + \mathbf{e},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is the image we would like to have, <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the image
+we got from the measurement procedure, <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> the noise vector, and
+<span class="math notranslate nohighlight">\(H\)</span> the <em>so-called</em> blur operator that encodes one of the <strong>blurring</strong> phenomena.</p>
+<p>As we have done for the <em>noise</em> problem, we start by creating a fictitious <em>blurred</em>
+image. To reduce the computation time, we use a smaller example than the lion
+that is distributed with MATLAB</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">First</span> <span class="n">we</span> <span class="n">read</span> <span class="ow">and</span> <span class="n">visualize</span> <span class="n">the</span> <span class="n">image</span><span class="p">:</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">im2double</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;peppers.png&#39;</span><span class="p">));</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Image&#39;</span><span class="p">);</span>
+<span class="o">%</span> <span class="n">We</span> <span class="n">create</span> <span class="n">the</span> <span class="n">operator</span> <span class="n">H</span> <span class="n">by</span> <span class="n">using</span> <span class="n">a</span> <span class="n">PSF</span> <span class="n">function</span>
+<span class="n">LEN</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
+<span class="n">THETA</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="n">PSF</span> <span class="o">=</span> <span class="n">fspecial</span><span class="p">(</span><span class="s1">&#39;motion&#39;</span><span class="p">,</span><span class="n">LEN</span><span class="p">,</span><span class="n">THETA</span><span class="p">);</span>
+<span class="n">Blurred</span> <span class="o">=</span> <span class="n">imfilter</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="s1">&#39;circular&#39;</span><span class="p">,</span><span class="s1">&#39;conv&#39;</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">Blurred</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Blurred Image&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to discuss several aspects of these commands, first of all we need to
+describe how we build the <span class="math notranslate nohighlight">\(H\)</span> operator. This is done through the usage of a
+<strong>P</strong>oint <strong>S</strong>pread <strong>F</strong>unction (PSF), this function describes the response
+of the imaging system we are using when solicited by a point source. If we have
+in mind the model of a camera, this essentially tells us how a single ray of
+light (the point source) is distorted by the equipment we are using.</p>
+<p>We produce a <strong>synthetic response</strong> by means of the <code class="docutils literal notranslate"><span class="pre">fspecial</span></code> function, its
+<code class="docutils literal notranslate"><span class="pre">help</span></code> produce</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fspecial</span> <span class="n">Create</span> <span class="n">predefined</span> <span class="mi">2</span><span class="o">-</span><span class="n">D</span> <span class="n">filters</span><span class="o">.</span>
+   <span class="n">H</span> <span class="o">=</span> <span class="n">fspecial</span><span class="p">(</span><span class="n">TYPE</span><span class="p">)</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">two</span><span class="o">-</span><span class="n">dimensional</span> <span class="nb">filter</span> <span class="n">H</span> <span class="n">of</span> <span class="n">the</span>
+   <span class="n">specified</span> <span class="nb">type</span><span class="o">.</span> <span class="n">Possible</span> <span class="n">values</span> <span class="k">for</span> <span class="n">TYPE</span> <span class="n">are</span><span class="p">:</span>
+
+     <span class="s1">&#39;average&#39;</span>   <span class="n">averaging</span> <span class="nb">filter</span>
+     <span class="s1">&#39;disk&#39;</span>      <span class="n">circular</span> <span class="n">averaging</span> <span class="nb">filter</span>
+     <span class="s1">&#39;gaussian&#39;</span>  <span class="n">Gaussian</span> <span class="n">lowpass</span> <span class="nb">filter</span>
+     <span class="s1">&#39;laplacian&#39;</span> <span class="nb">filter</span> <span class="n">approximating</span> <span class="n">the</span> <span class="mi">2</span><span class="o">-</span><span class="n">D</span> <span class="n">Laplacian</span> <span class="n">operator</span>
+     <span class="s1">&#39;log&#39;</span>       <span class="n">Laplacian</span> <span class="n">of</span> <span class="n">Gaussian</span> <span class="nb">filter</span>
+     <span class="s1">&#39;motion&#39;</span>    <span class="n">motion</span> <span class="nb">filter</span>
+     <span class="s1">&#39;prewitt&#39;</span>   <span class="n">Prewitt</span> <span class="n">horizontal</span> <span class="n">edge</span><span class="o">-</span><span class="n">emphasizing</span> <span class="nb">filter</span>
+     <span class="s1">&#39;sobel&#39;</span>     <span class="n">Sobel</span> <span class="n">horizontal</span> <span class="n">edge</span><span class="o">-</span><span class="n">emphasizing</span> <span class="nb">filter</span>
+</pre></div>
+</div>
+<p>that proposes several type of filters. We selected a <code class="docutils literal notranslate"><span class="pre">motion</span> <span class="pre">blur</span></code>, that
+represents a linear motion of a camera by <code class="docutils literal notranslate"><span class="pre">LEN</span></code> pixels, with an angle of <code class="docutils literal notranslate"><span class="pre">THETA</span></code>
+degrees in a counter-clockwise direction. Then, we build the operator <span class="math notranslate nohighlight">\(H\)</span> by
+using the <code class="docutils literal notranslate"><span class="pre">imfilter</span></code> function. This operation needs the image on which we want
+to apply the the filtering, the PSF, the way in which we decide to model the
+boundaries of the image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">imfilter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">OPTION1</span><span class="p">,</span><span class="n">OPTION2</span><span class="p">,</span><span class="o">...</span><span class="p">)</span> <span class="n">performs</span> <span class="n">multidimensional</span>
+<span class="n">filtering</span> <span class="n">according</span> <span class="n">to</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">options</span><span class="o">.</span>  <span class="n">Option</span> <span class="n">arguments</span> <span class="n">can</span>
+<span class="n">have</span> <span class="n">the</span> <span class="n">following</span> <span class="n">values</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="n">Boundary</span> <span class="n">options</span>
+
+    <span class="n">X</span>            <span class="n">Input</span> <span class="n">array</span> <span class="n">values</span> <span class="n">outside</span> <span class="n">the</span> <span class="n">bounds</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span>
+                 <span class="n">are</span> <span class="n">implicitly</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">have</span> <span class="n">the</span> <span class="n">value</span> <span class="n">X</span><span class="o">.</span>  <span class="n">When</span> <span class="n">no</span>
+                 <span class="n">boundary</span> <span class="n">option</span> <span class="ow">is</span> <span class="n">specified</span><span class="p">,</span> <span class="n">imfilter</span> <span class="n">uses</span> <span class="n">X</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="s1">&#39;symmetric&#39;</span>  <span class="n">Input</span> <span class="n">array</span> <span class="n">values</span> <span class="n">outside</span> <span class="n">the</span> <span class="n">bounds</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span>
+                 <span class="n">are</span> <span class="n">computed</span> <span class="n">by</span> <span class="n">mirror</span><span class="o">-</span><span class="n">reflecting</span> <span class="n">the</span> <span class="n">array</span> <span class="n">across</span>
+                 <span class="n">the</span> <span class="n">array</span> <span class="n">border</span><span class="o">.</span>
+
+    <span class="s1">&#39;replicate&#39;</span>  <span class="n">Input</span> <span class="n">array</span> <span class="n">values</span> <span class="n">outside</span> <span class="n">the</span> <span class="n">bounds</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span>
+                 <span class="n">are</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">equal</span> <span class="n">the</span> <span class="n">nearest</span> <span class="n">array</span> <span class="n">border</span>
+                 <span class="n">value</span><span class="o">.</span>
+
+    <span class="s1">&#39;circular&#39;</span>   <span class="n">Input</span> <span class="n">array</span> <span class="n">values</span> <span class="n">outside</span> <span class="n">the</span> <span class="n">bounds</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span>
+                 <span class="n">are</span> <span class="n">computed</span> <span class="n">by</span> <span class="n">implicitly</span> <span class="n">assuming</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">array</span>
+                 <span class="ow">is</span> <span class="n">periodic</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This is a <strong>crucial</strong> part, we need to guess how the image behaves out of the
+picture frame. This value are needed to close the model equation. For this test
+case we selected the <code class="docutils literal notranslate"><span class="pre">circular</span></code> option, that assumes that the values at the
+boundary are periodic. The last option decides how the PSF is transformed into
+the operator <span class="math notranslate nohighlight">\(H\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">Correlation</span> <span class="ow">and</span> <span class="n">convolution</span>
+
+    <span class="s1">&#39;corr&#39;</span>       <span class="n">imfilter</span> <span class="n">performs</span> <span class="n">multidimensional</span> <span class="n">filtering</span> <span class="n">using</span>
+                 <span class="n">correlation</span><span class="p">,</span> <span class="n">which</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">same</span> <span class="n">way</span> <span class="n">that</span> <span class="n">FILTER2</span>
+                 <span class="n">performs</span> <span class="n">filtering</span><span class="o">.</span>  <span class="n">When</span> <span class="n">no</span> <span class="n">correlation</span> <span class="ow">or</span>
+                 <span class="n">convolution</span> <span class="n">option</span> <span class="ow">is</span> <span class="n">specified</span><span class="p">,</span> <span class="n">imfilter</span> <span class="n">uses</span>
+                 <span class="n">correlation</span><span class="o">.</span>
+
+    <span class="s1">&#39;conv&#39;</span>       <span class="n">imfilter</span> <span class="n">performs</span> <span class="n">multidimensional</span> <span class="n">filtering</span> <span class="n">using</span>
+                 <span class="n">convolution</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Following the intuition behind the choice of the camera model, we decide for
+a <code class="docutils literal notranslate"><span class="pre">conv</span></code> process. At the end of this whole procedure, the variable <code class="docutils literal notranslate"><span class="pre">Blurred</span></code>
+contains the deteriorated image that we want to restore.</p>
+<p>To <strong>complete the problem</strong> to a realistic solution, we need to also add some
+noise to the image. We have seen this procedure already in the previous
+section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BlurredNoised</span> <span class="o">=</span> <span class="n">imnoise</span><span class="p">(</span><span class="n">Blurred</span><span class="p">,</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.001</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image to be restored&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have the problem we want to solve, we can look at the routine
+proposed by MATLAB to solve this problem.</p>
+<p>We use the <code class="docutils literal notranslate"><span class="pre">deconvwnr</span></code> function, this function requires as inputs the PSF, and
+the noise-to-signal-power ratio, let us start by looking at what happens if we miss the
+level of noise. As an example, let us suppose that we underestimate it, and
+decide that our image has no noise whatsoever:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nsr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">Restored</span> <span class="o">=</span> <span class="n">deconvwnr</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="n">nsr</span><span class="p">);</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">Restored</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this poor choice the algorithm is incapable of finding anything useful. We
+end up with a worse reconstruction than the image we had start with. In principle
+the problem we are trying to solve is nothing more than a linear system, the
+problem is that <em>we do not want to solve it completely</em>, if we do a complete
+solution we end up recovering only noise! Thus, many of the algorithms for this
+task require that the user provide an estimate of the noise. This is used to
+halt the solution procedure at a point in which the obtained solution makes
+sense. Thus, let us try with a better guess:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nsr</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">/</span> <span class="n">var</span><span class="p">(</span><span class="n">I</span><span class="p">(:));</span>
+<span class="n">Restored</span> <span class="o">=</span> <span class="n">deconvwnr</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="n">nsr</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">Restored</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That is indeed a better result.</p>
+<p>To have a complete introduction to this type of problems a good starting point
+is the book <span id="id1">[<a class="reference internal" href="#id10" title="Per Christian Hansen. Discrete inverse problems. Volume 7 of Fundamentals of Algorithms. Society for Industrial and Applied Mathematics (SIAM), Philadelphia, PA, 2010. ISBN 978-0-898716-96-2. Insight and algorithms. URL: https://doi.org/10.1137/1.9780898718836, doi:10.1137/1.9780898718836.">Han10</a>]</span>, there are then a number of books covering
+specific aspects ranging from the atmosphere <span id="id2">[<a class="reference internal" href="#id11" title="Adrian Doicu, Thomas Trautmann, and Franz Schreier. Numerical regularization for atmospheric inverse problems. Springer Science &amp; Business Media, 2010.">DTS10</a>]</span> to
+geophysical <span id="id3">[<a class="reference internal" href="#id13" title="Ne-Zheng Sun. Inverse problems in groundwater modeling. Volume 6. Springer Science &amp; Business Media, 2013.">Sun13</a>, <a class="reference internal" href="#id12" title="Michael S Zhdanov. Geophysical inverse theory and regularization problems. Volume 36. Elsevier, 2002.">Zhd02</a>]</span>.</p>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id4">
+<dl class="citation">
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id2">DTS10</a></span></dt>
+<dd><p>Adrian Doicu, Thomas Trautmann, and Franz Schreier. <em>Numerical regularization for atmospheric inverse problems</em>. Springer Science &amp; Business Media, 2010.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id1">Han10</a></span></dt>
+<dd><p>Per Christian Hansen. <em>Discrete inverse problems</em>. Volume 7 of Fundamentals of Algorithms. Society for Industrial and Applied Mathematics (SIAM), Philadelphia, PA, 2010. ISBN 978-0-898716-96-2. Insight and algorithms. URL: <a class="reference external" href="https://doi.org/10.1137/1.9780898718836">https://doi.org/10.1137/1.9780898718836</a>, <a class="reference external" href="https://doi.org/10.1137/1.9780898718836">doi:10.1137/1.9780898718836</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id3">Sun13</a></span></dt>
+<dd><p>Ne-Zheng Sun. <em>Inverse problems in groundwater modeling</em>. Volume 6. Springer Science &amp; Business Media, 2013.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id3">Zhd02</a></span></dt>
+<dd><p>Michael S Zhdanov. <em>Geophysical inverse theory and regularization problems</em>. Volume 36. Elsevier, 2002.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "matlab"
+        },
+        kernelOptions: {
+            kernelName: "matlab",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'matlab'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="graphsandnetworks.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Graphs and Networks</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="linearalgebra.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Algebra</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Fabio Durastante<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

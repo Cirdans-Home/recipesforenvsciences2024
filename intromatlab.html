@@ -1,0 +1,1850 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>An introduction to MATLAB &#8212; Numerical recipes for environmental sciences with MATLAB</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reading, writing and plotting data" href="ioplot.html" />
+    <link rel="prev" title="Numerical recipes for environmental sciences with MATLAB" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Numerical recipes for environmental sciences with MATLAB</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Numerical recipes for environmental sciences with MATLAB
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   An introduction to MATLAB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ioplot.html">
+   Reading, writing and plotting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="odes.html">
+   Modeling evolutionary problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parameterfitting.html">
+   Fitting data to models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphsandnetworks.html">
+   Graphs and Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images.html">
+   Working with images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearalgebra.html">
+   Linear Algebra
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024/issues/new?title=Issue%20on%20page%20%2Fintromatlab.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/intromatlab.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-matlab-desktop">
+   The MATLAB Desktop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arithmetic-operations-and-order-of-operations">
+   Arithmetic operations and order of operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables">
+   Variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#character-variables-and-strings">
+     Character variables and strings
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-functions-you-should-remember">
+   Some functions you should remember
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#script-creation">
+   Script creation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-functions">
+   Creating Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arrays-and-matrices">
+   Arrays and Matrices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#default-constructors">
+     Default constructors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slicing-access-elements">
+     Slicing: access elements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operations-between-arrays-and-matrices">
+     Operations between arrays and matrices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selection-and-conditional-structures">
+   Selection and Conditional Structures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cycles-and-nested-cycles">
+   Cycles and Nested Cycles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-exercises">
+   Some exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-data-to-screen-and-to-file">
+   Writing data to screen and to file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>An introduction to MATLAB</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-matlab-desktop">
+   The MATLAB Desktop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arithmetic-operations-and-order-of-operations">
+   Arithmetic operations and order of operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables">
+   Variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#character-variables-and-strings">
+     Character variables and strings
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-functions-you-should-remember">
+   Some functions you should remember
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#script-creation">
+   Script creation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-functions">
+   Creating Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arrays-and-matrices">
+   Arrays and Matrices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#default-constructors">
+     Default constructors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slicing-access-elements">
+     Slicing: access elements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operations-between-arrays-and-matrices">
+     Operations between arrays and matrices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selection-and-conditional-structures">
+   Selection and Conditional Structures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cycles-and-nested-cycles">
+   Cycles and Nested Cycles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-exercises">
+   Some exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-data-to-screen-and-to-file">
+   Writing data to screen and to file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-matlab">
+<h1>An introduction to MATLAB<a class="headerlink" href="#an-introduction-to-matlab" title="Permalink to this headline">#</a></h1>
+<p>MATLAB / Simulink is a software tool for:</p>
+<ul class="simple">
+<li><p>Performing mathematical calculations and signal processing,</p></li>
+<li><p>Data analysis and visualization: you have several graphical tools,</p></li>
+<li><p>Modeling of physical systems and phenomena,</p></li>
+<li><p>Testing and simulation of engineering projects.</p></li>
+</ul>
+<section id="the-matlab-desktop">
+<h2>The MATLAB Desktop<a class="headerlink" href="#the-matlab-desktop" title="Permalink to this headline">#</a></h2>
+<figure class="align-default" id="matlabdesktop">
+<img alt="_images/matlabdesktop.png" src="_images/matlabdesktop.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The MATLAB Desktop</span><a class="headerlink" href="#matlabdesktop" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="simple">
+<li><p>The <strong>command window</strong> is where you type MATLAB commands following the prompt:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>The <strong>workspace</strong> window shows all the variables you have defined in the
+current session. Variables can actually be manipulated within the workspace
+window.</p></li>
+<li><p>The <strong>command history</strong> shows all MATLAB commands you have used recently,
+including past sessions as well.</p></li>
+<li><p>The <strong>current folder</strong> shows all files in whichever folder has been selected
+to be the current folder.</p></li>
+</ol>
+</section>
+<section id="arithmetic-operations-and-order-of-operations">
+<h2>Arithmetic operations and order of operations<a class="headerlink" href="#arithmetic-operations-and-order-of-operations" title="Permalink to this headline">#</a></h2>
+<ul>
+<li><p>The basic operations are addition (<code class="docutils literal notranslate"><span class="pre">+</span></code>), subtraction (<code class="docutils literal notranslate"><span class="pre">-</span></code>), the
+multiplication (<code class="docutils literal notranslate"><span class="pre">*</span></code>), division (<code class="docutils literal notranslate"><span class="pre">\</span></code>), exponentiation (<code class="docutils literal notranslate"><span class="pre">^</span></code>),</p></li>
+<li><p>The order of the operations is the <em>canonical</em> one used in mathematics and follows
+the usual conventions of a scientific calculator</p>
+<ol class="simple">
+<li><p>Complete all operations in parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> using the following
+rules of precedence,</p></li>
+<li><p>Exponentiation (left to right)</p></li>
+<li><p>Multiplication and division (left to right)</p></li>
+<li><p>Addition and subtraction (from left to right)</p></li>
+</ol>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<p>For example, consider the following operations:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="mi">30</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="mi">3</span><span class="w"></span>
+<span class="mi">5</span><span class="o">*</span><span class="mi">2</span>^<span class="mi">4</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="o">-</span><span class="mi">1</span>^<span class="mi">8</span><span class="w"></span>
+<span class="mi">8</span>^<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</li>
+</ul>
+</section>
+<section id="variables">
+<span id="sec-variabili"></span><h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h2>
+<p>As in any programming language, MATLAB makes use of <strong>variables</strong>, which, in
+computer science, are data containers located in a portion of the memory and
+intended to contain values, which can (in general) be modified during the
+running a program.</p>
+<p>A variable is characterized by a name (usually intended as a sequence of
+characters and digits) which must follow a set of <em>conventions</em> that depends
+on the language being used. In MATLAB the following conventions must be used:</p>
+<ol class="simple">
+<li><p>Variable names must start with a letter,</p></li>
+<li><p>Names can include any combination of letters, numbers, and <em>underscores</em>,</p></li>
+<li><p>The maximum length for a variable name is 63 characters,</p></li>
+<li><p>MATLAB is <strong>case sensitive</strong>. The variable named <code class="docutils literal notranslate"><span class="pre">bAll</span></code> is different from the
+variable named <code class="docutils literal notranslate"><span class="pre">ball</span></code>,</p></li>
+<li><p>It is a good idea to avoid the following names: <code class="docutils literal notranslate"><span class="pre">i</span></code>,<code class="docutils literal notranslate"> <span class="pre">j</span></code>, <code class="docutils literal notranslate"><span class="pre">pi</span></code>, and more
+generally all predefined MATLAB function names such as <code class="docutils literal notranslate"><span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>,<code class="docutils literal notranslate"> <span class="pre">size</span></code>,
+<code class="docutils literal notranslate"><span class="pre">plot</span></code>,<code class="docutils literal notranslate"> <span class="pre">break</span></code>, <code class="docutils literal notranslate"><span class="pre">cos</span></code>,<code class="docutils literal notranslate"> <span class="pre">log</span></code>, etc.</p></li>
+<li><p>It is good practice to call variables with intelligible names, that is, with
+names that reflect their use within the program rather than using gods
+generic variable names such as <code class="docutils literal notranslate"><span class="pre">x</span></code>,<code class="docutils literal notranslate"> <span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If we want to calculate the surface air of a sphere <span class="math notranslate nohighlight">\(A = 4 \pi r^2\)</span> of radius
+<span class="math notranslate nohighlight">\(r=5\)</span>, it is better to write</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">radius</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">surface_area</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span>^<span class="w"> </span><span class="mi">2</span><span class="w"></span>
+</pre></div>
+</div>
+<p>in the place of</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="w"> </span>^<span class="w"> </span><span class="mi">2</span><span class="w"></span>
+</pre></div>
+</div>
+<p>When we reopen the second code in a month, the chances of remembering
+what we meant will be pretty scarce (or, in my case, even if I open it
+in two hours).</p>
+</div>
+<p>From the example we have just entered in the <strong>workspace</strong> we observe several
+things</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">radius</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">surface_area</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">radius</span>^<span class="mi">2</span><span class="w"></span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>a <code class="docutils literal notranslate"><span class="pre">radius</span></code> variable of type <code class="docutils literal notranslate"><span class="pre">double</span></code> has been created,</p></li>
+<li><p>a memory location for the variable <code class="docutils literal notranslate"><span class="pre">radius</span></code> has been allocated and
+initialized to the value <span class="math notranslate nohighlight">\(5\)</span>,</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">;</span></code> at the end of the instruction suppresses the screen printing of the content
+of the variable,</p></li>
+<li><p>the variable <code class="docutils literal notranslate"><span class="pre">surface_area</span></code> is instead created and allocated using
+instead one of MATLAB’s predetermined quantities, the value of <span class="math notranslate nohighlight">\(\pi\)</span>, and the
+content of the variable <code class="docutils literal notranslate"><span class="pre">radius</span></code> we defined earlier. Since we didn’t finish the
+second statement with a <code class="docutils literal notranslate"><span class="pre">;</span></code>, we see its value printed in the <strong>command window</strong></p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surface_area</span> <span class="o">=</span>
+
+  <span class="mf">314.1593</span>
+</pre></div>
+</div>
+<p>At this point we can change the value of the <code class="docutils literal notranslate"><span class="pre">radius</span></code> variable simply by
+reassigning it to a new amount <em>without</em> altering the value stored in the
+<strong>workspace</strong> of the <code class="docutils literal notranslate"><span class="pre">surface_area</span></code> variable.</p>
+<p>To display the contents of a variable, you can use the <code class="docutils literal notranslate"><span class="pre">disp</span></code> command, for
+example:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">disp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;The surface area of the sphere is:&quot;</span><span class="p">);</span><span class="w"> </span><span class="nb">disp</span><span class="w"> </span><span class="p">(</span><span class="n">area_surface</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>which will produce in the <strong>command window</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">surface</span> <span class="n">area</span> <span class="n">of</span> <span class="n">the</span> <span class="n">sphere</span> <span class="ow">is</span><span class="p">:</span>
+   <span class="mf">314.1593</span>
+</pre></div>
+</div>
+<section id="character-variables-and-strings">
+<h3>Character variables and strings<a class="headerlink" href="#character-variables-and-strings" title="Permalink to this headline">#</a></h3>
+<p>We are not obliged to use only numeric variables. For <strong>example</strong> we can write
+in the <strong>command window</strong>:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">student</span><span class="p">=</span><span class="s">&#39;C.F. Gauss&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>that will print us</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">student</span> <span class="o">=</span>
+
+    <span class="s1">&#39;C.F. Gauss&#39;</span>
+</pre></div>
+</div>
+<p>We have built an <strong>array</strong> of <code class="docutils literal notranslate"><span class="pre">char</span></code>, that is a variable named<code class="docutils literal notranslate"> <span class="pre">student</span></code> to
+which we have assigned a memory space and in which we have inserted the
+characters <code class="docutils literal notranslate"><span class="pre">C.F.</span> <span class="pre">Gauss</span></code>. If in doubt, we can query MATLAB about the type of
+the variable with the command</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">whos</span><span class="w"> </span><span class="n">student</span><span class="w"></span>
+</pre></div>
+</div>
+<p>that will give us back</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Name</span>          <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>    <span class="n">Attributes</span>
+
+  <span class="n">student</span>       <span class="mi">1</span><span class="n">x10</span>               <span class="mi">20</span>  <span class="n">char</span>      
+</pre></div>
+</div>
+<p>A variation on the <strong>array</strong> of <code class="docutils literal notranslate"><span class="pre">char</span></code> is to define a<code class="docutils literal notranslate"> <span class="pre">string</span></code> object instead,
+i.e. assign</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">student_string</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;C.F. Gauss&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>so <code class="docutils literal notranslate"><span class="pre">whos</span> <span class="pre">student_string</span></code> will tell us instead</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span>                  <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>     <span class="n">Attributes</span>
+
+<span class="n">student_string</span>       <span class="mi">1</span><span class="n">x1</span>               <span class="mi">156</span>  <span class="n">string</span>              
+</pre></div>
+</div>
+<p>Summing up:</p>
+<ul class="simple">
+<li><p>An <em>array of <code class="docutils literal notranslate"><span class="pre">char</span></code></em> is a sequence of characters, just as a numeric vector
+is a sequence of numbers. Its typical use is to store short pieces of text as
+character vectors,</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">string</span></code> object, that is, an <em>array</em> of<code class="docutils literal notranslate"> <span class="pre">string</span></code> is a container for parts
+of text. <em>Arrays of Strings</em> provide a variety of functions for working with
+text as data.</p></li>
+</ul>
+</section>
+</section>
+<section id="some-functions-you-should-remember">
+<h2>Some functions you should remember<a class="headerlink" href="#some-functions-you-should-remember" title="Permalink to this headline">#</a></h2>
+<p>MATLAB contains a large number of already implemented mathematical functions,
+some of them, the most frequently used ones, are listed in <a class="reference internal" href="#tabfunzionidibase"><span class="std std-numref">Table 1</span></a></p>
+<table class="table" id="tabfunzionidibase">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">alcune funzioni di base.</span><a class="headerlink" href="#tabfunzionidibase" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>MATLAB</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>MATLAB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cosine</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cos</span></code></p></td>
+<td><p>Square root</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sqrt</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Sine</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sin</span></code></p></td>
+<td><p>Exponential</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">exp</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Tangent</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tan</span></code></p></td>
+<td><p>Logarithm (base 10)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log10</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Cotangent</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cot</span></code></p></td>
+<td><p>Logarithm (natural)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Arccosine</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">acos</span></code></p></td>
+<td><p>Round to the nearest integer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">round</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Arctangent</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">atan</span></code></p></td>
+<td><p>Round up to the integer <span class="math notranslate nohighlight">\(\leq\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">floor</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Arc tangent</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">acot</span></code></p></td>
+<td><p>Round up to the integer <span class="math notranslate nohighlight">\(\geq\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ceil</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The trigonometric functions thus expressed take the inputs in radians, that is,
+the inverse functions return the angle in radians. Versions that use degrees
+are invoked with the suffix <code class="docutils literal notranslate"><span class="pre">d</span></code>, e.g.,<code class="docutils literal notranslate"> <span class="pre">cosd</span></code>, <code class="docutils literal notranslate"><span class="pre">acosd</span></code>.</p>
+</div>
+<p>If you encounter a function you don’t know how to use, you can query the
+MATLAB help from the <strong>command window</strong> with, for example,</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">help</span><span class="w"> </span><span class="nb">cosd</span><span class="w"></span>
+</pre></div>
+</div>
+<p>which will print essential information</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cosd</span>   <span class="n">Cosine</span> <span class="n">of</span> <span class="n">argument</span> <span class="ow">in</span> <span class="n">degrees</span><span class="o">.</span>
+   <span class="n">cosd</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">cosine</span> <span class="n">of</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">of</span> <span class="n">X</span><span class="p">,</span> <span class="n">expressed</span> <span class="ow">in</span> <span class="n">degrees</span><span class="o">.</span>
+   <span class="n">For</span> <span class="n">odd</span> <span class="n">integers</span> <span class="n">n</span><span class="p">,</span> <span class="n">cosd</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mi">90</span><span class="p">)</span> <span class="ow">is</span> <span class="n">exactly</span> <span class="n">zero</span><span class="p">,</span> <span class="n">whereas</span> <span class="n">cos</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+   <span class="n">reflects</span> <span class="n">the</span> <span class="n">accuracy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">floating</span> <span class="n">point</span> <span class="n">value</span> <span class="k">for</span> <span class="n">pi</span><span class="o">.</span>
+
+   <span class="n">Class</span> <span class="n">support</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">X</span><span class="p">:</span>
+      <span class="nb">float</span><span class="p">:</span> <span class="n">double</span><span class="p">,</span> <span class="n">single</span>
+
+   <span class="n">See</span> <span class="n">also</span> <span class="n">acosd</span><span class="p">,</span> <span class="n">cos</span><span class="o">.</span>
+
+   <span class="n">Documentation</span> <span class="k">for</span> <span class="n">cosd</span>
+   <span class="n">Other</span> <span class="n">functions</span> <span class="n">named</span> <span class="n">cosd</span>
+</pre></div>
+</div>
+<p>so you can then access the complete information using the link
+<em>Documentation for …</em>.</p>
+<p>A final couple of extremely useful functions are the</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clear</span></code> functions which clear the <strong>workspace</strong> of all variables, i.e.<code class="docutils literal notranslate"> <span class="pre">clear</span> <span class="pre">variablename1</span> <span class="pre">variablename2</span></code>
+which only clears the variables <code class="docutils literal notranslate"><span class="pre">variablename1</span></code> and<code class="docutils literal notranslate"> <span class="pre">variablename2</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"> <span class="pre">clc</span></code> which clears the content printed in the <strong>command window</strong>.</p></li>
+</ul>
+</section>
+<section id="script-creation">
+<h2>Script creation<a class="headerlink" href="#script-creation" title="Permalink to this headline">#</a></h2>
+<p>All (or almost) the commands seen so far are actually <strong>scripts</strong> or <strong>functions</strong>
+pre-built and made available in the general environment. MATLAB allows the user
+to build his own scripts and functions for solving specific problems.</p>
+<p>A <strong>script file</strong> is simply a <em>collection</em> of MATLAB executable commands and,
+in some more refined cases, interfaces to external software produced in C or
+Fortran.</p>
+<p>To create a new script just <em>click</em> on the <strong>New script</strong> icon,
+<a class="reference internal" href="#newscript"><span class="std std-numref">Fig. 2</span></a>, which will open a new <em>editor</em> window where you can
+write your own program.</p>
+<figure class="align-default" id="newscript">
+<img alt="_images/newscript.png" src="_images/newscript.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Create a new script.</span><a class="headerlink" href="#newscript" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As we said, a script is nothing more than a sequence of commands to be inserted
+in the editor window. In order to <em>execute</em> the script it must be saved in the
+<strong>Current Folder</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The naming conventions for scripts are the same as for variable names
+({ref} <code class="docutils literal notranslate"><span class="pre">sec-variables</span></code>), in particular it is extremely important to avoid using
+predefined MATLAB function names.</p>
+</div>
+<p>You can <strong>run</strong> the script</p>
+<ol class="simple">
+<li><p>Click on the <strong>Run</strong> button <img alt="Run" src="_images/mrun.png" /></p></li>
+<li><p>Enter the name with which the script was saved in the <strong>command window</strong>
+(without the <code class="docutils literal notranslate"><span class="pre">.m</span></code> extension).</p></li>
+</ol>
+<div class="admonition-esempio admonition">
+<p class="admonition-title">Esempio</p>
+<p>Let’s turn our code for calculating the surface area of a sphere into a script.
+That is, we write in the editor:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">radius</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">surface_area</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span>^<span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="nb">disp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;The Surface Area of the Sphere is:&quot;</span><span class="p">);</span><span class="w"> </span><span class="nb">disp</span><span class="w"> </span><span class="p">(</span><span class="n">surface_area</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>We save the file as <code class="docutils literal notranslate"><span class="pre">spherearea.m</span></code> and run it once with the <strong>Run</strong> button and
+once by writing <code class="docutils literal notranslate"><span class="pre">spherearea</span></code> in the <strong>Command Window</strong>.</p>
+</div>
+<p><strong>To summarize</strong> Script files are extremely useful when you intend to run
+sequences of many MATLAB commands. For example, let’s imagine a sequence of
+calculations divided into <span class="math notranslate nohighlight">\(n\)</span> commands, after having entered them all in the
+<em>prompt</em> we realize that the value assigned to a variable in the first command
+is wrong, or we want to change it. Working only in the <strong>command window</strong> we
+should fix the error in the first command, then rerun the other <span class="math notranslate nohighlight">\(n-1\)</span> commands.</p>
+<p>If we had produced a script instead, we could simply correct the first command
+and rerun the entire sequence by pressing a single key or typing a single
+command: the name of the script.</p>
+</section>
+<section id="creating-functions">
+<h2>Creating Functions<a class="headerlink" href="#creating-functions" title="Permalink to this headline">#</a></h2>
+<p>A function (also called, depending on the programming language, routine,
+subroutine, procedure, method), is a particular syntactic construct that
+groups within a single program, a sequence of instructions in a single block.
+Its purpose is to carry out an operation, action, or processing in such a way
+that, starting from certain <em>inputs</em>, it returns certain <em>outputs</em>.</p>
+<p>In MATLAB a function named <code class="docutils literal notranslate"><span class="pre">myfunction</span></code> is declared as<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">[y1,</span> <span class="pre">...,</span> <span class="pre">yN]</span> <span class="pre">=</span> <span class="pre">myfunction</span> <span class="pre">(x1,</span> <span class="pre">...,</span> <span class="pre">xM)</span></code> which accepts as <em>input</em> <code class="docutils literal notranslate"><span class="pre">x1,</span> <span class="pre">...,</span> <span class="pre">xM</span></code> and returns as * output * <code class="docutils literal notranslate"><span class="pre">y1,</span> <span class="pre">...,</span> <span class="pre">yN</span></code>.
+This declaration <strong>must</strong> be the first executable statement of the file that
+contains the function. Valid function names begin with an alphabetic character
+and can contain letters, numbers, or <em>underscores</em>.</p>
+<p>You can save a function in</p>
+<ul class="simple">
+<li><p>a function file that contains only function definitions. The file name <em>must</em>
+exactly match the name of the first function in the file;</p></li>
+<li><p>a script that contains commands and function definitions. In this case the
+functions <em>must</em> be contained at the end of the file and the <em>script</em> cannot
+have the same name as any of the functions contained within it.</p></li>
+</ul>
+<p>Files can include multiple local or nested functions. In order to
+produce human readable code, it is recommended to always use the <code class="docutils literal notranslate"><span class="pre">end</span></code>
+keyword to indicate the end of any function within a file.</p>
+<p>In particular, the <code class="docutils literal notranslate"><span class="pre">end</span></code> keyword is required whenever:</p>
+<ul class="simple">
+<li><p>any function in a file contains a nested function,</p></li>
+<li><p>the function is a <em>local</em> function within a file that contains only functions
+and, in turn, each local function uses the keyword <code class="docutils literal notranslate"><span class="pre">end</span></code>,</p></li>
+<li><p>the function is a <em>local</em> function inside a <em>script</em>.</p></li>
+</ul>
+<p>To interrupt the execution of a function before reaching the final <code class="docutils literal notranslate"><span class="pre">end</span></code>, you can
+use the<code class="docutils literal notranslate"> <span class="pre">return</span></code> keyword which, as the name suggests, returns control to the script
+that invoked the function. A direct call to the script or function that contains
+<code class="docutils literal notranslate"><span class="pre">return</span></code> does not invoke any source program and instead returns control to the
+command prompt.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<p>We transform our code for calculating the surface area of a sphere into a function.
+That is, we write in the editor:
+`` matlab
+function [surface_area] = areasphere(radius)</p>
+<p>surface_area = 4 * pi * radius ^ 2;
+end
+``
+We save the file as <code class="docutils literal notranslate"><span class="pre">areasfera.m</span></code> and we can execute the function directly
+in the <strong>command window</strong> such as</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">area_surface</span> <span class="pre">=</span> <span class="pre">areasphere</span> <span class="pre">(radius)</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">area_surface</span> <span class="pre">=</span> <span class="pre">areasphere</span> <span class="pre">(radius);</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">areasphere</span> <span class="pre">(radius)</span></code>.
+Note the differences.</p></li>
+</ol>
+</div>
+</section>
+<section id="arrays-and-matrices">
+<h2>Arrays and Matrices<a class="headerlink" href="#arrays-and-matrices" title="Permalink to this headline">#</a></h2>
+<p>We have been discussing the use of scalar variables so far, however in MATLAB,
+data is naturally represented as <strong>matrices</strong>, <strong>arrays</strong> and, more generally,
+<strong>tensors</strong>. You can apply all linear algebra operations to arrays, plus you can
+create common grids, combine existing arrays, manipulate the shape and content
+of an array, and use different indexing modes to access their elements.</p>
+<p>In fact, we have already surreptitiously worked with arrays, since in MATLAB
+even scalar variables are nothing more than one-dimensional arrays, in mathematical
+notation an <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span> is always a <span class="math notranslate nohighlight">\(a \in \mathbb{R}^{1 \times 1}\)</span>.
+In fact, if we write in the <strong>command window</strong>:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
+<span class="n">whos</span><span class="w"> </span><span class="s">a</span><span class="w"></span>
+</pre></div>
+</div>
+<p>the system will give us back</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span>      <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>     <span class="n">Attributes</span>
+
+<span class="n">a</span>         <span class="mi">1</span><span class="n">x1</span>                 <span class="mi">8</span>  <span class="n">double</span>   
+</pre></div>
+</div>
+<p>Now let’s imagine that we have a specific set of data, which we want to arrange
+in a matrix. We can do this using the semantics of square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<p>A single line of data contains spaces or commas <code class="docutils literal notranslate"><span class="pre">,</span></code> between elements and uses
+a semicolon <code class="docutils literal notranslate"><span class="pre">;</span></code> to separate rows.</p>
+<p>For example, if we want to create a single row of three numeric elements</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The resulting matrix size is 1 by 3, as it has one row and three columns.
+A matrix of this form is called a <strong>row vector</strong> and if we call the <code class="docutils literal notranslate"><span class="pre">isrow</span> <span class="pre">(v)</span></code>
+function we get the answer</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+  <span class="n">logical</span>
+
+   <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Similarly, we can construct a <strong>column vector</strong> as</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>so we have that <code class="docutils literal notranslate"><span class="pre">iscolumn(w)</span></code> will return us instead</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+  <span class="n">logical</span>
+
+   <span class="mi">1</span>
+</pre></div>
+</div>
+<p>More generally, we can construct an array of <span class="math notranslate nohighlight">\( 4 \times 4 \)</span> elements like</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="s">6</span><span class="w"> </span><span class="s">7</span><span class="w"> </span><span class="s">8</span><span class="p">;</span><span class="w"> </span><span class="n">9</span><span class="w"> </span><span class="s">10</span><span class="w"> </span><span class="s">11</span><span class="w"> </span><span class="s">12</span><span class="p">;</span><span class="w"> </span><span class="n">13</span><span class="w"> </span><span class="s">14</span><span class="w"> </span><span class="s">15</span><span class="w"> </span><span class="s">16]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>or as</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">      </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w"></span>
+<span class="w">      </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="w"></span>
+<span class="w">      </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In all cases we will see ourselves returned</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"></span>
+
+<span class="w">     </span><span class="mi">1</span><span class="w">     </span><span class="mi">2</span><span class="w">     </span><span class="mi">3</span><span class="w">     </span><span class="mi">4</span><span class="w"></span>
+<span class="w">     </span><span class="mi">5</span><span class="w">     </span><span class="mi">6</span><span class="w">     </span><span class="mi">7</span><span class="w">     </span><span class="mi">8</span><span class="w"></span>
+<span class="w">     </span><span class="mi">9</span><span class="w">    </span><span class="mi">10</span><span class="w">    </span><span class="mi">11</span><span class="w">    </span><span class="mi">12</span><span class="w"></span>
+<span class="w">    </span><span class="mi">13</span><span class="w">    </span><span class="mi">14</span><span class="w">    </span><span class="mi">15</span><span class="w">    </span><span class="mi">16</span><span class="w"></span>
+</pre></div>
+</div>
+<p>We can investigate the dimensions of an array using the <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">(A)</span></code> function,
+which in the previous case will return us</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+     <span class="mi">4</span>     <span class="mi">4</span>
+</pre></div>
+</div>
+<section id="default-constructors">
+<h3>Default constructors<a class="headerlink" href="#default-constructors" title="Permalink to this headline">#</a></h3>
+<p>Constructing arrays simply by inserting values into them sequentially or
+explicitly is clearly cumbersome (and very boring). For this purpose MATLAB has
+the constructors listed in <a class="reference internal" href="#costruttoriarray"><span class="std std-numref">Table 2</span></a>.</p>
+<table class="table" id="costruttoriarray">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Constructors for arrays and matrices.</span><a class="headerlink" href="#costruttoriarray" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">zeros</span></code></p></td>
+<td><p><strong>Create an array of all zeros</strong>
+To build the matrix <span class="math notranslate nohighlight">\(0 = (O)_{i,j}\)</span> <span class="math notranslate nohighlight">\(i,j=1,\ldots,n\)</span> we write</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">O</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ones</span></code></p></td>
+<td><p><strong>Create an array of all ones</strong>
+To build the matrix <span class="math notranslate nohighlight">\(1 = (E)_{i,j}\)</span> <span class="math notranslate nohighlight">\(i,j=1,\ldots,n\)</span> we write</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rand</span></code></p></td>
+<td><p><strong>Create an array of evenly distributed random numbers</strong> in <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>We can generate evenly distributed numbers in the range <span class="math notranslate nohighlight">\( [a, b] \)</span> as</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">.*</span><span class="nb">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eye</span></code></p></td>
+<td><p><strong>Identity matrix</strong> builds the identity matrix <span class="math notranslate nohighlight">\((I)_{i,i} = 1\)</span>, <span class="math notranslate nohighlight">\(i=1,\ldots,n\)</span>
+and <span class="math notranslate nohighlight">\(0\)</span> otherwise <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">=</span> <span class="pre">eye(n)</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">diag</span></code></p></td>
+<td><p>Creates a <strong>diagonal matrix</strong> or extracts the diagonal elements of a given matrix. If <code class="docutils literal notranslate"><span class="pre">v</span></code> is a vector of length <span class="math notranslate nohighlight">\(n\)</span>, then <code class="docutils literal notranslate"><span class="pre">diag(v)</span></code> is a matrix whose leading diagonal is given by the elements of<code class="docutils literal notranslate"> <span class="pre">v</span></code>. If <code class="docutils literal notranslate"><span class="pre">A</span></code> is a matrix then<code class="docutils literal notranslate"><span class="pre">diag(v)</span></code> is a vector containing the elements of the leading diagonal of <span class="math notranslate nohighlight">\(A\)</span>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Other functions of the same type are <code class="docutils literal notranslate"><span class="pre">true</span></code>,<code class="docutils literal notranslate"> <span class="pre">false</span></code>, <code class="docutils literal notranslate"><span class="pre">blkdiag</span></code> and theirs
+operation can be explored using the <code class="docutils literal notranslate"><span class="pre">help</span></code> function.</p>
+<p>The second set of functions extremely useful for building matrices is the one
+that deals with managing concatenations. These can be obtained either by using
+the notation with square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>, for example,</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+<p>builds from matrices <span class="math notranslate nohighlight">\( A \in \ mathbb {R}^ {5 \times 5} \)</span>,
+<span class="math notranslate nohighlight">\( B \in \mathbb{R}^{5 \times 10} \)</span>, the matrix <span class="math notranslate nohighlight">\( C \in \mathbb{R} ^ {5 \times 15}\)</span>
+obtained by placing next to each other all the columns of <span class="math notranslate nohighlight">\( A \)</span> followed by those of <span class="math notranslate nohighlight">\( B \)</span>.
+Similarly, vertical concatenation can be achieved as</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">A</span><span class="p">;</span><span class="n">B</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+<p>which will generate the <span class="math notranslate nohighlight">\( C \in \mathbb{R}^{20,8}\)</span> matrix obtained by stacking all
+lines of <span class="math notranslate nohighlight">\( A \)</span> followed by lines of <span class="math notranslate nohighlight">\( B \)</span>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The concatenation operations must be done between matrices of compatible size,
+there can be no “leftovers” between the dimensions in question. To try to get
+an error, execute:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">A</span><span class="p">;</span><span class="n">B</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+<p>which will return</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="n">using</span> <span class="n">vertcat</span>
+<span class="n">Dimensions</span> <span class="n">of</span> <span class="n">arrays</span> <span class="n">being</span> <span class="n">concatenated</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">consistent</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<p>Instead of the notation with square brackets it is possible to make use of the
+functions <code class="docutils literal notranslate"><span class="pre">horzcat</span></code> and<code class="docutils literal notranslate"> <span class="pre">vertcat</span></code> which correspond, respectively, to the
+concatenations of the form <code class="docutils literal notranslate"><span class="pre">[,]</span></code> and <code class="docutils literal notranslate"><span class="pre">[;]</span></code>.</p>
+<p>If we want to build instead a diagonal block matrix starting from the diagonal
+blocks we can use the <code class="docutils literal notranslate"><span class="pre">blkdiag</span></code> function whose<code class="docutils literal notranslate"> <span class="pre">help</span></code> gives us exactly</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blkdiag</span>  <span class="n">Block</span> <span class="n">diagonal</span> <span class="n">concatenation</span> <span class="n">of</span> <span class="n">matrix</span> <span class="nb">input</span> <span class="n">arguments</span><span class="o">.</span>
+
+                                   <span class="o">|</span><span class="n">A</span> <span class="mi">0</span> <span class="o">..</span> <span class="mi">0</span><span class="o">|</span>
+   <span class="n">Y</span> <span class="o">=</span> <span class="n">blkdiag</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>  <span class="n">produces</span>  <span class="o">|</span><span class="mi">0</span> <span class="n">B</span> <span class="o">..</span> <span class="mi">0</span><span class="o">|</span>
+                                   <span class="o">|</span><span class="mi">0</span> <span class="mi">0</span> <span class="o">..</span>  <span class="o">|</span>
+
+   <span class="n">Class</span> <span class="n">support</span> <span class="k">for</span> <span class="n">inputs</span><span class="p">:</span>
+      <span class="nb">float</span><span class="p">:</span> <span class="n">double</span><span class="p">,</span> <span class="n">single</span>
+      <span class="n">integer</span><span class="p">:</span> <span class="n">uint8</span><span class="p">,</span> <span class="n">int8</span><span class="p">,</span> <span class="n">uint16</span><span class="p">,</span> <span class="n">int16</span><span class="p">,</span> <span class="n">uint32</span><span class="p">,</span> <span class="n">int32</span><span class="p">,</span> <span class="n">uint64</span><span class="p">,</span> <span class="n">int64</span>
+      <span class="n">char</span><span class="p">,</span> <span class="n">logical</span>
+</pre></div>
+</div>
+</section>
+<section id="slicing-access-elements">
+<h3>Slicing: access elements<a class="headerlink" href="#slicing-access-elements" title="Permalink to this headline">#</a></h3>
+<p>The most common way to access a particular element of an array or matrix is to
+explicitly specify the indices of the elements.
+For <strong>example</strong>, to access a single element of an array, specify the row number
+followed by the column number of the element:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">      </span><span class="mi">17</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="n">A</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>which will print in the <strong>command window</strong> <code class="docutils literal notranslate"><span class="pre">17</span></code>, i.e. the element in row 2 and
+column 1 position of <code class="docutils literal notranslate"><span class="pre">A</span></code> (<span class="math notranslate nohighlight">\( a_{2,1} \)</span>).</p>
+<p>We can also refer to multiple elements at a time by specifying their indices
+in a vector. For <strong>example</strong>, we access the first and fourth elements of the
+second line of the previous <code class="docutils literal notranslate"><span class="pre">A</span></code> by doing</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">2</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span><span class="w"></span>
+</pre></div>
+</div>
+<p>which will return</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+    <span class="mi">17</span>     <span class="mi">1</span>
+</pre></div>
+</div>
+<p>To access elements in a range of rows or columns, you can use the colon operator
+<code class="docutils literal notranslate"><span class="pre">:</span></code>. For example, we can access the elements from the first to the fifth row and
+from the second to the sixth column of a <span class="math notranslate nohighlight">\( A \)</span> matrix as</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If you want to scroll to the end of a dimension, you can replace the value on
+the right in the <code class="docutils literal notranslate"><span class="pre">:</span></code> with the keyword <code class="docutils literal notranslate"><span class="pre">end</span></code>, for example:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Instead, using <code class="docutils literal notranslate"><span class="pre">:</span></code> without start/end values extracts all entries of the relative
+dimension, for example, 5 column, <code class="docutils literal notranslate"><span class="pre">A(:,</span> <span class="pre">5)</span></code>, or 4th to 7th columns, <code class="docutils literal notranslate"><span class="pre">A(:,4:7)</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In general, indexing can be used to access elements of any array in MATLAB
+<strong>regardless</strong> of data type or size.</p>
+</div>
+<p>The last way to <em>slice</em> a vector we want to talk about is by using
+<strong>logical vectors</strong>. Using the <code class="docutils literal notranslate"><span class="pre">true</span></code> and<code class="docutils literal notranslate"> <span class="pre">false</span></code> logical flags is especially
+effective when working with conditional statements.
+For <strong>example</strong>, suppose we want to know if the elements of one <span class="math notranslate nohighlight">\(A\)</span> array are
+greater than the corresponding elements of another  <span class="math notranslate nohighlight">\(B\)</span> array. The comparison
+operator applied to the two arrays returns a logical array whose elements are
+1 when an element in <span class="math notranslate nohighlight">\(A\)</span> satisfies the comparison with the corresponding
+element in <span class="math notranslate nohighlight">\( B \)</span>.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">6]</span><span class="p">;</span><span class="w"></span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="s">7</span><span class="w"> </span><span class="s">5]</span><span class="p">;</span><span class="w"></span>
+<span class="n">ind</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="o">&gt;</span><span class="n">B</span><span class="w"></span>
+<span class="n">A</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span><span class="w"></span>
+<span class="n">B</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>gives us back</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ind =
+
+  2×3 logical array
+
+   1   0   0
+   1   0   1
+
+
+ans =
+
+     1
+     4
+     6
+
+
+ans =
+
+     0
+     3
+     5
+</pre></div>
+</div>
+<p>Comparison operators are not the only ones for which this can be done, MATLAB
+itself implements a number of useful functions for this purpose, see
+<code class="docutils literal notranslate"><span class="pre">isnan</span></code>,<code class="docutils literal notranslate"> <span class="pre">isfinite</span></code>, <code class="docutils literal notranslate"><span class="pre">isinf</span></code>,<code class="docutils literal notranslate"> <span class="pre">ismissing</span></code>. It is also possible to combine
+several requests together using the <strong>logical operators</strong>, see the section on
+<a class="reference internal" href="#sec-ifelsestuff"><span class="std std-ref">Selection and Conditional Structures</span></a> below.</p>
+</section>
+<section id="operations-between-arrays-and-matrices">
+<h3>Operations between arrays and matrices<a class="headerlink" href="#operations-between-arrays-and-matrices" title="Permalink to this headline">#</a></h3>
+<p>MATLAB supports all operations that make sense in terms of linear algebra,
+therefore matrix-vector products, sums of matrices and vectors, transposition,
+conjugation, <em>etc.</em>, with the same consistency constraints between the
+operators.
+Specifically, the product <span class="math notranslate nohighlight">\( A \mathbf{v} \)</span> with <span class="math notranslate nohighlight">\( A \in \mathbb{R}^{n \times k_1}\)</span>
+and <span class="math notranslate nohighlight">\(\mathbf {v} \in \mathbb{R}^{k_2}\)</span> is possible if and only if <span class="math notranslate nohighlight">\(k_1 \equiv k_2\)</span>,
+let’s consider for example</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">4</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">2</span><span class="w"> </span><span class="s">4</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">3</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">4</span><span class="w"> </span><span class="s">1]</span><span class="p">;</span><span class="w"></span>
+<span class="n">v1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span><span class="w"></span>
+<span class="n">v2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and let’s try to calculate</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A*v1</span></code> from which we get an error:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="n">using</span>  <span class="o">*</span>
+<span class="n">Incorrect</span> <span class="n">dimensions</span> <span class="k">for</span> <span class="n">matrix</span> <span class="n">multiplication</span><span class="o">.</span> <span class="n">Check</span> <span class="n">that</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">columns</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">matrix</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">matrix</span><span class="o">.</span> <span class="n">To</span> <span class="n">perform</span> <span class="n">elementwise</span> <span class="n">multiplication</span><span class="p">,</span> <span class="n">use</span> <span class="s1">&#39;.*&#39;</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>since we are trying to do an operation that does not make sense from the point
+of view of linear algebra.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A*v2</span></code> instead it is the correct operation and we get</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+    <span class="mi">30</span>
+    <span class="mi">20</span>
+    <span class="mi">23</span>
+    <span class="mi">23</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">v1*A</span></code> also this operation makes sense from the matrix point of view and in
+fact we get</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+    <span class="mi">27</span>    <span class="mi">28</span>    <span class="mi">32</span>    <span class="mi">13</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">v2*A</span></code> it has the same problem as the first, that is, we again have dimensions
+that are not consistent</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="n">using</span>  <span class="o">*</span>
+<span class="n">Incorrect</span> <span class="n">dimensions</span> <span class="k">for</span> <span class="n">matrix</span> <span class="n">multiplication</span><span class="o">.</span> <span class="n">Check</span> <span class="n">that</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">columns</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">matrix</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">matrix</span><span class="o">.</span> <span class="n">To</span> <span class="n">perform</span> <span class="n">elementwise</span> <span class="n">multiplication</span><span class="p">,</span> <span class="n">use</span> <span class="s1">&#39;.*&#39;</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A*v1'</span></code> here we introduce the transpose-conjugate operation (which, since we
+are using vectors of real numbers, coincides with the simple transposition
+operation `. ‘’), which leads us to have the correct dimensions and returns</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+    <span class="mi">30</span>
+    <span class="mi">20</span>
+    <span class="mi">23</span>
+    <span class="mi">23</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A*v2'</span></code> transposition in this case makes the dimensions of <code class="docutils literal notranslate"><span class="pre">v2</span></code> incompatible
+so we get the same error again</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="n">using</span>  <span class="o">*</span>
+<span class="n">Incorrect</span> <span class="n">dimensions</span> <span class="k">for</span> <span class="n">matrix</span> <span class="n">multiplication</span><span class="o">.</span> <span class="n">Check</span> <span class="n">that</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">columns</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">matrix</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">matrix</span><span class="o">.</span> <span class="n">To</span> <span class="n">perform</span> <span class="n">elementwise</span> <span class="n">multiplication</span><span class="p">,</span> <span class="n">use</span> <span class="s1">&#39;.*&#39;</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The error message we encountered tells us that the operation does not make sense
+in terms of the usual operations of linear algebra, however it suggests that
+what we might have intended to do was an <strong>elementwise</strong> product or “element by
+element “. This is done by using the <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">*</span></code> Operator, that is, with a <code class="docutils literal notranslate"><span class="pre">.</span></code> prefix
+in front of the product operator which usually means” execute in an
+element-by-element fashion “. Let’s try the first wrong operation we proposed:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.*</span><span class="n">v1</span><span class="w"></span>
+</pre></div>
+</div>
+<p>that gives us back</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+     <span class="mi">1</span>     <span class="mi">4</span>     <span class="mi">9</span>    <span class="mi">16</span>
+     <span class="mi">4</span>     <span class="mi">6</span>     <span class="mi">6</span>     <span class="mi">4</span>
+     <span class="mi">2</span>     <span class="mi">8</span>     <span class="mi">9</span>     <span class="mi">4</span>
+     <span class="mi">3</span>     <span class="mi">4</span>    <span class="mi">12</span>     <span class="mi">4</span>
+</pre></div>
+</div>
+<p>What operation did we perform? Try also the exponentiation operations</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>^<span class="mi">3</span><span class="w"></span>
+<span class="n">A</span><span class="o">.^</span><span class="mi">3</span><span class="w"></span>
+<span class="n">v1</span>^<span class="mi">3</span><span class="w"></span>
+<span class="n">v1</span><span class="o">.^</span><span class="mi">3</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and describe the result.</p>
+</div>
+<p>The last two operations we have left to describe are <code class="docutils literal notranslate"><span class="pre">+</span></code> / <code class="docutils literal notranslate"><span class="pre">-</span></code>. Again we have to
+worry about the compatibility of the operations we want to carry out. If we
+want to be sure we are doing the sum of arrays and matrices we have in mind
+we have to make sure that the dimensions are compatible.</p>
+<p>Suppose we have the row and column vectors</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"></span>
+<span class="n">w</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"></span>
+<span class="w">     </span><span class="mi">2</span><span class="w"></span>
+<span class="w">     </span><span class="mi">3</span><span class="w"></span>
+<span class="w">     </span><span class="mi">4</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>if we want to add or subtract them and obtain a vector row or column, we must
+ensure that both have the correct size. That is, we must have, respectively,</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="o">&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If we inadvertently add the two vectors as</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"></span>
+</pre></div>
+</div>
+<p>we get instead</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span>
+
+     <span class="mi">2</span>     <span class="mi">3</span>     <span class="mi">4</span>     <span class="mi">5</span>
+     <span class="mi">3</span>     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>
+     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>     <span class="mi">7</span>
+     <span class="mi">5</span>     <span class="mi">6</span>     <span class="mi">7</span>     <span class="mi">8</span>
+</pre></div>
+</div>
+<p>which is instead a matrix! Not exactly what we expected (can you figure out what
+operation we got?). Equal caution should be exercised in writing addition/subtraction
+operations between matrices and vectors.
+Try running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">pascal</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">];</span>
+<span class="n">A</span> <span class="o">+</span> <span class="n">v</span>
+<span class="n">A</span> <span class="o">+</span> <span class="n">v</span><span class="s1">&#39;</span>
+<span class="n">A</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">v</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>It is legitimate to wonder at this point why these operations are performed
+without returning errors. Even if from the point of view of pure linear algebra
+these operations are not immediately sensible, from the implementation point of
+view they allow to simplify (and speed up) a certain number of operations that
+would otherwise require several lines of code (whose optimization for
+performance does not is taken for granted) to be implemented.</p>
+</section>
+</section>
+<section id="selection-and-conditional-structures">
+<span id="sec-ifelsestuff"></span><h2>Selection and Conditional Structures<a class="headerlink" href="#selection-and-conditional-structures" title="Permalink to this headline">#</a></h2>
+<table class="table" id="tabcondizionali">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Conditional Structures.</span><a class="headerlink" href="#tabcondizionali" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>MATLAB Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">if,</span> <span class="pre">elseif,</span> <span class="pre">else</span></code></p></td>
+<td><p>Execute command if the <code class="docutils literal notranslate"><span class="pre">if</span></code> condition is true</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">switch,</span> <span class="pre">case,</span> <span class="pre">otherwise</span></code></p></td>
+<td><p>Executes one or more groups of commands depending on whether the <code class="docutils literal notranslate"><span class="pre">switch</span></code>
+variable has the value indicated in the<code class="docutils literal notranslate"> <span class="pre">case</span></code>, otherwise it executes the
+command or group of commands identified by <code class="docutils literal notranslate"><span class="pre">otherwise</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">try,</span> <span class="pre">catch</span></code></p></td>
+<td><p>Executes the commands in the <code class="docutils literal notranslate"><span class="pre">try</span></code> group, if they return an error it does
+not block the execution and passes to the commands collected in the<code class="docutils literal notranslate"> <span class="pre">catch</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s consider the following example that simulates the flip of a coin.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">();</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+<span class="w">  </span><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Head!&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Tail&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>With each new execution, <code class="docutils literal notranslate"><span class="pre">rand</span> <span class="pre">()</span></code> generates a random number in <span class="math notranslate nohighlight">\( [0,1] \)</span> with
+uniform probability. The <code class="docutils literal notranslate"><span class="pre">if</span></code> command checks if the random number generated is
+<span class="math notranslate nohighlight">\( &lt;0.5 \)</span> and in this case enters the first code group. Otherwise, we have got a
+number <span class="math notranslate nohighlight">\(&gt; 0.5 \)</span> and we fall into the second group of code. We can also decide
+to simulate a three-sided die in the following way</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">();</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"></span>
+<span class="w">  </span><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">elseif</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="w"></span>
+<span class="w">  </span><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;2&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;3&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where we used the <code class="docutils literal notranslate"><span class="pre">elseif</span></code> command to have an additional branch.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Within our <code class="docutils literal notranslate"><span class="pre">if</span></code> checks (and more generally) we can combine the result of several
+logical operations together. These are collected in Table <a class="reference internal" href="#logicalops"><span class="std std-numref">Table 4</span></a>.
+Other functions that operate on logical vectors and which you can explore by
+calling the <code class="docutils literal notranslate"><span class="pre">help</span></code> function are <code class="docutils literal notranslate"><span class="pre">any</span></code> and <code class="docutils literal notranslate"><span class="pre">all</span></code>.</p>
+<table class="table" id="logicalops">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Logical operations</span><a class="headerlink" href="#logicalops" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>MATLAB Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+<td><p>Logical AND</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td><p>Logical NOT</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
+<td><p>Logical OR</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xor</span></code></p></td>
+<td><p>Logical exclusive OR</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We also see an example of the <code class="docutils literal notranslate"><span class="pre">switch</span></code> type statement.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">control</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="s">&quot;Insert an integer between 0 and 3:&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="k">switch</span><span class="w"> </span><span class="n">control</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">pascal</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="k">otherwise</span><span class="w"></span>
+<span class="w"> </span><span class="nb">disp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;I don&#39;t know what to do with this input!&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The same code could have been implemented with a series of <code class="docutils literal notranslate"><span class="pre">if</span></code> and<code class="docutils literal notranslate"> <span class="pre">elseif</span></code>
+and an <code class="docutils literal notranslate"><span class="pre">else</span></code>, but this approach is quicker if there is no need to enforce many
+logical checks.</p>
+<p>The last control we want to test is <code class="docutils literal notranslate"><span class="pre">try</span></code>. So you can try the following code.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"></span>
+<span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="n">A</span><span class="o">*</span><span class="n">b</span><span class="w"></span>
+<span class="k">catch</span><span class="w"></span>
+<span class="w"> </span><span class="nb">disp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;There is some problem with the size!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Since the algebraic operation we requested is not well posed (try to execute it
+outside the <code class="docutils literal notranslate"><span class="pre">try</span></code> operation) the<code class="docutils literal notranslate"> <span class="pre">try</span></code> catches the error and instead of
+stopping the execution it executes the code in the <code class="docutils literal notranslate"><span class="pre">catch</span></code> clause . You can
+correct the code in the first block and verify that you will not enter the
+<code class="docutils literal notranslate"><span class="pre">catch</span></code> in that case.</p>
+</section>
+<section id="cycles-and-nested-cycles">
+<h2>Cycles and Nested Cycles<a class="headerlink" href="#cycles-and-nested-cycles" title="Permalink to this headline">#</a></h2>
+<p>Within any program, you can define sections of code that repeat in a loop.</p>
+<table class="table" id="tabcicli">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Strutture Condizionali.</span><a class="headerlink" href="#tabcicli" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Funzione di MATLAB</p></th>
+<th class="head"><p>Descrizione</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">for</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">for</span></code> loop to repeat statements a fixed number of times</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">while</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop repeats its code as long as the condition is<code class="docutils literal notranslate"> <span class="pre">true</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">break</span></code></p></td>
+<td><p>Forcibly terminates the execution of a <code class="docutils literal notranslate"><span class="pre">for</span></code> or<code class="docutils literal notranslate"> <span class="pre">while</span></code> loop</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">continue</span></code></p></td>
+<td><p>Pass control to the next iteration of a <code class="docutils literal notranslate"><span class="pre">for</span></code> or<code class="docutils literal notranslate"> <span class="pre">while</span></code> loop</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pause</span></code></p></td>
+<td><p>Temporarily pause MATLAB execution.</p></td>
+</tr>
+</tbody>
+</table>
+<p>We use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to calculate the sum of the first<code class="docutils literal notranslate"> <span class="pre">n</span></code> integers.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Insert an integer n:&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">summation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="w"></span>
+<span class="w">  </span><span class="n">summation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">summation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">i</span><span class="p">;</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;The sum of the integers 1 to% d is% d. \ n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">summation</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This is obviously not the best way to do this, for example we could have
+calculated the same quantity as <code class="docutils literal notranslate"><span class="pre">sum</span> <span class="pre">(1:10)</span></code>. Or, use some mathematical ideas
+to remind us that <span class="math notranslate nohighlight">\( \displaystyle S_n = \sum_{i = 1}^{n} i = \frac{n (n + 1)}{2}.\)</span>
+But it helped our demonstration purpose.</p>
+<p>Let’s now look at an example of a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">summation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="n">summation</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">  </span><span class="n">summation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">summation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">rand</span><span class="p">();</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;The final value of the sum is:% f \ n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">summation</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Since we initialized the <code class="docutils literal notranslate"><span class="pre">summation</span></code> variable to 0, the trigger condition of the
+<code class="docutils literal notranslate"><span class="pre">while</span></code> loop is <code class="docutils literal notranslate"><span class="pre">true</span></code> and so we start iterating. With each new instance of the
+loop a new random number is generated and added to the <code class="docutils literal notranslate"><span class="pre">summation</span></code> variable.
+As soon as the <code class="docutils literal notranslate"><span class="pre">summation</span></code> value exceeds 10, the cycle is interrupted and the
+message is printed on the screen.</p>
+</section>
+<section id="some-exercises">
+<h2>Some exercises<a class="headerlink" href="#some-exercises" title="Permalink to this headline">#</a></h2>
+<p>The exercises collected here are mostly intended to verify that you have
+absorbed this general information about the MATLAB language, so that we can
+concentrate on implementing algorithms for the solution of some modeling problem.</p>
+<div class="exercise admonition" id="intromatlab-exercise-0">
+
+<p class="admonition-title"><span class="caption-number">Exercise 1 </span></p>
+<section id="exercise-content">
+<p>The golden constant <span class="math notranslate nohighlight">\(\varphi\)</span> can be expressed in compact form as</p>
+<div class="math notranslate nohighlight">
+\[\varphi = \frac{1+\sqrt{5}}{2}.\]</div>
+<p>Let’s assume we don’t have an algorithm for extracting square roots, then we
+can try to approximate the value of <span class="math notranslate nohighlight">\(\phi\)</span> using its continued fraction expansion:</p>
+<div class="math notranslate nohighlight">
+\[\varphi = 1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \vdots } } } } } }\]</div>
+<p>Write a function with the following prototype:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>phi<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">fractionphi</span><span class="p">(</span>n<span class="p">)</span><span class="w"></span>
+<span class="c">%% FRACTIONPHI takes as input the number of terms to use</span><span class="w"></span>
+<span class="c">% in the continuous fraction approximation of the golden section e</span><span class="w"></span>
+<span class="c">% returns the approximation.</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<ul>
+<li><p>To build the function implementation, use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.
+<strong>Hint</strong> organize the calculation starting from the “lowest level” to the
+highest one.</p></li>
+<li><p>Suppose we know that an exact value of <span class="math notranslate nohighlight">\(\varphi \)</span> with 16 significant digits
+is <code class="docutils literal notranslate"><span class="pre">1.6180339887498949</span></code>. Change the previous function to a new function with
+the following prototype</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>[n,phi]<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">howmanytermsphi</span><span class="p">(</span>tol<span class="p">)</span><span class="w"></span>
+<span class="c">%%HOWMANYTERMSPHI given in input a tolerance tol on the distance between</span><span class="w"></span>
+<span class="w"> </span><span class="c">% the approximation of the constant phi and the real value of this function</span><span class="w"></span>
+<span class="w"> </span><span class="c">% gives us the number of terms needed and the approximation value</span><span class="w"></span>
+
+<span class="n">phitrue</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1.6180339887498949</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To do this we use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop and the<code class="docutils literal notranslate"> <span class="pre">abs</span></code> function (which implements
+the absolute value) to measure the <strong>absolute error</strong> between our
+approximation and the true value.</p>
+</li>
+</ul>
+</section>
+</div>
+<div class="exercise admonition" id="intromatlab-exercise-1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 2 </span></p>
+<section id="exercise-content">
+<p>Let’s practice building a <em>recursive function</em> now. A sequence linked to the
+golden constant <span class="math notranslate nohighlight">\(\varphi\)</span> is the Fibonacci sequence, i.e. the sequence of
+integers <span class="math notranslate nohighlight">\( \{F_n \}_n = \{1,1,2,3,5, \ldots \} \)</span> given by</p>
+<div class="math notranslate nohighlight">
+\[F_{n+1} = F_{n} + F_{n-1}, \text{ se } n \geq 1, \; F_{1} = 1,\;F_{0} = 1.\]</div>
+<ul class="simple">
+<li><p>Implement a <em>recursive function</em> that computes the <span class="math notranslate nohighlight">\( n \)</span>th Fibonacci number
+<span class="math notranslate nohighlight">\(n\)</span> using only the <code class="docutils literal notranslate"><span class="pre">switch</span></code> conditional structure, by using the following
+prototype</p></li>
+</ul>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>f<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">fibonacci</span><span class="p">(</span>n<span class="p">)</span><span class="w"></span>
+<span class="c">%FIBONACCI Recursive implementation of the Fibonacci sequence. Takes</span><span class="w"></span>
+<span class="c">% in input the number n and returns the nth Fibonacci number Fn.</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The function thus constructed has an unfortunate flaw, if we feed it  <span class="math notranslate nohighlight">\(n\)</span> it
+gives us the <span class="math notranslate nohighlight">\( n \)</span>th number, however if we subsequently ask for the <span class="math notranslate nohighlight">\( n + 1 \)</span>th
+the calculation to obtain it has no memory of what we have done and recalculates
+all the previous ones anyway. Now let’s build a <strong>non-recursive version</strong> of
+the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function. We can achieve it in several ways, but almost certainly
+we will need a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
+</ul>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>f<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">fibonaccinonrecursive</span><span class="p">(</span>n<span class="p">)</span><span class="w"></span>
+<span class="c">%FIBONACCINONRECURSIVE Non-recursive implementation of the sequence</span><span class="w"></span>
+<span class="c">% Fibonacci. It takes the number n as input and returns a vector</span><span class="w"></span>
+<span class="c">% which contains all the Fibonacci numbers from F0 to Fn.</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Let’s now take advantage of the second implementation we made of the Fibonacci
+function to build a different sequence. Let us consider the Viswanath sequence
+<span id="id1">[<a class="reference internal" href="#id4" title="Divakar Viswanath. Random Fibonacci sequences and the number $1.13198824…$. Math. Comp., 69(231):1131–1155, 2000. URL: https://doi.org/10.1090/S0025-5718-99-01145-X, doi:10.1090/S0025-5718-99-01145-X.">Vis00</a>]</span> thus defined</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[v_{n+1} = v_{n} \pm v_{n-1}, \; n \geq 1,\]</div>
+<p>where  <span class="math notranslate nohighlight">\(v_{0}\)</span> and <span class="math notranslate nohighlight">\(V_{1}\)</span> are assigned at will and the <span class="math notranslate nohighlight">\(\pm\)</span> has the following
+interpretation: with probability <span class="math notranslate nohighlight">\( 1/2 \)</span> we add, with probability <span class="math notranslate nohighlight">\( 1/2 \)</span> we
+subtract. One idea to implement this function is to use the <code class="docutils literal notranslate"><span class="pre">sign</span></code> function
+(see what it is for by doing<code class="docutils literal notranslate"> <span class="pre">help</span> <span class="pre">sign</span></code>). A prototype for this function is
+for example</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>v<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">viswanath</span><span class="p">(</span>n,v0,v1<span class="p">)</span><span class="w"></span>
+<span class="c">%VISWANATH Non-recursive implementation of the sequence</span><span class="w"></span>
+<span class="c">% of Viswanath. It takes as input the number n, the values of v0 and v1 and</span><span class="w"></span>
+<span class="c">% returns a vector that contains all Viswanath numbers v0 through vn.</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Once our function is built, we can visualize what we get with it (and compare
+it with the Fibonacci sequence) via the script:</p></li>
+</ul>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% Viswanath sequence test</span><span class="w"></span>
+
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="c">% Number of terms</span><span class="w"></span>
+
+<span class="c">% Let&#39;s calculate the Fibonacci sequence</span><span class="w"></span>
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fibonaccinonrecursive</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">% We compute the Viswanath sequence</span><span class="w"></span>
+<span class="n">v0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">v1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">v</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">viswanath</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">v0</span><span class="p">,</span><span class="n">v1</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">% Asymptotic value</span><span class="w"></span>
+<span class="n">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1.13198824</span><span class="p">;</span><span class="w"></span>
+<span class="n">phi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">),</span><span class="s">&#39;o&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="n">c</span><span class="o">.^</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s">&#39;-&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="n">phi</span><span class="o">.^</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s">&#39;-&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">({</span><span class="s">&#39;Viswanath&#39;</span><span class="p">,</span><span class="s">&#39;Asymptotic estimation&#39;</span><span class="p">,</span><span class="s">&#39;Fibonacci&#39;</span><span class="p">,</span><span class="s">&#39;Asymptotic estimation&#39;</span><span class="p">},</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="s">&#39;Location&#39;</span><span class="p">,</span><span class="s">&#39;northwest&#39;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the terminal part of the script <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">Asymptotic</span> <span class="pre">value</span></code> we are going to compare
+in semi-logarithmic scale on the <span class="math notranslate nohighlight">\( y \)</span> axis the absolute values of the numbers
+<span class="math notranslate nohighlight">\( \{v_n\}_n \)</span> and the <span class="math notranslate nohighlight">\(\{F_n \}_n\)</span>. In particular we can observe that for both
+sequences we find a number <span class="math notranslate nohighlight">\( k \)</span> for which they grow as <span class="math notranslate nohighlight">\( k^{n + 1}\)</span>.
+In particular, for the Fibonacci sequence this <span class="math notranslate nohighlight">\( k \)</span> is the golden constant
+<span class="math notranslate nohighlight">\(\varphi\)</span> of the previous exercise, while for the Viswanath sequence it is
+the value <span class="math notranslate nohighlight">\( c = 1.13198824 \ldots \)</span> (for a proof see <span id="id2">[<a class="reference internal" href="#id4" title="Divakar Viswanath. Random Fibonacci sequences and the number $1.13198824…$. Math. Comp., 69(231):1131–1155, 2000. URL: https://doi.org/10.1090/S0025-5718-99-01145-X, doi:10.1090/S0025-5718-99-01145-X.">Vis00</a>]</span>).</p>
+<p><strong>Let’s take advantage</strong> of this also to see how you can get function graphs
+on MATLAB, to decode the commands in this section use <code class="docutils literal notranslate"><span class="pre">help</span></code>. An example of the
+graph obtained with the previous script is the following:
+<img alt="Viswanath and Fibonacci sequences with their asymptotic behavior" src="_images/viswanath.png" /></p>
+</section>
+</div>
+</section>
+<section id="writing-data-to-screen-and-to-file">
+<h2>Writing data to screen and to file<a class="headerlink" href="#writing-data-to-screen-and-to-file" title="Permalink to this headline">#</a></h2>
+<p>MATLAB provides a fairly transparent porting of C’s screen printing functions
+(on data streams). That is, the fprintf function. For screen printing the
+prototype of this function is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fprintf</span><span class="p">(</span><span class="n">FORMAT</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where FORMAT is a string that contains information about the format to be
+printed and <code class="docutils literal notranslate"><span class="pre">A</span></code> is an array that contains the data to be printed according to
+the FORMAT format. In general this is a string that can contain text accompanied
+by <em>escape</em> characters that tell you how to format the data contained in the
+<code class="docutils literal notranslate"><span class="pre">A</span></code> variable.
+<img alt="Caratteri di escape per il formato" src="_images/format.png" /></p>
+<p>As described in the image, the <em>escape</em> for a formatting operator begins with
+the percent sign, <code class="docutils literal notranslate"><span class="pre">%</span></code>, and ends with a conversion character (<a class="reference internal" href="#conversioncharacter"><span class="std std-numref">Table 6</span></a>).
+The conversion character is required. Optionally, you can specify an identifier,
+flags, field width, <em>precision</em>, and a <em>subtype</em> operator between the <code class="docutils literal notranslate"><span class="pre">%</span></code> and the
+conversion.</p>
+<table class="table" id="conversioncharacter">
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Conversion characters</span><a class="headerlink" href="#conversioncharacter" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Carattere</p></th>
+<th class="head"><p>Conversione</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%d</span></code> o <code class="docutils literal notranslate"><span class="pre">%i</span></code></p></td>
+<td><p>Intero base 10</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%f</span></code></p></td>
+<td><p>Floating point fixed precision</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%e</span></code></p></td>
+<td><p>Floating point scientific notation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%c</span></code></p></td>
+<td><p>Single character</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%s</span></code></p></td>
+<td><p>String</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%f \n&quot;</span><span class="p">,</span><span class="nb">pi</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%e \n&quot;</span><span class="p">,</span><span class="mi">5</span><span class="o">*</span><span class="mi">10</span>^<span class="mi">20</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%1.2f \n&quot;</span><span class="p">,</span><span class="nb">pi</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%1.2e \n&quot;</span><span class="p">,</span><span class="mi">5</span><span class="o">*</span><span class="mi">10</span>^<span class="mi">20</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%c \n&quot;</span><span class="p">,</span><span class="s">&#39;a&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%s \n&quot;</span><span class="p">,</span><span class="s">&#39;Ciao, mondo!&#39;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the example we have repeatedly used the <code class="docutils literal notranslate"><span class="pre">\n</span></code> characters which symbolize a
+newline character. Other useful characters of this type are in
+<a class="reference internal" href="#carformattazione"><span class="std std-numref">Table 7</span></a>.</p>
+<table class="table" id="carformattazione">
+<caption><span class="caption-number">Table 7 </span><span class="caption-text">Formatting characters</span><a class="headerlink" href="#carformattazione" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Result</p></th>
+<th class="head"><p>String</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Single quotation mark</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">''</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Percent symbol</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%%</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Backslash</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\\</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Backspace</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\b</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Tab horizontal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tab vertical</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\v</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>More information can be obtained by writing <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">fprintf</span></code> in the
+<em>command line</em>.</p>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id3">
+<dl class="citation">
+<dt class="label" id="id4"><span class="brackets">Vis00</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dd><p>Divakar Viswanath. Random Fibonacci sequences and the number $1.13198824…$. <em>Math. Comp.</em>, 69(231):1131–1155, 2000. URL: <a class="reference external" href="https://doi.org/10.1090/S0025-5718-99-01145-X">https://doi.org/10.1090/S0025-5718-99-01145-X</a>, <a class="reference external" href="https://doi.org/10.1090/S0025-5718-99-01145-X">doi:10.1090/S0025-5718-99-01145-X</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Numerical recipes for environmental sciences with MATLAB</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ioplot.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reading, writing and plotting data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Fabio Durastante<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

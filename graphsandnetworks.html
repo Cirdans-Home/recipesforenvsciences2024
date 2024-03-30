@@ -1,0 +1,1176 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Graphs and Networks &#8212; Numerical recipes for environmental sciences with MATLAB</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Working with images" href="images.html" />
+    <link rel="prev" title="Fitting data to models" href="parameterfitting.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Numerical recipes for environmental sciences with MATLAB</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Numerical recipes for environmental sciences with MATLAB
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intromatlab.html">
+   An introduction to MATLAB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ioplot.html">
+   Reading, writing and plotting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="odes.html">
+   Modeling evolutionary problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="parameterfitting.html">
+   Fitting data to models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Graphs and Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images.html">
+   Working with images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearalgebra.html">
+   Linear Algebra
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/Cirdans-Home/recipesforenvsciences2024/main?urlpath=tree/src/graphsandnetworks.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Cirdans-Home/recipesforenvsciences2024/issues/new?title=Issue%20on%20page%20%2Fgraphsandnetworks.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/graphsandnetworks.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/graphsandnetworks.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-social-network-made-of-dolphins">
+   A social network made of dolphins
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-communities">
+   Finding communities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#centrality">
+   Centrality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Graphs and Networks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-social-network-made-of-dolphins">
+   A social network made of dolphins
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-communities">
+   Finding communities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#centrality">
+   Centrality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="graphs-and-networks">
+<h1>Graphs and Networks<a class="headerlink" href="#graphs-and-networks" title="Permalink to this headline">#</a></h1>
+<p>Understanding complex systems often requires a bottom-up analysis. This can be
+done by examining the elementary parts of the system individually and then
+by turning the analysis towards the connection between them. A natural way of
+performing this type of analysis is through the use of <strong>networks</strong> or
+<strong>graphs</strong>.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A <strong>graph</strong> <span class="math notranslate nohighlight">\(G=(V,E)\)</span> consists of a finite set <span class="math notranslate nohighlight">\(V\)</span> of <strong>vertices</strong> (or nodes)
+and a finite set <span class="math notranslate nohighlight">\(E\)</span> of <strong>edges</strong>, where each edge <span class="math notranslate nohighlight">\(e\in E\)</span> is of the form
+<span class="math notranslate nohighlight">\(e=\{u,v\}\)</span> with <span class="math notranslate nohighlight">\(u,v\in V\)</span>.</p>
+</section>
+</div><p>And we will make here the following simplifying assumptions:</p>
+<ul class="simple">
+<li><p>we do not allow any edge to be a self-loop, i.e., an edge that starts and ends
+at the same vertex,</p></li>
+<li><p>we do not allow more than one edge between any pair of vertices,</p></li>
+<li><p>unless mentioned otherwise we will mostly consider undirected edges, that is
+edge <span class="math notranslate nohighlight">\(e = \{u,v\} = \{v,u\}\)</span>.</p></li>
+</ul>
+<p>Now, let us fix some notation and nomenclature.</p>
+<div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Two vertices, <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, are called <strong>adjacent</strong> if there is an edge, <span class="math notranslate nohighlight">\(uv\)</span>,
+connecting them. We can express adjacency of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> by writing <span class="math notranslate nohighlight">\(u\sim v.\)</span></p>
+</section>
+</div><div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span></p>
+<section class="definition-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(v\)</span> is a vertex in a graph <span class="math notranslate nohighlight">\(G\)</span>, the <strong>degree</strong> of <span class="math notranslate nohighlight">\(v\)</span>, denoted <span class="math notranslate nohighlight">\(\operatorname{deg}(v)\)</span>,
+is the number of edges adjacent to <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-3">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A <strong>walk</strong> in a graph is a sequence of vertices and edges <span class="math notranslate nohighlight">\(v_0\)</span>, <span class="math notranslate nohighlight">\(e_1\)</span>, <span class="math notranslate nohighlight">\(v_1\)</span>, <span class="math notranslate nohighlight">\(e_2\)</span>, <span class="math notranslate nohighlight">\(v_2\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(v_{k-1}\)</span>, <span class="math notranslate nohighlight">\(e_k\)</span>, <span class="math notranslate nohighlight">\(v_k\)</span> such that edge <span class="math notranslate nohighlight">\(e_i\)</span> connects vertices <span class="math notranslate nohighlight">\(v_{i-1}\)</span> and <span class="math notranslate nohighlight">\(v_i\)</span>, for <span class="math notranslate nohighlight">\(1 \leq i \leq k\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A graph <span class="math notranslate nohighlight">\(G\)</span> is <strong>connected</strong> if for any two vertices <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(G\)</span>,
+there is a <em>walk</em> in <span class="math notranslate nohighlight">\(G\)</span> from <span class="math notranslate nohighlight">\(u\)</span> to <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</section>
+</div><p>The first way to store a graph into a computer is as an <strong>adjacency matrix</strong>.
+Given a graph <span class="math notranslate nohighlight">\(G\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices, we start by label them from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(n\)</span>, then
+the adjacency matrix representing this graph will be an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix
+whose entries are either 0 or 1, specifically</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A(i,j) = \begin{cases}
+1, &amp; (v_i,v_j) \in E,\\
+0, &amp; \text{otherwise}.
+\end{cases}\end{split}\]</div>
+<p>We now have much of the dictionary we need to start investigating some examples
+of graphs and networks that are used in applications. We will uncover some more
+information by working through the test cases.</p>
+<section id="a-social-network-made-of-dolphins">
+<h2>A social network made of dolphins<a class="headerlink" href="#a-social-network-made-of-dolphins" title="Permalink to this headline">#</a></h2>
+<p>How can we use these abstract objects to model some systems of interest? We have
+said from the beginning that graphs are useful to describe pairwise interactions
+between vertices. We will start as usual from an example, and in particular we
+will focus on the network of social relationship between a population of
+Doubtful Sound bottlenose dolphins <span id="id1">[<a class="reference internal" href="#id9" title="David Lusseau. The emergent properties of a dolphin social network. Proceedings of the Royal Society of London. Series B: Biological Sciences, 270(suppl_2):S186–S188, 2003.">Lus03</a>]</span>. It has been
+observed that gregarious, long-lived animals, such as gorillas (<em>Gorilla
+gorilla</em>), deer (<em>Cervus elaphus</em>), elephants (<em>Loxodonta
+africanus</em>) and bottlenose dolphins (<em>Tursiops truncatus</em>) rely
+on information transfer to exploit their habitat. Thus investigating their
+social structure is surely of interest.</p>
+<p>First of all, let us fetch and load the data into the MATLAB environment</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span> <span class="n">Loading</span> <span class="n">the</span> <span class="n">Network</span>
+<span class="n">websave</span><span class="p">(</span><span class="s1">&#39;dolphins.mat&#39;</span><span class="p">,</span><span class="s1">&#39;https://suitesparse-collection-website.herokuapp.com/mat/Newman/dolphins.mat&#39;</span><span class="p">);</span>
+<span class="n">load</span><span class="p">(</span><span class="s1">&#39;dolphins.mat&#39;</span><span class="p">)</span>
+<span class="n">disp</span><span class="p">(</span><span class="n">Problem</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">Problem</span></code> is a <code class="docutils literal notranslate"><span class="pre">struct</span></code> variables containing several information,
+what mostly concerns us now is the field <code class="docutils literal notranslate"><span class="pre">Problem.A</span></code> that contains the <strong>adjacency</strong>
+matrix of our graph. We can now use MATLAB to transform it into the graph
+format and visualize it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">Problem</span><span class="o">.</span><span class="n">A</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="n">Problem</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What are we seeing? In the word of the <em>author</em> <span id="id2">[<a class="reference internal" href="#id9" title="David Lusseau. The emergent properties of a dolphin social network. Proceedings of the Royal Society of London. Series B: Biological Sciences, 270(suppl_2):S186–S188, 2003.">Lus03</a>]</span>:</p>
+<blockquote>
+<div><p>Every time that
+a school of dolphins was encountered in the fjord between 1995 and
+2001, each adult member of the school was photographed and identified from natural markings on the dorsal fin. This information was
+used to determine how often two individuals were seen together. To
+measure how closely two individuals were associated in the population (i.e. how often they were to be found together) I calculated a half-weight index (HWI) of association for each pair of individuals
+(Cairns &amp; Schwäger 1987). This index estimates the likelihood that
+two individuals would be seen together compared with the likelihood
+of seeing any of the two individuals when encountering a school: […]
+Over the 7 years of observation the composition of 1292
+schools was gathered. There were 64 adult individuals in
+this social network linked by 159 preferred companionships (edges)</p>
+</div></blockquote>
+<p>Now let us  try to investigate some properties of the network to infer some
+information on the dolphins. The first thing we want to look at are the <strong>degrees</strong>
+of the vertexes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">degree</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">;</span>
+<span class="p">[</span><span class="n">sorted_degree</span><span class="p">,</span><span class="n">rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span><span class="s1">&#39;descend&#39;</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">sorted_degree</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<span class="n">axis</span><span class="p">([</span><span class="mi">1</span> <span class="mi">64</span> <span class="mi">1</span> <span class="nb">max</span><span class="p">(</span><span class="n">degree</span><span class="p">)])</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Vertex&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">)</span>
+<span class="n">xticks</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">)</span>
+<span class="n">xticklabels</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+<span class="n">xtickangle</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The behavior of the (reordered) degree distribution seem suspicious… let us
+look more into it, we call <span class="math notranslate nohighlight">\(k\)</span> the degree and <span class="math notranslate nohighlight">\(p(k)\)</span> the number of nodes with
+that degree</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">gc</span><span class="p">,</span><span class="n">gr</span><span class="p">]</span> <span class="o">=</span> <span class="n">groupcounts</span><span class="p">(</span><span class="n">degree</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span><span class="n">gc</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;p(k)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we observe that the behavior for smaller degree is uncertain, while the data
+clearly exhibit a <em>tail</em> (an <em>asymptotic</em>) that decays as a power law. Let us
+use the techinique for parameter estimation we have seen in the last topic for
+this case</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo</span> <span class="o">=</span> <span class="n">fitoptions</span><span class="p">(</span><span class="s1">&#39;Method&#39;</span><span class="p">,</span><span class="s1">&#39;NonlinearLeastSquares&#39;</span><span class="p">,</span><span class="o">...</span>
+               <span class="s1">&#39;Lower&#39;</span><span class="p">,[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],</span><span class="o">...</span>
+               <span class="s1">&#39;Upper&#39;</span><span class="p">,[</span><span class="n">Inf</span> <span class="n">Inf</span><span class="p">],</span><span class="o">...</span>
+               <span class="s1">&#39;StartPoint&#39;</span><span class="p">,[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">]);</span>
+<span class="n">ft</span> <span class="o">=</span> <span class="n">fittype</span><span class="p">(</span><span class="s1">&#39;a*x.^(-b)&#39;</span><span class="p">,</span><span class="s1">&#39;options&#39;</span><span class="p">,</span><span class="n">fo</span><span class="p">);</span>
+<span class="p">[</span><span class="n">curve</span><span class="p">,</span><span class="n">gof</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">gr</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">),</span><span class="n">gc</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">),</span><span class="n">ft</span><span class="p">);</span>
+<span class="o">%</span> <span class="n">We</span> <span class="n">plot</span> <span class="n">the</span> <span class="n">results</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span><span class="n">gr</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">),</span><span class="n">gc</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">))</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;p(k)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have obtained a reasonable fit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">disp</span><span class="p">(</span><span class="n">curve</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>with <span class="math notranslate nohighlight">\(p(k) \sim k^{-2.365}\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Scale-free networks</p>
+<p>A <strong>scale-free</strong> network is a network whose degree distribution follows a power
+law, at least <em>asymptotically</em>. That is, the fraction <span class="math notranslate nohighlight">\(p(k)\)</span> of nodes in the
+network having degree <span class="math notranslate nohighlight">\(k\)</span> behaves for large values of <span class="math notranslate nohighlight">\(k\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[p(k) \sim k^{-\alpha}, \quad 2 &lt; \alpha &lt; 3.\]</div>
+</div>
+<p>This type of networks have usually several properties that we can use to
+interpret the underlying phenomena. One of them is that they usually have a
+<em>small diameter</em>, that is, the length of the “longest shortest path”, i.e.,
+the largest number of vertices which must be traversed in order to travel
+from one vertex to another when paths which backtrack, detour, or loop are
+excluded from consideration. We can compute it by doing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diameter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">distances</span><span class="p">(</span><span class="n">G</span><span class="p">),[],</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+<span class="n">disp</span><span class="p">(</span><span class="n">diameter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thank to this property, dolphin scale-free network is <em>resilient to random
+attacks</em>. If we remove some random nodes the increase in the diameter is small:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">percentage_of_removed</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.10</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.20</span><span class="p">];</span>
+
+<span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">percentage_of_removed</span><span class="p">)</span>
+    <span class="n">percentage</span> <span class="o">=</span> <span class="n">percentage_of_removed</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">500</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">G</span><span class="p">;</span>
+        <span class="n">removednodes</span> <span class="o">=</span> <span class="n">randi</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">percentage</span><span class="o">*</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">rmnode</span><span class="p">(</span><span class="n">removednodes</span><span class="p">);</span>
+        <span class="p">[</span><span class="nb">bin</span><span class="p">,</span><span class="n">binsize</span><span class="p">]</span> <span class="o">=</span> <span class="n">conncomp</span><span class="p">(</span><span class="n">H</span><span class="p">);</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">binsize</span><span class="p">(</span><span class="nb">bin</span><span class="p">)</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">binsize</span><span class="p">);</span>
+        <span class="n">SG</span> <span class="o">=</span> <span class="n">subgraph</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+        <span class="n">diameters</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">distances</span><span class="p">(</span><span class="n">SG</span><span class="p">),[],</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">boxplot</span><span class="p">(</span><span class="n">diameters</span><span class="o">.</span><span class="s1">&#39;)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Diameter&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Percentage of removed nodes&#39;</span><span class="p">)</span>
+<span class="n">xticklabels</span><span class="p">(</span><span class="n">percentage_of_removed</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="finding-communities">
+<h2>Finding communities<a class="headerlink" href="#finding-communities" title="Permalink to this headline">#</a></h2>
+<p>Let us start again from an example, we consider here some data from <span id="id3">[<a class="reference internal" href="#id11" title="Rene E van Dijk, Jennifer C Kaden, Araceli Argüelles-Ticó, Deborah A Dawson, Terry Burke, and Ben J Hatchwell. Cooperative investment in public goods is kin directed in communal nests of social birds. Ecology letters, 17(9):1141–1148, 2014.">vDKArguellesTico+14</a>]</span>
+related to the behavior of a specie of <em>social birds</em> that nest in communal
+chambers. These contains a set of networks constructed in the following way:</p>
+<blockquote>
+<div><p>An individual was assigned to a given nest chamber once it had been observed
+to enter it, irrespective of the activity carried out, i.e. either building the
+nest chamber or roosting in it. A network ‘edge’ was drawn between individuals
+that used the same nest chambers either for roosting or nest-building at any
+given time within a series of observations at the same colony in the same year,
+either together in the nest chamber at the same time or at different times.
+These individuals werethus assumed to be associated.</p>
+</div></blockquote>
+<p>We read from the <a class="reference external" href="https://github.com/Cirdans-Home/recipesforenvsciences/raw/main/src/aves-wildbird-network-1.edges">data file</a> the nodes,
+and edges of the network. The file (that we obtained from the Network Repository <span id="id4">[<a class="reference internal" href="#id10" title="Ryan A. Rossi and Nesreen K. Ahmed. The network data repository with interactive graph analytics and visualization. In AAAI. 2015. URL: https://networkrepository.com.">RA15</a>]</span>)
+is not formatted as a CSV file, but has instead spaces to separate the data,
+thus we use the command <code class="docutils literal notranslate"><span class="pre">dlmread</span></code>, that generalizes the <code class="docutils literal notranslate"><span class="pre">csvread</span></code> command</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s1">&#39;aves-wildbird-network-1.edges&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>with this we have obtained a matrix with three columns and number of edges rows
+in which the first column represents the starting node, the second column the
+ending node, and the third one the edge weight. With this data we can build
+a graph</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and then plot it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the plot we suspect that we can identify two communities in our set of
+birds, but how can we do it mathematically? This task is called a task of
+<strong>community detection</strong>, and there are many algorithms and strategies for
+achieving it. We are going to focus here on a techinique that is
+called <strong>spectral clustering</strong>. First of all we need a particular representation
+of the network with a <em>matrix</em> called a <em>Laplacian of the network</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">laplacian</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we recover the <strong>spectral information</strong> by the command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;smallestabs&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This gives us two vectors <span class="math notranslate nohighlight">\(\mathbf{v}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_2\)</span> and two values
+<span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[L \mathbf{v}_1 = \lambda_1 \mathbf{v}_1, \quad L \mathbf{v}_2 = \lambda_2 \mathbf{v}_2,\]</div>
+<p>these are called, respectively, <strong>eigenvectors</strong>, and <strong>eigenvalues</strong>. If
+we inspect them we observe that <span class="math notranslate nohighlight">\(v_1(i) &gt; 0\)</span> for all <span class="math notranslate nohighlight">\(i = 1,\ldots,N\)</span>, and
+moreover it has a constant value. The second one, is the one we are actually
+interested in, this has both values that are <span class="math notranslate nohighlight">\(&gt; 0\)</span> and <span class="math notranslate nohighlight">\(&lt; 0\)</span>. We are going to
+use them to determine the communities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ind1</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">ind2</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let us evidentiate the nodes on the graph</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
+<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind1</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind2</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and as you can observe the procedure did evidentiate the two communities we
+were suspecting by working directly on the data. On the other hand, now that
+we look better at the data, we suspect that there could be more than two
+communities, the larger one seems to be splittable in two. We can try to
+identify larger number of communities, by <strong>computing more eigenvectors</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;smallestabs&#39;</span><span class="p">);</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">),</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">ind1</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">ind2</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">ind3</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
+<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind1</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind2</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind3</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we don’t have a clear cut between positive and negative values in a single
+vector, thus we have to employ another algorithm to do the separation for us.
+This is the <strong><span class="math notranslate nohighlight">\(K\)</span>-means</strong> algorithm that returns as a vector of indexes for the
+corresponding communities.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span class="math notranslate nohighlight">\(K\)</span>-means is a <em>clustering method</em> that uses the process of <strong>vector quantization</strong>,
+it was originally devised in the signal processing community with the aims of
+partitioning <span class="math notranslate nohighlight">\(n\)</span> observations into <span class="math notranslate nohighlight">\(k\)</span> clusters in which each observation
+belongs to the cluster with the nearest mean, i.e., the mean servs as a
+prototype of the cluster.</p>
+<p>It can be formally expressed as the minimization problem</p>
+<div class="math notranslate nohighlight">
+\[\arg\min_{\mathbf{S}=\{S_1,\ldots,S_k\}} \sum_{i=1}^{k}\sum_{\mathbf{x} \in S_i} \| \mathbf{x} - \mathbf{\mu}_i\|^2,\]</div>
+<p>where we are given <span class="math notranslate nohighlight">\(\{\mathbf{x}_1,\ldots,\mathbf{x}_n\}\)</span> observations, to
+cluster in <span class="math notranslate nohighlight">\(k\,(\leq n)\)</span> groups <span class="math notranslate nohighlight">\(\{S_1,\ldots,S_k\}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{\mu}_i\)</span> is
+the mean of the points in <span class="math notranslate nohighlight">\(S_i\)</span>.</p>
+</div>
+<p>But how do we know if we haven’t lost some community in our analysis? To test
+this idea we can use another concept from graph theory that is called <strong>modularity</strong>.</p>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span></p>
+<section class="definition-content" id="proof-content">
+<p><strong>Modularity</strong> is a measure of the structure of networks or graphs which measures
+the strength of division of a network into communities, it is computed as
+the fraction of the edges that fall within the given groups minus the expected
+fraction if edges were distributed at random.</p>
+</section>
+</div><p>There are several ways for computing this quantity, we give here a very
+straigthforward</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>Q<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">modularity</span><span class="p">(</span>A, g<span class="p">)</span><span class="w"></span>
+<span class="c">%% MODULARITY computes the modularity of the of the partition in group g of the</span><span class="w"></span>
+<span class="c">% graph with adjacency matrix A.</span><span class="w"></span>
+
+<span class="n">nCommunities</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">numel</span><span class="p">(</span><span class="nb">unique</span><span class="p">(</span><span class="n">g</span><span class="p">));</span><span class="w"></span>
+<span class="n">nNodes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">g</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">e</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">nCommunities</span><span class="p">);</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">nNodes</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">nNodes</span><span class="w"></span>
+<span class="w">        </span><span class="n">e</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="nb">j</span><span class="p">))</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">e</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="nb">j</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="w"> </span><span class="nb">j</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="n">nEdges</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">(:));</span><span class="w">  </span><span class="c">% we could use nnz(A), but we want to take into account weights</span><span class="w"></span>
+<span class="n">a_out</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">   </span><span class="c">% out-degree</span><span class="w"></span>
+<span class="n">a_in</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="o">&#39;</span><span class="p">;</span><span class="w"> </span><span class="c">% in-degree</span><span class="w"></span>
+<span class="n">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">a_in</span><span class="o">.*</span><span class="n">a_out</span><span class="o">/</span><span class="n">nEdges</span>^<span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="n">Q</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">trace</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">/</span><span class="n">nEdges</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and we try to use it to evaluate the communities we have found</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span> <span class="n">Analysis</span> <span class="n">of</span> <span class="n">Community</span> <span class="n">Structure</span>
+<span class="n">addpath</span><span class="p">(</span><span class="s1">&#39;matlabcodes&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s1">&#39;aves-wildbird-network-1.edges&#39;</span><span class="p">);</span>
+<span class="n">color</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">};</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">laplacian</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span>
+    <span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;smallestabs&#39;</span><span class="p">);</span>
+    <span class="n">groupvec</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+       <span class="n">ind</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">groupvec</span> <span class="o">==</span> <span class="n">j</span><span class="p">);</span>
+       <span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="n">color</span><span class="p">{</span><span class="n">j</span><span class="p">},</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">end</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">modularity</span><span class="p">(</span><span class="n">adjacency</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">groupvec</span><span class="p">);</span>
+    <span class="n">title</span><span class="p">([</span><span class="s1">&#39;Modularity is &#39;</span><span class="p">,</span><span class="n">string</span><span class="p">(</span><span class="n">Q</span><span class="p">)])</span>
+<span class="n">end</span>
+<span class="nb">set</span><span class="p">(</span><span class="n">gcf</span><span class="p">,</span><span class="s1">&#39;Position&#39;</span><span class="p">,[</span><span class="o">-</span><span class="mi">1984</span> <span class="mi">426</span> <span class="mi">1301</span> <span class="mi">395</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>from which we observe that if we try to find more than three communities the
+modularity starts decreasing. Thus it seems that we are done with three
+communities for this dataset.</p>
+<div class="exercise admonition" id="graphsandnetworks-exercise-6">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8 </span></p>
+<section id="exercise-content">
+<p>We write a function that looks for in a graph up to <span class="math notranslate nohighlight">\(n\)</span> communities and returns
+the number of communities within <span class="math notranslate nohighlight">\(n\)</span> with the highest modularity.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>[groups,outmodularity,optimum]<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">findcommunities</span><span class="p">(</span>G,k<span class="p">)</span><span class="w"></span>
+<span class="c">%%FINDCOMMUNITIES looks in G up to n communities and returns the number</span><span class="w"></span>
+<span class="c">%of communities within n with the highest modularity.</span><span class="w"></span>
+<span class="c">%   G = graph</span><span class="w"></span>
+<span class="c">%   k = maximum number of communities</span><span class="w"></span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">G</span><span class="p">.</span><span class="n">numnodes</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nb">error</span><span class="p">(</span><span class="s">&quot;You cannot have more than number of nodes communities&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nb">error</span><span class="p">(</span><span class="s">&quot;You cannot have less than 2 communities&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="c">% Allocate the space for the groups matrix of number of nodes rows and</span><span class="w"></span>
+<span class="c">% k-1 columns</span><span class="w"></span>
+
+<span class="c">% Allocate the space for the modularities: vector with k-1 entries</span><span class="w"></span>
+
+<span class="c">% Loop through the possible community size</span><span class="w"></span>
+<span class="c">% | Compute eigenvectors</span><span class="w"></span>
+<span class="c">% | Use k-means</span><span class="w"></span>
+<span class="c">% | Compute modularity</span><span class="w"></span>
+<span class="c">% end of the for loop</span><span class="w"></span>
+
+<span class="c">% Compute the index for which maximum modularity is obtained</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can test the algorithm on some of the networks on some <a class="reference external" href="https://networkrepository.com/asn.php">Animal social networks</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To ensure that the function also automatically produces graphs highlighting the
+communities, the following two auxiliary codes can be used:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://it.mathworks.com/matlabcentral/fileexchange/29702-generate-maximally-perceptually-distinct-colors">Generate maximally perceptually-distinct colors</a> This function generates a set
+of colors which are distinguishable by reference to the “Lab” color space, which
+more closely matches human color perception than RGB.</p></li>
+<li><p><a class="reference external" href="https://it.mathworks.com/matlabcentral/fileexchange/26310-numsubplots-neatly-arrange-subplots">neatly arrange subplots</a> Sometimes a graphing function will not know in advance how many
+sub-plots are to be created. This function produces reasonable values for the
+row and column inputs to subplot given the number of desired sub-plots.</p></li>
+</ul>
+</div>
+</section>
+</div>
+</section>
+<section id="centrality">
+<h2>Centrality<a class="headerlink" href="#centrality" title="Permalink to this headline">#</a></h2>
+<p>The next type of analysis we want to address is the computation of a
+<strong>node centrality score</strong>, this type of analysis can (usually) be done by
+employing some <em>topological</em> measures, i.e., that depends only on the
+connections of the nodes, to score nodes by their “importance”.</p>
+<div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 8 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A <strong>graph Centrality measures</strong> are scalar values given to each node in the
+graph <span class="math notranslate nohighlight">\(G = (V,E)\)</span> to quantify its <em>importance</em>. The definition of what is
+<em>important</em> depends on the underlying model assumption.</p>
+</section>
+</div><p>Let us see some <strong>measures</strong> on a sample graph <span class="math notranslate nohighlight">\(G = (V,E)\)</span> that could be, e.g.,
+the <em>contact network</em> <a class="reference external" href="https://github.com/Cirdans-Home/recipesforenvsciences/raw/main/src/data/ia-infect-hyper.mtx">ia-infect-hyper.mtx</a>
+where nodes represent humans and edges between them represent proximity, i.e.,
+a contact for a given period of time in the physical world; see <span id="id5">[<a class="reference internal" href="#id10" title="Ryan A. Rossi and Nesreen K. Ahmed. The network data repository with interactive graph analytics and visualization. In AAAI. 2015. URL: https://networkrepository.com.">RA15</a>]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">addpath</span><span class="p">(</span><span class="s1">&#39;./data&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s1">&#39;ia-infect-hyper.mtx&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s2">&quot;G is a Network with </span><span class="si">%d</span><span class="s2"> nodes and </span><span class="si">%d</span><span class="s2"> edges.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">G</span><span class="o">.</span><span class="n">numedges</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Degree centrality</strong>. It is defined as the number of node neighbors for each
+node in the graph. If the network is directed, we have two versions of this
+measure: the <em>in-degree</em> is the number of incoming edges, and the <em>out-degree</em>
+that is in turn the number of out-going edges. This is a <em>local measure</em>, that
+means that as a measure it doesn’t take neighbors connectivity into account.
+It can be interpreted as a form of popularity.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">degree_centrality</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Closeness centrality</strong>. This centrality measures node efficiency in terms
+of connection to other nodes. Is defined as the average length of the shortest
+path between the node and all other nodes in the graph, i.e., the more central
+a node is, the closer it is to all other nodes.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[v \in V, \quad C(v) =  \frac{1}{\sum_{w \in V} d(v,w)}.\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">closeness_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;closeness&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Betweenness centrality</strong>. This measure quantifies the number of times a
+node acts as a <em>bridge</em> along the shortest path between two other nodes, that is,
+let us say that we want to compute it for a vertex <span class="math notranslate nohighlight">\(v \in V\)</span>. We first compute
+<strong>all</strong> the shortest paths between each pair of vertices <span class="math notranslate nohighlight">\((s,t)\)</span>, then for each
+of the couples we determine the fraction of shortest paths that pass through <span class="math notranslate nohighlight">\(v\)</span>.
+The measure is then the sum this fraction over all pairs of vertices, succinctly</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}v \in V, \quad B(v) = \sum_{s \neq v \neq t \in V} \frac{\sigma_{st}(v)}{\sigma_{st}}, \; \begin{array}{l}
+\sigma_{st} = |\{ \text{shortest paths between s and t }\}|, \\ \sigma_{st}(v) = |\{ \text{shortest paths between s and t passing per v}\}|.
+\end{array}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">betweenness_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;betweenness&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Eigenvector centrality</strong>.  It assigns relative scores to all nodes in the
+network based on the <em>assumption</em> that “connections to important nodes
+matters more to the score of the node we are looking at than equal
+connections to low importance nodes”. This idea can be formalized in different
+ways. The first we consider is the case in which we use the <em>eigenvector</em>
+corresponding to the <em>largest eigenvalue</em> of the graph adjacency matrix.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvector_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;eigenvector&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>PageRank</strong>. This is the algorithm used by Google Search to rank the web
+pages in their search engine results. The score given by this algorithm is a
+<em>probability distribution</em> representing the likelihood of randomly exploring
+the network and arriving at any particular page.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\mathbf{p} = \mathbf{p}\left(\gamma P + (1-\gamma) \mathbf{v}\mathbf{1}^T\right),  \quad P = \operatorname{diag}(A\mathbf{1})^{-1}A,\; \gamma \in [0,1], \; \mathbf{1}^T\mathbf{v} = 1.\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;pagerank&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now try to look at the most-important nodes for the different measures.
+Since we are only interested in the ranking (and not in the actual value of
+the measure) we will make use of the <code class="docutils literal notranslate"><span class="pre">sort</span></code> function from MATLAB to get the
+information we want</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">degree_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">degree_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">closeness_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">betweenness_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">betweenness_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">eigenvector_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">pagerank_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">pagerank_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
+
+<span class="n">rankings</span> <span class="o">=</span> <span class="n">table</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="n">betweenness_rank</span><span class="p">,</span><span class="o">...</span>
+    <span class="n">eigenvector_rank</span><span class="p">,</span><span class="n">pagerank_rank</span><span class="p">,</span><span class="s1">&#39;VariableNames&#39;</span><span class="p">,</span><span class="o">...</span>
+    <span class="p">{</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span><span class="s1">&#39;Closeness&#39;</span><span class="p">,</span><span class="s1">&#39;Betweenness&#39;</span><span class="p">,</span><span class="s1">&#39;Eigenvector&#39;</span><span class="p">,</span><span class="s1">&#39;PageRank&#39;</span><span class="p">});</span>
+<span class="n">disp</span><span class="p">(</span><span class="n">head</span><span class="p">(</span><span class="n">rankings</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To compare the different rankings we can also look at the <strong>scatter plot</strong> of
+the rankings, e.g.,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree centrality&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Closeness centrality&#39;</span><span class="p">)</span>
+<span class="n">axis</span> <span class="n">square</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree centrality&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Eigenvector centrality&#39;</span><span class="p">)</span>
+<span class="n">axis</span> <span class="n">square</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In general it would be better to have also a <strong>quantitative way</strong> of comparing
+the rankings. We can go for a <em>statistical test</em>, in this case a good solution
+is the Kendall <span class="math notranslate nohighlight">\(\tau\)</span> test.</p>
+<p>The Kendall <span class="math notranslate nohighlight">\(\tau\)</span> coefficient is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\tau = \frac{(\text{number of concordant pairs}) - (\text{number of discordant pairs})}{
+ {n \choose 2} }.\]</div>
+<p>Where <span class="math notranslate nohighlight">\({n \choose 2} = {n (n-1) \over 2}\)</span> is the <strong>binomial coefficient</strong> for
+the number of ways to choose two items from <span class="math notranslate nohighlight">\(n\)</span> items.
+We can compute it in MATLAB (together with the relevant <span class="math notranslate nohighlight">\(p\)</span>-value) by doing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Kendall&#39;</span><span class="p">);</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s2">&quot;Degree vs Closeness tau = </span><span class="si">%f</span><span class="s2"> p-value = </span><span class="si">%e</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">);</span>
+<span class="p">[</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Kendall&#39;</span><span class="p">);</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s2">&quot;Degree vs Eigenvector tau = </span><span class="si">%f</span><span class="s2"> p-value = </span><span class="si">%e</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Every <strong>centrality measure</strong> is based on an assumption about the concept of
+importance, e.g, <em>closeness</em> and <em>betweenness</em> centralities define the importance
+as an evaluation of the information exchange efficiency within the networks.
+Others like the degree are purely local popularity measure, while the ones
+based on the eigenvectors tend to reward highly connected nodes. You should
+always select your measure while taking into account the model behind the choice.</p>
+</div>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id6">
+<dl class="citation">
+<dt class="label" id="id9"><span class="brackets">Lus03</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dd><p>David Lusseau. The emergent properties of a dolphin social network. <em>Proceedings of the Royal Society of London. Series B: Biological Sciences</em>, 270(suppl_2):S186–S188, 2003.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">RA15</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
+<dd><p>Ryan A. Rossi and Nesreen K. Ahmed. The network data repository with interactive graph analytics and visualization. In <em>AAAI</em>. 2015. URL: <a class="reference external" href="https://networkrepository.com">https://networkrepository.com</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id3">vDKArguellesTico+14</a></span></dt>
+<dd><p>Rene E van Dijk, Jennifer C Kaden, Araceli Argüelles-Ticó, Deborah A Dawson, Terry Burke, and Ben J Hatchwell. Cooperative investment in public goods is kin directed in communal nests of social birds. <em>Ecology letters</em>, 17(9):1141–1148, 2014.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "matlab"
+        },
+        kernelOptions: {
+            kernelName: "matlab",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'matlab'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="parameterfitting.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Fitting data to models</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="images.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working with images</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Fabio Durastante<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
