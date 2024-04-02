@@ -75,7 +75,7 @@ names that reflect their use within the program rather than using gods
 generic variable names such as `x`,` y`, `z`.
 
 :::{tip}
-If we want to calculate the surface air of a sphere $A = 4 \pi r^2$ of radius
+If we want to calculate the surface area of a sphere $A = 4 \pi r^2$ of radius
 $r=5$, it is better to write
 ```matlab
 radius = 5;
