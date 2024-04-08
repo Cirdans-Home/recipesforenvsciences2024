@@ -792,7 +792,7 @@ orthogonal unit vectors of length <span class="math notranslate nohighlight">\(p
 example. First of all we <a class="reference external" href="https://github.com/Cirdans-Home/recipesforenvsciences2023/blob/main/src/data/Pizza.csv">load a dataset</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pizzadata = readtable(&#39;data/Pizza.csv&#39;); % Use here the right path for you!
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">pizzadata</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">readtable</span><span class="p">(</span><span class="s">&#39;data/Pizza.csv&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% Use here the right path for you!</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -800,7 +800,42 @@ example. First of all we <a class="reference external" href="https://github.com/
 <p>of which we can again look at the first few lines by doing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span><span class="p">(</span><span class="n">pizzadata</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">head</span><span class="p">(</span><span class="n">pizzadata</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    brand     id      mois     prot      fat     ash     sodium    carb    cal 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    _____    _____    _____    _____    _____    ____    ______    ____    ____
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14069    27.82    21.43    44.87    5.11     1.77     0.77    4.93
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14053    28.49    21.26    43.89    5.34     1.79     1.02    4.84
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14025    28.35    19.99    45.78    5.08     1.63      0.8    4.95
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14016    30.55    20.15    43.13    4.79     1.61     1.38    4.74
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14005    30.49    21.28    41.65    4.82     1.64     1.76    4.67
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14075    31.14    20.23    42.31    4.92     1.65      1.4    4.67
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14082    31.21    20.97    41.34    4.71     1.58     1.77    4.63
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    {&#39;A&#39;}    14097    28.76    21.41     41.6    5.28     1.75     2.95    4.72
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -810,9 +845,14 @@ respect to the quantities of interest.</p>
 <p>First we can extract the observations matrix from the table, for example by doing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">table2array</span><span class="p">(</span><span class="n">pizzadata</span><span class="p">(:,</span><span class="mi">3</span><span class="p">:</span><span class="n">end</span><span class="p">));</span>
-<span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s1">&#39;We have </span><span class="si">%d</span><span class="s1"> experiments with </span><span class="si">%d</span><span class="s1"> characteristics.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">table2array</span><span class="p">(</span><span class="n">pizzadata</span><span class="p">(:,</span><span class="mi">3</span><span class="p">:</span><span class="k">end</span><span class="p">));</span><span class="w"></span>
+<span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;We have %d experiments with %d characteristics.\n&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>We have 300 experiments with 7 characteristics.
 </pre></div>
 </div>
 </div>
@@ -821,30 +861,39 @@ respect to the quantities of interest.</p>
 indeed if we look them now they are such that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">boxplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s1">&#39;Orientation&#39;</span><span class="p">,</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="o">.</span><span class="n">Properties</span><span class="o">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="n">end</span><span class="p">))</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">boxplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s">&#39;Orientation&#39;</span><span class="p">,</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span><span class="s">&#39;Labels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="w"></span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Original data&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_7_0.png" src="_images/ioplot_7_0.png" />
 </div>
 </div>
 <p>we should normalize the data, first by removing <strong>averages</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-<span class="n">boxplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s1">&#39;Orientation&#39;</span><span class="p">,</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="o">.</span><span class="n">Properties</span><span class="o">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="n">end</span><span class="p">))</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Normalized around the mean&#39;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+<span class="n">boxplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s">&#39;Orientation&#39;</span><span class="p">,</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span><span class="s">&#39;Labels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="w"></span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Normalized around the mean&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_9_0.png" src="_images/ioplot_9_0.png" />
 </div>
 </div>
 <p>and also normalizing with respect to the <strong>standard deviation</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">./</span><span class="n">std</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-<span class="n">boxplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s1">&#39;Orientation&#39;</span><span class="p">,</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="o">.</span><span class="n">Properties</span><span class="o">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="n">end</span><span class="p">))</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Normalized data (mean,std)&#39;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">X</span><span class="o">./</span><span class="nb">std</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+<span class="n">boxplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s">&#39;Orientation&#39;</span><span class="p">,</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span><span class="s">&#39;Labels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="w"></span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Normalized data (mean,std)&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_11_0.png" src="_images/ioplot_11_0.png" />
 </div>
 </div>
 <p>We now have two ways in front of us, calculate the correlation matrix, or work
@@ -852,7 +901,7 @@ directly with the <span class="math notranslate nohighlight">\(X\)</span> matrix
 The <strong>correlation matrix</strong> can be computed by doing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="s1">&#39;*X)/(n-1);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="o">&#39;*</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -864,7 +913,12 @@ The <strong>correlation matrix</strong> can be computed by doing:</p>
 <p>we can check that the two quantities are indeed the same by looking at</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fprintf</span><span class="p">(</span><span class="s2">&quot;|| (X&#39;*X)/(n-1) - corr(X) ||_infty = </span><span class="si">%e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">norm</span><span class="p">(</span><span class="n">C</span> <span class="o">-</span>  <span class="n">corr</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="s2">&quot;inf&quot;</span><span class="p">));</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;|| (X&#39;*X)/(n-1) - corr(X) ||_infty = %e\n&quot;</span><span class="p">,</span><span class="nb">norm</span><span class="p">(</span><span class="n">C</span><span class="w"> </span><span class="o">-</span><span class="w">  </span><span class="n">corr</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="s">&quot;inf&quot;</span><span class="p">));</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|| (X&#39;*X)/(n-1) - corr(X) ||_infty = 1.738193e-15
 </pre></div>
 </div>
 </div>
@@ -893,7 +947,73 @@ or the <strong>PC scores</strong>, i.e., the new <strong>transformed variables</
 <p>We can <strong>compute them in MATLAB</strong> by using the <code class="docutils literal notranslate"><span class="pre">eig</span></code> command</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span> <span class="n">eig</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">help</span><span class="w"> </span><span class="nb">eig</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> eig - Eigenvalues and eigenvectors
+    This MATLAB function returns a column vector containing the eigenvalues
+    of square matrix A.
+
+    Syntax
+      e = eig(A)
+      [V,D] = eig(A)
+      [V,D,W] = eig(A)
+
+      e = eig(A,B)
+      [V,D] = eig(A,B)
+      [V,D,W] = eig(A,B)
+
+      [___] = eig(A,balanceOption)
+      [___] = eig(A,B,algorithm)
+
+      [___] = eig(___,outputForm)
+
+    Input Arguments
+      A - Input matrix
+        square matrix
+      B - Generalized eigenvalue problem input matrix
+        square matrix
+      balanceOption - Balance option
+        &quot;balance&quot; (default) | &quot;nobalance&quot;
+      algorithm - Generalized eigenvalue algorithm
+        &quot;chol&quot; (default) | &quot;qz&quot;
+      outputForm - Output format of eigenvalues
+        &quot;vector&quot; | &quot;matrix&quot;
+
+    Output Arguments
+      e - Eigenvalues (returned as vector)
+        column vector
+      V - Right eigenvectors
+        square matrix
+      D - Eigenvalues (returned as matrix)
+        diagonal matrix
+      W - Left eigenvectors
+        square matrix
+
+    Exa
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mples
+      openExample(&#39;matlab/EigenvaluesofMatrixExample&#39;)
+      openExample(&#39;matlab/EigenvaluesandEigenvectorsofMatrixExample&#39;)
+      openExample(&#39;matlab/SortedEigenvaluesAndEigenvectorsExample&#39;)
+      openExample(&#39;matlab/LeftEigenvectorsExample&#39;)
+      openExample(&#39;matlab/EigenvaluesofNondiagonalizableDefectiveMatrixExample&#39;)
+      openExample(&#39;matlab/GeneralizedEigenvaluesExample&#39;)
+      openExample(&#39;matlab/GeneralizedEigenvaluesUsingQZAlgorithmforBadlyConditioneExample&#39;)
+      openExample(&#39;matlab/GeneralizedEigenvaluesWhereOneMatrixisSingularExample&#39;)
+
+    See also eigs, polyeig, balance, condeig, cdf2rdf, hess, schur, qz
+
+    Introduced in MATLAB before R2006a
+    Documentation for eig
+       doc eig
+
+    Other uses of eig
+
+       codistributed/eig    gpuArray/eig    sym/eig    symbolic/eig
 </pre></div>
 </div>
 </div>
@@ -901,7 +1021,7 @@ or the <strong>PC scores</strong>, i.e., the new <strong>transformed variables</
 <p>In our case this reduces to</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">L</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">eig</span><span class="p">(</span><span class="n">C</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -909,12 +1029,15 @@ or the <strong>PC scores</strong>, i.e., the new <strong>transformed variables</
 <p>and we can visualize the component variances by doing</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">semilogy</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="n">sort</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="s2">&quot;descend&quot;</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Component variances&quot;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">semilogy</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="nb">sort</span><span class="p">(</span><span class="nb">diag</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="s">&quot;descend&quot;</span><span class="p">),</span><span class="s">&#39;o&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&quot;Component variances&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_21_0.png" src="_images/ioplot_21_0.png" />
 </div>
 </div>
 </section>
@@ -925,7 +1048,56 @@ or the <strong>PC scores</strong>, i.e., the new <strong>transformed variables</
 command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span> <span class="n">svd</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">help</span><span class="w"> </span><span class="nb">svd</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> svd - Singular value decomposition
+    This MATLAB function returns the singular values of matrix A in
+    descending order.
+
+    Syntax
+      S = svd(A)
+      [U,S,V] = svd(A)
+      [___] = svd(A,&quot;econ&quot;)
+      [___] = svd(A,0)
+      [___] = svd(___,outputForm)
+
+    Input Arguments
+      A - Input matrix
+        matrix
+      outputForm - Output format of singular values
+        &quot;vector&quot; | &quot;matrix&quot;
+
+    Output Arguments
+      U - Left singular vectors
+        matrix
+      S - Singular values
+        diagonal matrix | column vector
+      V - Right singular vectors
+        matrix
+
+    Examples
+      openExample(&#39;matlab/SingularValuesOfMatrixExample&#39;)
+      openExample(&#39;matlab/SingularValueDecompositionExample&#39;)
+      openExample(&#39;matlab/EconomySizeDecompositionExample&#39;)
+      openExample(&#39;matlab/SVDOutputFormatExample&#39;)
+      openExample(&#39;matlab/RankColumnSpaceAndNullSpaceOfMatrixExample&#39;)
+
+    See also svds, svdsketch, pagesvd, svdappend, rank, orth, null, gsvd
+
+    Introduced in MATLAB before R2006a
+    Docum
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>entation for svd
+       doc svd
+
+    Other uses of svd
+
+       codistributed/svd    gpuArray/svd    sym/svd    tall/svd
+       double/svd
 </pre></div>
 </div>
 </div>
@@ -937,14 +1109,17 @@ command:</p>
 <p>This can be done with few lines of code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">W</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">U</span><span class="p">]</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">semilogy</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="n">sort</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="s2">&quot;descend&quot;</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">),</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Component variances&quot;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">({</span><span class="s1">&#39;EIG&#39;</span><span class="p">,</span><span class="s1">&#39;SVD&#39;</span><span class="p">},</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span><span class="s1">&#39;east&#39;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">W</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">U</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">svd</span><span class="p">(</span><span class="n">C</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">semilogy</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="nb">sort</span><span class="p">(</span><span class="nb">diag</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="s">&quot;descend&quot;</span><span class="p">),</span><span class="s">&#39;o&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="nb">diag</span><span class="p">(</span><span class="n">S</span><span class="p">),</span><span class="s">&#39;x&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&quot;Component variances&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">({</span><span class="s">&#39;EIG&#39;</span><span class="p">,</span><span class="s">&#39;SVD&#39;</span><span class="p">},</span><span class="s">&#39;Location&#39;</span><span class="p">,</span><span class="s">&#39;east&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_25_0.png" src="_images/ioplot_25_0.png" />
 </div>
 </div>
 </section>
@@ -954,7 +1129,87 @@ command:</p>
 we can investigate by doing</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span> <span class="n">pca</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">help</span><span class="w"> </span><span class="n">pca</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> pca - Principal component analysis of raw data
+    This MATLAB function returns the principal component coefficients, also
+    known as loadings, for the n-by-p data matrix X.
+
+    Syntax
+      coeff = pca(X)
+      coeff = pca(X,Name,Value)
+      [coeff,score,latent] = pca(___)
+      [coeff,score,latent,tsquared] = pca(___)
+      [coeff,score,latent,tsquared,explained,mu] = pca(___)
+
+    Input Arguments
+      X - Input data
+        matrix
+
+    Name-Value Arguments
+      Algorithm - Principal component algorithm
+        &#39;svd&#39; (default) | &#39;eig&#39; | &#39;als&#39;
+      Centered - Indicator for centering columns
+        true (default) | false
+      Economy - Indicator for economy size output
+        true (default) | false
+      NumComponents - Number of components requested
+        number of variables (default) | scalar integer
+      Rows - Action to take for NaN values
+        &#39;complete&#39; (default) | &#39;pairwise&#39; | &#39;all&#39;
+      Weights - Observation weights
+        ones (default) | row vector
+      VariableWeights - Variable
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> weights
+        row vector | &#39;variance&#39;
+      Coeff0 - Initial value for coefficients
+        matrix of random values (default) | p-by-k matrix
+      Score0 - Initial value for scores
+        matrix of random values (default) | k-by-m matrix
+      Options - Options for iterations
+        structure
+
+    Output Arguments
+      coeff - Principal component coefficients
+        matrix
+      score - Principal component scores
+        matrix
+      latent - Principal component variances
+        column vector
+      tsquared - Hotellings T-squared statistic
+        column vector
+      explained - Percentage of total variance explained
+        column vector
+      mu - Estimated means
+        row vector
+
+    Examples
+      openExample(&#39;stats/PrincipalComponentsofaDataSetExample&#39;)
+      openExample(&#39;stats/WeightedPCAExample&#39;)
+      openExample(&#39;stats/PCAUsingALSforMissingDataExample&#39;)
+      openExample(&#39;stats/PrincipalComponentCoefficientsScoresandVariancesExample&#39;)
+      openExample(&#39;stats/TSquaredStatisticExample&#39;)
+  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    openExample(&#39;stats/PercentVariabilityExplainedbyPrincipalComponentsExample&#39;)
+      openExample(&#39;stats/ApplyPCAToNewDataAndGenerateCCCodeExample&#39;)
+
+    See also barttest, biplot, canoncorr, factoran, pcacov, pcares,
+      rotatefactors, ppca, Reduce Dimensionality
+
+    Introduced in Statistics and Machine Learning Toolbox in R2012b
+    Documentation for pca
+       doc pca
+
+    Other uses of pca
+
+       gpuArray/pca    tall/pca
 </pre></div>
 </div>
 </div>
@@ -962,15 +1217,18 @@ we can investigate by doing</p>
 <p>For our test application this can be done</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">coeff</span><span class="p">,</span><span class="n">score</span><span class="p">,</span><span class="n">latent</span><span class="p">,</span><span class="n">tsquared</span><span class="p">,</span><span class="n">explained</span><span class="p">,</span><span class="n">mu</span><span class="p">]</span> <span class="o">=</span> <span class="n">pca</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">semilogy</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="n">sort</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="s2">&quot;descend&quot;</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">),</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="o">...</span>
-  <span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="n">latent</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Component variances&quot;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">({</span><span class="s1">&#39;EIG&#39;</span><span class="p">,</span><span class="s1">&#39;SVD&#39;</span><span class="p">,</span><span class="s1">&#39;PCA&#39;</span><span class="p">},</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span><span class="s1">&#39;east&#39;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">coeff</span><span class="p">,</span><span class="n">score</span><span class="p">,</span><span class="n">latent</span><span class="p">,</span><span class="n">tsquared</span><span class="p">,</span><span class="n">explained</span><span class="p">,</span><span class="n">mu</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">pca</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">semilogy</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="nb">sort</span><span class="p">(</span><span class="nb">diag</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="s">&quot;descend&quot;</span><span class="p">),</span><span class="s">&#39;o&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="nb">diag</span><span class="p">(</span><span class="n">S</span><span class="p">),</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="p">,</span><span class="n">latent</span><span class="p">,</span><span class="s">&#39;s&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&quot;Component variances&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">({</span><span class="s">&#39;EIG&#39;</span><span class="p">,</span><span class="s">&#39;SVD&#39;</span><span class="p">,</span><span class="s">&#39;PCA&#39;</span><span class="p">},</span><span class="s">&#39;Location&#39;</span><span class="p">,</span><span class="s">&#39;east&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_29_0.png" src="_images/ioplot_29_0.png" />
 </div>
 </div>
 <p>To visualize the result we can use a <strong>biplot</strong> these are a type of <em>exploratory graph</em>
@@ -983,18 +1241,24 @@ We can do this in MATLAB by doing:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">biplot</span><span class="p">(</span><span class="n">coeff</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;scores&#39;</span><span class="p">,</span><span class="n">score</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;varlabels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="o">.</span><span class="n">Properties</span><span class="o">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="n">end</span><span class="p">));</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">biplot</span><span class="p">(</span><span class="n">coeff</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">),</span><span class="s">&#39;scores&#39;</span><span class="p">,</span><span class="n">score</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">),</span><span class="s">&#39;varlabels&#39;</span><span class="p">,</span><span class="n">pizzadata</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">VariableNames</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="k">end</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_31_0.png" src="_images/ioplot_31_0.png" />
 </div>
 </div>
 <p>We have chosen to display only the first two components because these already
 explain most of the data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pareto</span><span class="p">(</span><span class="n">explained</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">pareto</span><span class="p">(</span><span class="n">explained</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_33_0.png" src="_images/ioplot_33_0.png" />
 </div>
 </div>
 <p>You can choose <strong>between the two construction algorithms</strong> that we have seen by
@@ -1018,14 +1282,14 @@ consider another example.</p>
 <p>We first <strong>read the data</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>p = 100;
-data = cell(p,1);
-index = 1;
-for i=1:5:5*p
-    % Put in the following the right path to your data!
-    data{index} = imread(sprintf(&quot;data/faces/face.train/train/face/face%05d.pgm&quot;,i));
-    index = index+1;
-end
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cell</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="o">*</span><span class="n">p</span><span class="w"></span>
+<span class="w">    </span><span class="c">% Put in the following the right path to your data!</span><span class="w"></span>
+<span class="w">    </span><span class="n">data</span><span class="p">{</span><span class="n">index</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imread</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&quot;data/faces/face.train/train/face/face%05d.pgm&quot;</span><span class="p">,</span><span class="nb">i</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1033,32 +1297,38 @@ end
 <p>and visualize (few) of them</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">20</span>
-    <span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">{</span><span class="n">i</span><span class="p">});</span>
-<span class="n">end</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">20</span><span class="w"></span>
+<span class="w">    </span><span class="nb">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nb">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">{</span><span class="nb">i</span><span class="p">});</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_37_0.png" src="_images/ioplot_37_0.png" />
 </div>
 </div>
 <p>We can use the PCA to extract some features of the data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">{</span><span class="mi">1</span><span class="p">},</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
-<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span>
-    <span class="n">X</span><span class="p">(:,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span><span class="p">{</span><span class="n">i</span><span class="p">}(:);</span>
-<span class="n">end</span>
-<span class="p">[</span><span class="n">coeff</span><span class="p">,</span><span class="n">score</span><span class="p">,</span><span class="n">latent</span><span class="p">]</span> <span class="o">=</span> <span class="n">pca</span><span class="p">(</span><span class="n">double</span><span class="p">(</span><span class="n">X</span><span class="p">));</span>
-<span class="o">%</span> <span class="n">Characters</span>
-<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">20</span>
- <span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
- <span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
- <span class="n">imshow</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="n">int8</span><span class="p">(</span><span class="n">score</span><span class="p">(:,</span><span class="n">i</span><span class="p">)),</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">));</span>
-<span class="n">end</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">{</span><span class="mi">1</span><span class="p">},</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span>^<span class="mi">2</span><span class="p">,</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">p</span><span class="w"></span>
+<span class="w">    </span><span class="n">X</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">{</span><span class="nb">i</span><span class="p">}(:);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="p">[</span><span class="n">coeff</span><span class="p">,</span><span class="n">score</span><span class="p">,</span><span class="n">latent</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">pca</span><span class="p">(</span><span class="nb">double</span><span class="p">(</span><span class="n">X</span><span class="p">));</span><span class="w"></span>
+<span class="c">% Characters</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">20</span><span class="w"></span>
+<span class="w"> </span><span class="nb">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="nb">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="nb">imshow</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="nb">int8</span><span class="p">(</span><span class="n">score</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)),</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">));</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_39_0.png" src="_images/ioplot_39_0.png" />
 </div>
 </div>
 <p>The features are not very descriptive, they have many zone that are made of
@@ -1081,14 +1351,17 @@ always be there.</p>
 <p>This can be done with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">W</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">D</span><span class="p">]</span> <span class="o">=</span> <span class="n">nnmf</span><span class="p">(</span><span class="n">double</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="mi">10</span><span class="p">,</span><span class="s2">&quot;replicates&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
-<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">size</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
- <span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
- <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
- <span class="n">imshow</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="n">int8</span><span class="p">(</span><span class="n">W</span><span class="p">(:,</span><span class="n">i</span><span class="p">)),</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">));</span>
-<span class="n">end</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">W</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">D</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">nnmf</span><span class="p">(</span><span class="nb">double</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="mi">10</span><span class="p">,</span><span class="s">&quot;replicates&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="nb">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="nb">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="nb">imshow</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="nb">int8</span><span class="p">(</span><span class="n">W</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)),</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">));</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ioplot_41_0.png" src="_images/ioplot_41_0.png" />
 </div>
 </div>
 </section>

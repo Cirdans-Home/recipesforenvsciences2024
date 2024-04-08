@@ -518,10 +518,24 @@ social structure is surely of interest.</p>
 <p>First of all, let us fetch and load the data into the MATLAB environment</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span> <span class="n">Loading</span> <span class="n">the</span> <span class="n">Network</span>
-<span class="n">websave</span><span class="p">(</span><span class="s1">&#39;dolphins.mat&#39;</span><span class="p">,</span><span class="s1">&#39;https://suitesparse-collection-website.herokuapp.com/mat/Newman/dolphins.mat&#39;</span><span class="p">);</span>
-<span class="n">load</span><span class="p">(</span><span class="s1">&#39;dolphins.mat&#39;</span><span class="p">)</span>
-<span class="n">disp</span><span class="p">(</span><span class="n">Problem</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% Loading the Network</span><span class="w"></span>
+<span class="nb">websave</span><span class="p">(</span><span class="s">&#39;dolphins.mat&#39;</span><span class="p">,</span><span class="s">&#39;https://suitesparse-collection-website.herokuapp.com/mat/Newman/dolphins.mat&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">load</span><span class="p">(</span><span class="s">&#39;dolphins.mat&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">Problem</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      name: &#39;Newman/dolphins&#39;
+     title: &#39;social network of dolphins, Doubtful Sound, New Zealand&#39;
+         A: [62x62 double]
+        id: 2396
+      date: &#39;2003&#39;
+    author: &#39;D. Lusseau&#39;
+      kind: &#39;undirected graph&#39;
+     notes: [19x75 char]
+       aux: [1x1 struct]
+        ed: &#39;M. Newman&#39;
 </pre></div>
 </div>
 </div>
@@ -532,12 +546,32 @@ matrix of our graph. We can now use MATLAB to transform it into the graph
 format and visualize it</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">Problem</span><span class="o">.</span><span class="n">A</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">title</span><span class="p">(</span><span class="n">Problem</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">graph</span><span class="p">(</span><span class="n">Problem</span><span class="p">.</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="w"></span>
+<span class="nb">title</span><span class="p">(</span><span class="n">Problem</span><span class="p">.</span><span class="n">title</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">MATLAB has experienced a low-level graphics error, and may not have drawn correctly.</span>
+<span class=" -Color -Color-Red">Read about what you can do to prevent this issue by running this command: opengl problems,</span>
+<span class=" -Color -Color-Red">then restart MATLAB.</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">To share details of this issue with MathWorks technical support, please</span>
+<span class=" -Color -Color-Red">include this file with your service request: /home/cirdan/jogl.ex.13400</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+
+</pre></div>
+</div>
+<img alt="_images/graphsandnetworks_3_4.png" src="_images/graphsandnetworks_3_4.png" />
 </div>
 </div>
 <p>What are we seeing? In the word of the <em>author</em> <span id="id2">[<a class="reference internal" href="#id9" title="David Lusseau. The emergent properties of a dolphin social network. Proceedings of the Royal Society of London. Series B: Biological Sciences, 270(suppl_2):S186–S188, 2003.">Lus03</a>]</span>:</p>
@@ -559,18 +593,21 @@ information on the dolphins. The first thing we want to look at are the <strong>
 of the vertexes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">degree</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">;</span>
-<span class="p">[</span><span class="n">sorted_degree</span><span class="p">,</span><span class="n">rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span><span class="s1">&#39;descend&#39;</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">sorted_degree</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
-<span class="n">axis</span><span class="p">([</span><span class="mi">1</span> <span class="mi">64</span> <span class="mi">1</span> <span class="nb">max</span><span class="p">(</span><span class="n">degree</span><span class="p">)])</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Vertex&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">)</span>
-<span class="n">xticks</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">)</span>
-<span class="n">xticklabels</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
-<span class="n">xtickangle</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">degree</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">G</span><span class="p">.</span><span class="n">degree</span><span class="p">;</span><span class="w"></span>
+<span class="p">[</span><span class="n">sorted_degree</span><span class="p">,</span><span class="nb">rank</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="nb">degree</span><span class="p">,</span><span class="s">&#39;descend&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">G</span><span class="p">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">sorted_degree</span><span class="p">,</span><span class="s">&#39;o&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">axis</span><span class="p">([</span><span class="mi">1</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">degree</span><span class="p">)])</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Vertex&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Degree&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xticks</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">G</span><span class="p">.</span><span class="n">numnodes</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xticklabels</span><span class="p">(</span><span class="nb">rank</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xtickangle</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_5_0.png" src="_images/graphsandnetworks_5_0.png" />
 </div>
 </div>
 <p>The behavior of the (reordered) degree distribution seem suspicious… let us
@@ -578,13 +615,16 @@ look more into it, we call <span class="math notranslate nohighlight">\(k\)</spa
 that degree</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">gc</span><span class="p">,</span><span class="n">gr</span><span class="p">]</span> <span class="o">=</span> <span class="n">groupcounts</span><span class="p">(</span><span class="n">degree</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span><span class="n">gc</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;p(k)&#39;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">gc</span><span class="p">,</span><span class="n">gr</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">groupcounts</span><span class="p">(</span><span class="nb">degree</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span><span class="n">gc</span><span class="p">,</span><span class="s">&#39;o&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;k&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;p(k)&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_7_0.png" src="_images/graphsandnetworks_7_0.png" />
 </div>
 </div>
 <p>Now we observe that the behavior for smaller degree is uncertain, while the data
@@ -593,25 +633,39 @@ use the techinique for parameter estimation we have seen in the last topic for
 this case</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo</span> <span class="o">=</span> <span class="n">fitoptions</span><span class="p">(</span><span class="s1">&#39;Method&#39;</span><span class="p">,</span><span class="s1">&#39;NonlinearLeastSquares&#39;</span><span class="p">,</span><span class="o">...</span>
-               <span class="s1">&#39;Lower&#39;</span><span class="p">,[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],</span><span class="o">...</span>
-               <span class="s1">&#39;Upper&#39;</span><span class="p">,[</span><span class="n">Inf</span> <span class="n">Inf</span><span class="p">],</span><span class="o">...</span>
-               <span class="s1">&#39;StartPoint&#39;</span><span class="p">,[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">]);</span>
-<span class="n">ft</span> <span class="o">=</span> <span class="n">fittype</span><span class="p">(</span><span class="s1">&#39;a*x.^(-b)&#39;</span><span class="p">,</span><span class="s1">&#39;options&#39;</span><span class="p">,</span><span class="n">fo</span><span class="p">);</span>
-<span class="p">[</span><span class="n">curve</span><span class="p">,</span><span class="n">gof</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">gr</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">),</span><span class="n">gc</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">),</span><span class="n">ft</span><span class="p">);</span>
-<span class="o">%</span> <span class="n">We</span> <span class="n">plot</span> <span class="n">the</span> <span class="n">results</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span><span class="n">gr</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">),</span><span class="n">gc</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="n">end</span><span class="p">))</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;p(k)&#39;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">fo</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fitoptions</span><span class="p">(</span><span class="s">&#39;Method&#39;</span><span class="p">,</span><span class="s">&#39;NonlinearLeastSquares&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;Lower&#39;</span><span class="p">,[</span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;Upper&#39;</span><span class="p">,[</span><span class="nb">Inf</span><span class="w"> </span><span class="nb">Inf</span><span class="p">],</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;StartPoint&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">ft</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fittype</span><span class="p">(</span><span class="s">&#39;a*x.^(-b)&#39;</span><span class="p">,</span><span class="s">&#39;options&#39;</span><span class="p">,</span><span class="n">fo</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="n">curve</span><span class="p">,</span><span class="n">gof</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fit</span><span class="p">(</span><span class="n">gr</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="k">end</span><span class="p">),</span><span class="n">gc</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="k">end</span><span class="p">),</span><span class="n">ft</span><span class="p">);</span><span class="w"></span>
+<span class="c">% We plot the results</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span><span class="n">gr</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="k">end</span><span class="p">),</span><span class="n">gc</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;k&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;p(k)&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_9_0.png" src="_images/graphsandnetworks_9_0.png" />
 </div>
 </div>
 <p>We have obtained a reasonable fit</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">disp</span><span class="p">(</span><span class="n">curve</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">disp</span><span class="p">(</span><span class="n">curve</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     General model:
+     curve(x) = a*x.^(-b)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     Coefficients (with 95% confidence bounds):
+       a =       592.1  (-381.8, 1566)
+       b =       2.365  (1.523, 3.208)
 </pre></div>
 </div>
 </div>
@@ -633,8 +687,13 @@ from one vertex to another when paths which backtrack, detour, or loop are
 excluded from consideration. We can compute it by doing</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diameter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">distances</span><span class="p">(</span><span class="n">G</span><span class="p">),[],</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
-<span class="n">disp</span><span class="p">(</span><span class="n">diameter</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">diameter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">distances</span><span class="p">(</span><span class="n">G</span><span class="p">),[],</span><span class="s">&#39;all&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">diameter</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     8
 </pre></div>
 </div>
 </div>
@@ -643,28 +702,31 @@ excluded from consideration. We can compute it by doing</p>
 attacks</em>. If we remove some random nodes the increase in the diameter is small:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">percentage_of_removed</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.10</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.20</span><span class="p">];</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">percentage_of_removed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.10</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.20</span><span class="p">];</span><span class="w"></span>
 
-<span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">percentage_of_removed</span><span class="p">)</span>
-    <span class="n">percentage</span> <span class="o">=</span> <span class="n">percentage_of_removed</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">500</span>
-        <span class="n">H</span> <span class="o">=</span> <span class="n">G</span><span class="p">;</span>
-        <span class="n">removednodes</span> <span class="o">=</span> <span class="n">randi</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">percentage</span><span class="o">*</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span>
-        <span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">rmnode</span><span class="p">(</span><span class="n">removednodes</span><span class="p">);</span>
-        <span class="p">[</span><span class="nb">bin</span><span class="p">,</span><span class="n">binsize</span><span class="p">]</span> <span class="o">=</span> <span class="n">conncomp</span><span class="p">(</span><span class="n">H</span><span class="p">);</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">binsize</span><span class="p">(</span><span class="nb">bin</span><span class="p">)</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">binsize</span><span class="p">);</span>
-        <span class="n">SG</span> <span class="o">=</span> <span class="n">subgraph</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
-        <span class="n">diameters</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">distances</span><span class="p">(</span><span class="n">SG</span><span class="p">),[],</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
-    <span class="n">end</span>
-<span class="n">end</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">percentage_of_removed</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">percentage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">percentage_of_removed</span><span class="p">(</span><span class="nb">j</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">500</span><span class="w"></span>
+<span class="w">        </span><span class="n">H</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">G</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">removednodes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">randi</span><span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="n">numnodes</span><span class="p">,</span><span class="nb">floor</span><span class="p">(</span><span class="n">percentage</span><span class="o">*</span><span class="n">G</span><span class="p">.</span><span class="n">numnodes</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">H</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">H</span><span class="p">.</span><span class="n">rmnode</span><span class="p">(</span><span class="n">removednodes</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">[</span><span class="n">bin</span><span class="p">,</span><span class="n">binsize</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">conncomp</span><span class="p">(</span><span class="n">H</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">binsize</span><span class="p">(</span><span class="n">bin</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">binsize</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">SG</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">subgraph</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">diameters</span><span class="p">(</span><span class="nb">j</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">distances</span><span class="p">(</span><span class="n">SG</span><span class="p">),[],</span><span class="s">&#39;all&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">figure</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">boxplot</span><span class="p">(</span><span class="n">diameters</span><span class="o">.</span><span class="s1">&#39;)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Diameter&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Percentage of removed nodes&#39;</span><span class="p">)</span>
-<span class="n">xticklabels</span><span class="p">(</span><span class="n">percentage_of_removed</span><span class="p">);</span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+<span class="n">boxplot</span><span class="p">(</span><span class="n">diameters</span><span class="p">.</span><span class="o">&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Diameter&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Percentage of removed nodes&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xticklabels</span><span class="p">(</span><span class="n">percentage_of_removed</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_15_0.png" src="_images/graphsandnetworks_15_0.png" />
 </div>
 </div>
 </section>
@@ -688,7 +750,7 @@ is not formatted as a CSV file, but has instead spaces to separate the data,
 thus we use the command <code class="docutils literal notranslate"><span class="pre">dlmread</span></code>, that generalizes the <code class="docutils literal notranslate"><span class="pre">csvread</span></code> command</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s1">&#39;aves-wildbird-network-1.edges&#39;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;aves-wildbird-network-1.edges&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -699,7 +761,7 @@ ending node, and the third one the edge weight. With this data we can build
 a graph</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -707,9 +769,12 @@ a graph</p>
 <p>and then plot it</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&#39;Layout&#39;</span><span class="p">,</span><span class="s">&quot;force3&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_21_0.png" src="_images/graphsandnetworks_21_0.png" />
 </div>
 </div>
 <p>From the plot we suspect that we can identify two communities in our set of
@@ -720,7 +785,7 @@ called <strong>spectral clustering</strong>. First of all we need a particular r
 of the network with a <em>matrix</em> called a <em>Laplacian of the network</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">laplacian</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">laplacian</span><span class="p">(</span><span class="n">G</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -728,7 +793,7 @@ of the network with a <em>matrix</em> called a <em>Laplacian of the network</em>
 <p>Then we recover the <strong>spectral information</strong> by the command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;smallestabs&#39;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s">&#39;smallestabs&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -744,8 +809,8 @@ interested in, this has both values that are <span class="math notranslate nohig
 use them to determine the communities:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ind1</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
-<span class="n">ind2</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">ind1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">find</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="n">ind2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">find</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -753,11 +818,14 @@ use them to determine the communities:</p>
 <p>Now let us evidentiate the nodes on the graph</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
-<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind1</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind2</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&#39;Layout&#39;</span><span class="p">,</span><span class="s">&quot;force3&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind1</span><span class="p">,</span><span class="s">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="nb">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind2</span><span class="p">,</span><span class="s">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="s">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_29_0.png" src="_images/graphsandnetworks_29_0.png" />
 </div>
 </div>
 <p>and as you can observe the procedure did evidentiate the two communities we
@@ -767,17 +835,20 @@ communities, the larger one seems to be splittable in two. We can try to
 identify larger number of communities, by <strong>computing more eigenvectors</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;smallestabs&#39;</span><span class="p">);</span>
-<span class="n">idx</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">),</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">ind1</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">ind2</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">2</span><span class="p">);</span>
-<span class="n">ind3</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
-<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind1</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind2</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind3</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;smallestabs&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">kmeans</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">),</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">ind1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">find</span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">ind2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">find</span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="n">ind3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">find</span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&#39;Layout&#39;</span><span class="p">,</span><span class="s">&quot;force3&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind1</span><span class="p">,</span><span class="s">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="nb">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind2</span><span class="p">,</span><span class="s">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="s">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="nb">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind3</span><span class="p">,</span><span class="s">&quot;NodeColor&quot;</span><span class="p">,</span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="s">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_31_0.png" src="_images/graphsandnetworks_31_0.png" />
 </div>
 </div>
 <p>now we don’t have a clear cut between positive and negative values in a single
@@ -835,28 +906,31 @@ straigthforward</p>
 <p>and we try to use it to evaluate the communities we have found</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span> <span class="n">Analysis</span> <span class="n">of</span> <span class="n">Community</span> <span class="n">Structure</span>
-<span class="n">addpath</span><span class="p">(</span><span class="s1">&#39;matlabcodes&#39;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s1">&#39;aves-wildbird-network-1.edges&#39;</span><span class="p">);</span>
-<span class="n">color</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">};</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
-<span class="n">L</span> <span class="o">=</span> <span class="n">laplacian</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
-<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span>
-    <span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;smallestabs&#39;</span><span class="p">);</span>
-    <span class="n">groupvec</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s1">&#39;Layout&#39;</span><span class="p">,</span><span class="s2">&quot;force3&quot;</span><span class="p">);</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-       <span class="n">ind</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">groupvec</span> <span class="o">==</span> <span class="n">j</span><span class="p">);</span>
-       <span class="n">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind</span><span class="p">,</span><span class="s2">&quot;NodeColor&quot;</span><span class="p">,</span><span class="n">color</span><span class="p">{</span><span class="n">j</span><span class="p">},</span><span class="s2">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">end</span>
-    <span class="n">Q</span> <span class="o">=</span> <span class="n">modularity</span><span class="p">(</span><span class="n">adjacency</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">groupvec</span><span class="p">);</span>
-    <span class="n">title</span><span class="p">([</span><span class="s1">&#39;Modularity is &#39;</span><span class="p">,</span><span class="n">string</span><span class="p">(</span><span class="n">Q</span><span class="p">)])</span>
-<span class="n">end</span>
-<span class="nb">set</span><span class="p">(</span><span class="n">gcf</span><span class="p">,</span><span class="s1">&#39;Position&#39;</span><span class="p">,[</span><span class="o">-</span><span class="mi">1984</span> <span class="mi">426</span> <span class="mi">1301</span> <span class="mi">395</span><span class="p">]);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% Analysis of Community Structure</span><span class="w"></span>
+<span class="nb">addpath</span><span class="p">(</span><span class="s">&#39;matlabcodes&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;aves-wildbird-network-1.edges&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">color</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="s">&#39;magenta&#39;</span><span class="p">,</span><span class="s">&#39;green&#39;</span><span class="p">};</span><span class="w"></span>
+<span class="n">G</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span><span class="w"></span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">laplacian</span><span class="p">(</span><span class="n">G</span><span class="p">);</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">eigs</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;smallestabs&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">groupvec</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">kmeans</span><span class="p">(</span><span class="n">v</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="nb">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">plot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&#39;Layout&#39;</span><span class="p">,</span><span class="s">&quot;force3&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="w"></span>
+<span class="w">       </span><span class="n">ind</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">find</span><span class="p">(</span><span class="n">groupvec</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">j</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="nb">highlight</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">ind</span><span class="p">,</span><span class="s">&quot;NodeColor&quot;</span><span class="p">,</span><span class="n">color</span><span class="p">{</span><span class="nb">j</span><span class="p">},</span><span class="s">&quot;MarkerSize&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">modularity</span><span class="p">(</span><span class="nb">adjacency</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">groupvec</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="nb">title</span><span class="p">([</span><span class="s">&#39;Modularity is &#39;</span><span class="p">,</span><span class="nb">string</span><span class="p">(</span><span class="n">Q</span><span class="p">)])</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gcf</span><span class="p">,</span><span class="s">&#39;Position&#39;</span><span class="p">,[</span><span class="o">-</span><span class="mi">1984</span><span class="w"> </span><span class="mi">426</span><span class="w"> </span><span class="mi">1301</span><span class="w"> </span><span class="mi">395</span><span class="p">]);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_33_0.png" src="_images/graphsandnetworks_33_0.png" />
 </div>
 </div>
 <p>from which we observe that if we try to find more than three communities the
@@ -933,10 +1007,15 @@ where nodes represent humans and edges between them represent proximity, i.e.,
 a contact for a given period of time in the physical world; see <span id="id5">[<a class="reference internal" href="#id10" title="Ryan A. Rossi and Nesreen K. Ahmed. The network data repository with interactive graph analytics and visualization. In AAAI. 2015. URL: https://networkrepository.com.">RA15</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">addpath</span><span class="p">(</span><span class="s1">&#39;./data&#39;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s1">&#39;ia-infect-hyper.mtx&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">));</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s2">&quot;G is a Network with </span><span class="si">%d</span><span class="s2"> nodes and </span><span class="si">%d</span><span class="s2"> edges.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">G</span><span class="o">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">G</span><span class="o">.</span><span class="n">numedges</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">addpath</span><span class="p">(</span><span class="s">&#39;./data&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;ia-infect-hyper.mtx&#39;</span><span class="p">,</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="n">G</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">graph</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;G is a Network with %d nodes and %d edges.\n&quot;</span><span class="p">,</span><span class="n">G</span><span class="p">.</span><span class="n">numnodes</span><span class="p">,</span><span class="n">G</span><span class="p">.</span><span class="n">numedges</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>G is a Network with 113 nodes and 2196 edges.
 </pre></div>
 </div>
 </div>
@@ -951,7 +1030,7 @@ It can be interpreted as a form of popularity.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">degree_centrality</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">degree_centrality</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">G</span><span class="p">.</span><span class="n">degree</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -966,7 +1045,7 @@ a node is, the closer it is to all other nodes.</p></li>
 \[v \in V, \quad C(v) =  \frac{1}{\sum_{w \in V} d(v,w)}.\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">closeness_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;closeness&quot;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">closeness_centrality</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&quot;closeness&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -985,7 +1064,7 @@ The measure is then the sum this fraction over all pairs of vertices, succinctly
 \end{array}\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">betweenness_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;betweenness&quot;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">betweenness_centrality</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&quot;betweenness&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1000,7 +1079,7 @@ corresponding to the <em>largest eigenvalue</em> of the graph adjacency matrix.<
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvector_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;eigenvector&quot;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvector_centrality</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&quot;eigenvector&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1015,7 +1094,7 @@ the network and arriving at any particular page.</p></li>
 \[\mathbf{p} = \mathbf{p}\left(\gamma P + (1-\gamma) \mathbf{v}\mathbf{1}^T\right),  \quad P = \operatorname{diag}(A\mathbf{1})^{-1}A,\; \gamma \in [0,1], \; \mathbf{1}^T\mathbf{v} = 1.\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank_centrality</span> <span class="o">=</span> <span class="n">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s2">&quot;pagerank&quot;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank_centrality</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="s">&quot;pagerank&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1026,16 +1105,51 @@ the measure) we will make use of the <code class="docutils literal notranslate">
 information we want</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">degree_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">degree_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
-<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">closeness_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
-<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">betweenness_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">betweenness_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
-<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">eigenvector_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
-<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">pagerank_rank</span><span class="p">]</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">pagerank_centrality</span><span class="p">,</span><span class="s2">&quot;descend&quot;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">degree_rank</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="n">degree_centrality</span><span class="p">,</span><span class="s">&quot;descend&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="n">closeness_centrality</span><span class="p">,</span><span class="s">&quot;descend&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">betweenness_rank</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="n">betweenness_centrality</span><span class="p">,</span><span class="s">&quot;descend&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="n">eigenvector_centrality</span><span class="p">,</span><span class="s">&quot;descend&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">pagerank_rank</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="n">pagerank_centrality</span><span class="p">,</span><span class="s">&quot;descend&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">rankings</span> <span class="o">=</span> <span class="n">table</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="n">betweenness_rank</span><span class="p">,</span><span class="o">...</span>
-    <span class="n">eigenvector_rank</span><span class="p">,</span><span class="n">pagerank_rank</span><span class="p">,</span><span class="s1">&#39;VariableNames&#39;</span><span class="p">,</span><span class="o">...</span>
-    <span class="p">{</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span><span class="s1">&#39;Closeness&#39;</span><span class="p">,</span><span class="s1">&#39;Betweenness&#39;</span><span class="p">,</span><span class="s1">&#39;Eigenvector&#39;</span><span class="p">,</span><span class="s1">&#39;PageRank&#39;</span><span class="p">});</span>
-<span class="n">disp</span><span class="p">(</span><span class="n">head</span><span class="p">(</span><span class="n">rankings</span><span class="p">))</span>
+<span class="n">rankings</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">table</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="n">betweenness_rank</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">eigenvector_rank</span><span class="p">,</span><span class="n">pagerank_rank</span><span class="p">,</span><span class="s">&#39;VariableNames&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="s">&#39;Degree&#39;</span><span class="p">,</span><span class="s">&#39;Closeness&#39;</span><span class="p">,</span><span class="s">&#39;Betweenness&#39;</span><span class="p">,</span><span class="s">&#39;Eigenvector&#39;</span><span class="p">,</span><span class="s">&#39;PageRank&#39;</span><span class="p">});</span><span class="w"></span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">head</span><span class="p">(</span><span class="n">rankings</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Degree    Closeness    Betweenness    Eigenvector    PageRank
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    ______    _________    ___________    ___________    ________
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      30          30            30             30           30   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      38          38            42            102           42   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      42          42            33             38           38   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     102         102            38             42          102   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      33          33           102             33           33   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      48          48            12             48           48   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      12          12            48             34           12   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      34          34            34             12           34   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1044,19 +1158,22 @@ information we want</p>
 the rankings, e.g.,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree centrality&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Closeness centrality&#39;</span><span class="p">)</span>
-<span class="n">axis</span> <span class="n">square</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree centrality&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Eigenvector centrality&#39;</span><span class="p">)</span>
-<span class="n">axis</span> <span class="n">square</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="s">&#39;o&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Degree centrality&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Closeness centrality&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">axis</span><span class="w"> </span><span class="n">square</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">,</span><span class="s">&#39;o&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Degree centrality&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Eigenvector centrality&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">axis</span><span class="w"> </span><span class="n">square</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/graphsandnetworks_49_0.png" src="_images/graphsandnetworks_49_0.png" />
 </div>
 </div>
 <p>In general it would be better to have also a <strong>quantitative way</strong> of comparing
@@ -1071,10 +1188,18 @@ the number of ways to choose two items from <span class="math notranslate nohigh
 We can compute it in MATLAB (together with the relevant <span class="math notranslate nohighlight">\(p\)</span>-value) by doing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Kendall&#39;</span><span class="p">);</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s2">&quot;Degree vs Closeness tau = </span><span class="si">%f</span><span class="s2"> p-value = </span><span class="si">%e</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">);</span>
-<span class="p">[</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Kendall&#39;</span><span class="p">);</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s2">&quot;Degree vs Eigenvector tau = </span><span class="si">%f</span><span class="s2"> p-value = </span><span class="si">%e</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">corr</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">closeness_rank</span><span class="p">,</span><span class="s">&#39;type&#39;</span><span class="p">,</span><span class="s">&#39;Kendall&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;Degree vs Closeness tau = %f p-value = %e.\n&quot;</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">corr</span><span class="p">(</span><span class="n">degree_rank</span><span class="p">,</span><span class="n">eigenvector_rank</span><span class="p">,</span><span class="s">&#39;type&#39;</span><span class="p">,</span><span class="s">&#39;Kendall&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;Degree vs Eigenvector tau = %f p-value = %e.\n&quot;</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="n">pval</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Degree vs Closeness tau = 0.581226 p-value = 7.253673e-20.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Degree vs Eigenvector tau = 0.099558 p-value = 1.185833e-01.
 </pre></div>
 </div>
 </div>

@@ -460,9 +460,9 @@ types of image file formats:</p>
 MATLAB:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Download</span> <span class="n">an</span> <span class="n">image</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">web</span>
-<span class="n">websave</span><span class="p">(</span><span class="s1">&#39;cat.jpg&#39;</span><span class="p">,</span><span class="s1">&#39;https://upload.wikimedia.org/wikipedia/commons/5/52/Panthera_leo_stretching_</span><span class="si">%28E</span><span class="s1">tosha%2C_2012%29.jpg&#39;</span><span class="p">);</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;cat.jpg&quot;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Download an image from the web</span><span class="w"></span>
+<span class="nb">websave</span><span class="p">(</span><span class="s">&#39;cat.jpg&#39;</span><span class="p">,</span><span class="s">&#39;https://upload.wikimedia.org/wikipedia/commons/5/52/Panthera_leo_stretching_%28Etosha%2C_2012%29.jpg&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imread</span><span class="p">(</span><span class="s">&quot;cat.jpg&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -479,7 +479,14 @@ the blue pixel intensities.</p>
 <p>Indeed, if we query for the variable we have just created, we find as much</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">whos</span> <span class="n">A</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">whos</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Name         Size                   Bytes  Class    Attributes
+
+  A         2000x3000x3            18000000  uint8              
 </pre></div>
 </div>
 </div>
@@ -488,9 +495,12 @@ the blue pixel intensities.</p>
 look at the figure it represents by doing</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">imshow</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_5_0.png" src="_images/images_5_0.png" />
 </div>
 </div>
 <p>Other general utility functions that we can consider are</p>
@@ -499,10 +509,13 @@ look at the figure it represents by doing</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Agray</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">Agray</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Agray</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rgb2gray</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">Agray</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_7_0.png" src="_images/images_7_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -510,10 +523,13 @@ look at the figure it represents by doing</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Agray</span><span class="p">});</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">tile</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Agray</span><span class="p">});</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_9_0.png" src="_images/images_9_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -540,7 +556,51 @@ to a file.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">iminfo</span> <span class="o">=</span> <span class="n">imfinfo</span><span class="p">(</span><span class="s1">&#39;cat.jpg&#39;</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">iminfo</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imfinfo</span><span class="p">(</span><span class="s">&#39;cat.jpg&#39;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Division by zero when processing .  The value has been set to NaN.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; In matlab.io.internal.imagesci.imjpginfo&gt;incorporate_exif_metadata (line 68)
+In matlab.io.internal.imagesci.imjpginfo (line 51)
+In imjpginfo (line 20)
+In imfinfo (line 228)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iminfo = 
+
+  struct with fields:
+
+           Filename: &#39;/home/cirdan/Documenti/Didattica/Corso Modena/recipesforenvsciences2024/src/cat.jpg&#39;
+        FileModDate: &#39;08-Apr-2024 23:24:28&#39;
+           FileSize: 5210752
+             Format: &#39;jpg&#39;
+      FormatVersion: &#39;&#39;
+              Width: 3000
+             Height: 2000
+           BitDepth: 24
+          ColorType: &#39;truecolor&#39;
+    FormatSignature: &#39;&#39;
+    NumberOfSamples: 3
+       CodingMethod: &#39;Huffman&#39;
+      CodingProcess: &#39;Sequential&#39;
+            Comment: {}
+            XMPData: [1x1 struct]
+               Make: &#39;Canon&#39;
+              Model: &#39;Canon EOS-1D Mark IV&#39;
+        Orientation: 1
+        XResolution: 240
+        YResolution: 240
+     ResolutionUnit: &#39;Inch&#39;
+           Software: &#39;Adobe Photoshop CS2 Windows&#39;
+           DateTime: &#39;2014:01:26 13:25:17&#39;
+             Artist: &#39;Yathin Krishnappa&#39;
+          Copyright: &#39;yathin.com&#39;
+      DigitalCamera: [1x1 struct]
+      ExifThumbnail: [1x1 struct]
 </pre></div>
 </div>
 </div>
@@ -554,17 +614,20 @@ neighboring pixel values</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">Ares</span> <span class="o">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;Method&quot;</span><span class="p">,</span><span class="s2">&quot;bicubic&quot;</span><span class="p">);</span>
-<span class="n">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span> <span class="n">axis</span> <span class="n">image</span><span class="p">;</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">Ares</span> <span class="o">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;Method&quot;</span><span class="p">,</span><span class="s2">&quot;bilinear&quot;</span><span class="p">);</span>
-<span class="n">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span> <span class="n">axis</span> <span class="n">image</span><span class="p">;</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">Ares</span> <span class="o">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Method&quot;</span><span class="p">,</span><span class="s2">&quot;nearest&quot;</span><span class="p">);</span>
-<span class="n">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span> <span class="n">axis</span> <span class="n">image</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="n">Ares</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method&quot;</span><span class="p">,</span><span class="s">&quot;bicubic&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="s">image</span><span class="p">;</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="n">Ares</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method&quot;</span><span class="p">,</span><span class="s">&quot;bilinear&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="s">image</span><span class="p">;</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="n">Ares</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imresize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method&quot;</span><span class="p">,</span><span class="s">&quot;nearest&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">image</span><span class="p">(</span><span class="n">Ares</span><span class="p">);</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="s">image</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_13_0.png" src="_images/images_13_0.png" />
 </div>
 </div>
 <section id="denoising-images">
@@ -576,14 +639,23 @@ simply having a better looking photo, or as a first step in a following analysis
 image:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Anoise</span> <span class="o">=</span> <span class="n">imnoise</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">);</span>
-<span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Anoise</span><span class="p">});</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
-<span class="n">Adenoise</span> <span class="o">=</span> <span class="n">wdenoise2</span><span class="p">(</span><span class="n">Anoise</span><span class="p">);</span>
-<span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Anoise</span><span class="p">,</span><span class="n">uint8</span><span class="p">(</span><span class="n">Adenoise</span><span class="p">)});</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Anoise</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">imnoise</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">);</span><span class="w"></span>
+<span class="n">tile</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Anoise</span><span class="p">});</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span><span class="w"></span>
+<span class="n">Adenoise</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">wdenoise2</span><span class="p">(</span><span class="n">Anoise</span><span class="p">);</span><span class="w"></span>
+<span class="n">tile</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imtile</span><span class="p">({</span><span class="n">A</span><span class="p">,</span><span class="n">Anoise</span><span class="p">,</span><span class="nb">uint8</span><span class="p">(</span><span class="n">Adenoise</span><span class="p">)});</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Error using eval</span>
+<span class=" -Color -Color-Red">wdenoise2 requires Wavelet Toolbox.</span>
+
+
+</pre></div>
+</div>
+<img alt="_images/images_15_1.png" src="_images/images_15_1.png" />
 </div>
 </div>
 <div class="admonition tip">
@@ -615,21 +687,182 @@ has a <em>pretrained</em> neural network for denoising <em>black and white</em> 
 be called by doing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Agray</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="n">Agraynoise</span> <span class="o">=</span> <span class="n">imnoise</span><span class="p">(</span><span class="n">Agray</span><span class="p">,</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">);</span>
-<span class="n">net</span> <span class="o">=</span> <span class="n">denoisingNetwork</span><span class="p">(</span><span class="s1">&#39;DnCNN&#39;</span><span class="p">);</span>
-<span class="n">Adenoisenet</span> <span class="o">=</span> <span class="n">denoiseImage</span><span class="p">(</span><span class="n">Agraynoise</span><span class="p">,</span><span class="n">net</span><span class="p">);</span>
-<span class="n">tile</span> <span class="o">=</span> <span class="n">imtile</span><span class="p">({</span><span class="n">Agray</span><span class="p">,</span><span class="n">Agraynoise</span><span class="p">,</span><span class="n">uint8</span><span class="p">(</span><span class="n">Adenoisenet</span><span class="p">)});</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Agray</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rgb2gray</span><span class="p">(</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="n">Agraynoise</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">imnoise</span><span class="p">(</span><span class="n">Agray</span><span class="p">,</span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">);</span><span class="w"></span>
+<span class="n">net</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">denoisingNetwork</span><span class="p">(</span><span class="s">&#39;DnCNN&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">Adenoisenet</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">denoiseImage</span><span class="p">(</span><span class="n">Agraynoise</span><span class="p">,</span><span class="n">net</span><span class="p">);</span><span class="w"></span>
+<span class="n">tile</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">imtile</span><span class="p">({</span><span class="n">Agray</span><span class="p">,</span><span class="n">Agraynoise</span><span class="p">,</span><span class="nb">uint8</span><span class="p">(</span><span class="n">Adenoisenet</span><span class="p">)});</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">tile</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_17_0.png" src="_images/images_17_0.png" />
 </div>
 </div>
 <p>the network <code class="docutils literal notranslate"><span class="pre">denoisingNetwork('DnCNN')</span></code> is a rather complex object whose
 structure can be investigated by doing</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">disp</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">Layers</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">disp</span><span class="p">(</span><span class="n">net</span><span class="p">.</span><span class="n">Layers</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  59x1 Layer array with layers:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     1   &#39;InputLayer&#39;             Image Input           50x50x1 images
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     2   &#39;Conv1&#39;                  2-D Convolution       64 3x3x1 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     3   &#39;ReLU1&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     4   &#39;Conv2&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     5   &#39;BNorm2&#39;                 Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     6   &#39;ReLU2&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     7   &#39;Conv3&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     8   &#39;BNorm3&#39;                 Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     9   &#39;ReLU3&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    10   &#39;Conv4&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    11   &#39;BNorm4&#39;                 Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    12   &#39;ReLU4&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    13   &#39;Conv5&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    14   &#39;BNorm5&#39;                 Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    15   &#39;ReLU5&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    16   &#39;Conv6&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    17   &#39;BNorm6&#39;                 Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    18   &#39;ReLU6&#39;                  ReLU                  ReLU
+    19   &#39;Conv7&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+    20   &#39;BNorm7&#39;                 Batch Normalization   Batch normalization with 64 channels
+    21   &#39;ReLU7&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    22   &#39;Conv8&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    23   &#39;BNorm8&#39;                 Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    24   &#39;ReLU8&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    25   &#39;Conv9&#39;                  2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+    26   &#39;BNorm9&#39;                 Batch Normalization   Batch normalization with 64 channels
+    27   &#39;ReLU9&#39;                  ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    28   &#39;Conv10&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    29   &#39;BNorm10&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    30   &#39;ReLU10&#39;                 ReLU                  ReLU
+    31   &#39;Conv11&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    32   &#39;BNorm11&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    33   &#39;ReLU11&#39;                 ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    34   &#39;Conv12&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+    35   &#39;BNorm12&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    36   &#39;ReLU12&#39;                 ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    37   &#39;Conv13&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    38   &#39;BNorm13&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    39   &#39;ReLU13&#39;                 ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    40   &#39;Conv14&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    41   &#39;BNorm14&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    42   &#39;ReLU14&#39;                 ReLU                  ReLU
+    43   &#39;Conv15&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+    44   &#39;BNorm15&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    45   &#39;ReLU15&#39;                 ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    46   &#39;Conv16&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    47   &#39;BNorm16&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    48   &#39;ReLU16&#39;                 ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    49   &#39;Conv17&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    50   &#39;BNorm17&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    51   &#39;ReLU17&#39;                 ReLU                  ReLU
+    52   &#39;Conv18&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+    53   &#39;BNorm18&#39;                Batch Normalization   Batch normalization with 64 channels
+    54   &#39;ReLU18&#39;                 ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    55   &#39;Conv19&#39;                 2-D Convolution       64 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    56   &#39;BNorm19&#39;                Batch Normalization   Batch normalization with 64 channels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    57   &#39;ReLU19&#39;                 ReLU                  ReLU
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    58   &#39;Conv20&#39;                 2-D Convolution       1 3x3x64 convolutions with stride [1  1] and padding [1  1  1  1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    59   &#39;FinalRegressionLayer&#39;   Regression Output     mean-squared-error with response &#39;Response&#39;
 </pre></div>
 </div>
 </div>
@@ -662,23 +895,26 @@ image. To reduce the computation time, we use a smaller example than the lion
 that is distributed with MATLAB</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">First</span> <span class="n">we</span> <span class="n">read</span> <span class="ow">and</span> <span class="n">visualize</span> <span class="n">the</span> <span class="n">image</span><span class="p">:</span>
-<span class="n">I</span> <span class="o">=</span> <span class="n">im2double</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;peppers.png&#39;</span><span class="p">));</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">);</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Image&#39;</span><span class="p">);</span>
-<span class="o">%</span> <span class="n">We</span> <span class="n">create</span> <span class="n">the</span> <span class="n">operator</span> <span class="n">H</span> <span class="n">by</span> <span class="n">using</span> <span class="n">a</span> <span class="n">PSF</span> <span class="n">function</span>
-<span class="n">LEN</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
-<span class="n">THETA</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
-<span class="n">PSF</span> <span class="o">=</span> <span class="n">fspecial</span><span class="p">(</span><span class="s1">&#39;motion&#39;</span><span class="p">,</span><span class="n">LEN</span><span class="p">,</span><span class="n">THETA</span><span class="p">);</span>
-<span class="n">Blurred</span> <span class="o">=</span> <span class="n">imfilter</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="s1">&#39;circular&#39;</span><span class="p">,</span><span class="s1">&#39;conv&#39;</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">Blurred</span><span class="p">);</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Blurred Image&#39;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% First we read and visualize the image:</span><span class="w"></span>
+<span class="n">I</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">im2double</span><span class="p">(</span><span class="nb">imread</span><span class="p">(</span><span class="s">&#39;peppers.png&#39;</span><span class="p">));</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">);</span><span class="w"></span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Original Image&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c">% We create the operator H by using a PSF function</span><span class="w"></span>
+<span class="n">LEN</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">31</span><span class="p">;</span><span class="w"></span>
+<span class="n">THETA</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"></span>
+<span class="n">PSF</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fspecial</span><span class="p">(</span><span class="s">&#39;motion&#39;</span><span class="p">,</span><span class="n">LEN</span><span class="p">,</span><span class="n">THETA</span><span class="p">);</span><span class="w"></span>
+<span class="n">Blurred</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">imfilter</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="s">&#39;circular&#39;</span><span class="p">,</span><span class="s">&#39;conv&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">Blurred</span><span class="p">);</span><span class="w"></span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Blurred Image&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_21_0.png" src="_images/images_21_0.png" />
 </div>
 </div>
 <p>We need to discuss several aspects of these commands, first of all we need to
@@ -757,12 +993,15 @@ noise to the image. We have seen this procedure already in the previous
 section.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BlurredNoised</span> <span class="o">=</span> <span class="n">imnoise</span><span class="p">(</span><span class="n">Blurred</span><span class="p">,</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.001</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">);</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image to be restored&#39;</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">BlurredNoised</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">imnoise</span><span class="p">(</span><span class="n">Blurred</span><span class="p">,</span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.001</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">);</span><span class="w"></span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Image to be restored&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_23_0.png" src="_images/images_23_0.png" />
 </div>
 </div>
 <p>Now that we have the problem we want to solve, we can look at the routine
@@ -773,11 +1012,14 @@ level of noise. As an example, let us suppose that we underestimate it, and
 decide that our image has no noise whatsoever:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nsr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">Restored</span> <span class="o">=</span> <span class="n">deconvwnr</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="n">nsr</span><span class="p">);</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">Restored</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">nsr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">Restored</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">deconvwnr</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="n">nsr</span><span class="p">);</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">Restored</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_25_0.png" src="_images/images_25_0.png" />
 </div>
 </div>
 <p>With this poor choice the algorithm is incapable of finding anything useful. We
@@ -790,12 +1032,15 @@ halt the solution procedure at a point in which the obtained solution makes
 sense. Thus, let us try with a better guess:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nsr</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">/</span> <span class="n">var</span><span class="p">(</span><span class="n">I</span><span class="p">(:));</span>
-<span class="n">Restored</span> <span class="o">=</span> <span class="n">deconvwnr</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="n">nsr</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">Restored</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">nsr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.001</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">var</span><span class="p">(</span><span class="n">I</span><span class="p">(:));</span><span class="w"></span>
+<span class="n">Restored</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">deconvwnr</span><span class="p">(</span><span class="n">BlurredNoised</span><span class="p">,</span><span class="n">PSF</span><span class="p">,</span><span class="n">nsr</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">Restored</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_27_0.png" src="_images/images_27_0.png" />
 </div>
 </div>
 <p>That is indeed a better result.</p>

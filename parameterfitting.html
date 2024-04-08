@@ -535,42 +535,62 @@ passing to it the data and the model we have defined.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>% Array containing the data
-data = [ 4 126 % Time (min) and Temperature (°F)
-  5 125
-  7 123
-  12 120
-  14 119
-  16 118
-  20 116
-  24 115
-  28 114
-  31 113
-  34 112
-  37.5 111
-  41 110
-];
-fo = fitoptions(&#39;Method&#39;,&#39;NonlinearLeastSquares&#39;,...
-               &#39;Lower&#39;,[0],...
-               &#39;Upper&#39;,[Inf],...
-               &#39;StartPoint&#39;,[1]);
-ft = fittype(&#39;60 + 70*exp(-a*x)&#39;,&#39;options&#39;,fo);
-[curve,gof] = fit(data(:,1),data(:,2),ft);
-% We plot the results
-figure(1)
-plot(curve,data(:,1),data(:,2))
-xlabel(&#39;Time (m)&#39;);
-ylabel(&#39;Temperature (°F)&#39;);
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Array containing the data</span><span class="w"></span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">126</span><span class="w"> </span><span class="c">% Time (min) and Temperature (°F)</span><span class="w"></span>
+<span class="w">  </span><span class="mi">5</span><span class="w"> </span><span class="mi">125</span><span class="w"></span>
+<span class="w">  </span><span class="mi">7</span><span class="w"> </span><span class="mi">123</span><span class="w"></span>
+<span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="mi">120</span><span class="w"></span>
+<span class="w">  </span><span class="mi">14</span><span class="w"> </span><span class="mi">119</span><span class="w"></span>
+<span class="w">  </span><span class="mi">16</span><span class="w"> </span><span class="mi">118</span><span class="w"></span>
+<span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="mi">116</span><span class="w"></span>
+<span class="w">  </span><span class="mi">24</span><span class="w"> </span><span class="mi">115</span><span class="w"></span>
+<span class="w">  </span><span class="mi">28</span><span class="w"> </span><span class="mi">114</span><span class="w"></span>
+<span class="w">  </span><span class="mi">31</span><span class="w"> </span><span class="mi">113</span><span class="w"></span>
+<span class="w">  </span><span class="mi">34</span><span class="w"> </span><span class="mi">112</span><span class="w"></span>
+<span class="w">  </span><span class="mf">37.5</span><span class="w"> </span><span class="mi">111</span><span class="w"></span>
+<span class="w">  </span><span class="mi">41</span><span class="w"> </span><span class="mi">110</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
+<span class="n">fo</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fitoptions</span><span class="p">(</span><span class="s">&#39;Method&#39;</span><span class="p">,</span><span class="s">&#39;NonlinearLeastSquares&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;Lower&#39;</span><span class="p">,[</span><span class="mi">0</span><span class="p">],</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;Upper&#39;</span><span class="p">,[</span><span class="nb">Inf</span><span class="p">],</span><span class="k">...</span><span class="w"></span>
+<span class="w">               </span><span class="s">&#39;StartPoint&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">ft</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fittype</span><span class="p">(</span><span class="s">&#39;60 + 70*exp(-a*x)&#39;</span><span class="p">,</span><span class="s">&#39;options&#39;</span><span class="p">,</span><span class="n">fo</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="n">curve</span><span class="p">,</span><span class="n">gof</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">ft</span><span class="p">);</span><span class="w"></span>
+<span class="c">% We plot the results</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (m)&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (°F)&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/parameterfitting_1_0.png" src="_images/parameterfitting_1_0.png" />
 </div>
 </div>
 <p>The other information we can extract from the fit are contained in the two
 outputs of the <code class="docutils literal notranslate"><span class="pre">fit</span></code> function, namely:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">disp</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
-<span class="n">disp</span><span class="p">(</span><span class="n">gof</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">disp</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span><span class="w"></span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">gof</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     General model:
+     curve(x) = 60 + 70*exp(-a*x)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     Coefficients (with 95% confidence bounds):
+       a =    0.009416  (0.0085, 0.01033)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           sse: 44.1558
+       rsquare: 0.8682
+           dfe: 12
+    adjrsquare: 0.8682
+          rmse: 1.9182
 </pre></div>
 </div>
 </div>
@@ -674,11 +694,11 @@ uncertain data, we will run this time all three differential equations</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">We</span> <span class="n">order</span> <span class="n">the</span> <span class="n">variables</span> <span class="k">as</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">S</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">I</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
-<span class="o">%</span> <span class="k">lambda</span> <span class="o">=</span> <span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">gamma</span> <span class="o">=</span> <span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">sirModel</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span> <span class="p">[</span><span class="o">-</span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="o">...</span>
-    <span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="o">...</span>
-    <span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% We order the variables as y(t) = [S(t),I(t)]</span><span class="w"></span>
+<span class="c">% lambda = theta(1) gamma = theta(2)</span><span class="w"></span>
+<span class="n">sirModel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -690,7 +710,7 @@ computational resources</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sirSOL</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="n">deval</span><span class="p">(</span><span class="n">ode45</span><span class="p">(</span> <span class="o">@</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">sirModel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">theta</span><span class="p">),</span><span class="n">t</span><span class="p">,</span><span class="n">IC</span><span class="p">),</span><span class="n">t</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">sirSOL</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">theta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="nb">deval</span><span class="p">(</span><span class="nb">ode45</span><span class="p">(</span><span class="w"> </span><span class="p">@(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">sirModel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">theta</span><span class="p">),</span><span class="n">t</span><span class="p">,</span><span class="n">IC</span><span class="p">),</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -701,23 +721,23 @@ on the field</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">we</span> <span class="n">fix</span> <span class="n">the</span> <span class="n">random</span> <span class="n">number</span> <span class="n">generator</span> <span class="n">so</span> <span class="n">that</span> <span class="n">we</span> <span class="n">generate</span> <span class="n">always</span> <span class="n">the</span> <span class="n">same</span> <span class="n">random</span> <span class="n">numbers</span><span class="p">:</span>
-<span class="n">rng</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="n">numpts</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span>
-<span class="n">tdata</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sort</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">rand</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">))];</span>
-<span class="n">width</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
-<span class="n">ndataSIR</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">]);</span>
-    <span class="mi">0</span><span class="p">,</span> <span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">]);</span>
-    <span class="mi">0</span><span class="p">,</span> <span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">])];</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% we fix the random number generator so that we generate always the same random numbers:</span><span class="w"></span>
+<span class="nb">rng</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="n">numpts</span><span class="p">=</span><span class="mi">20</span><span class="p">;</span><span class="w"></span>
+<span class="n">tdata</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="nb">rand</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">))];</span><span class="w"></span>
+<span class="nb">width</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="w"></span>
+<span class="n">ndataSIR</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">20</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">normrnd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">width</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">numpts</span><span class="p">])];</span><span class="w"></span>
 
-<span class="k">lambda</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
-<span class="n">S0</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
-<span class="n">I0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">R0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span><span class="p">;</span> <span class="n">gamma</span><span class="p">];</span>
-<span class="n">IC</span> <span class="o">=</span> <span class="p">[</span><span class="n">S0</span><span class="p">;</span> <span class="n">I0</span><span class="p">;</span> <span class="n">R0</span><span class="p">];</span>
-<span class="n">SIRData</span> <span class="o">=</span> <span class="n">sirSOL</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">tdata</span><span class="p">)</span> <span class="o">+</span> <span class="n">ndataSIR</span><span class="p">;</span>
+<span class="n">lambda</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span><span class="w"></span>
+<span class="nb">gamma</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="w"></span>
+<span class="n">S0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"></span>
+<span class="n">I0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">R0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">lambda</span><span class="p">;</span><span class="w"> </span><span class="nb">gamma</span><span class="p">];</span><span class="w"></span>
+<span class="n">IC</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">S0</span><span class="p">;</span><span class="w"> </span><span class="n">I0</span><span class="p">;</span><span class="w"> </span><span class="n">R0</span><span class="p">];</span><span class="w"></span>
+<span class="n">SIRData</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sirSOL</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">tdata</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ndataSIR</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -730,15 +750,18 @@ for <span class="math notranslate nohighlight">\(I(t)\)</span> and <span class="
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIRDatared</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">SIRData</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">SIRDatared</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="s">1</span><span class="w"> </span><span class="s">1]*SIRData</span><span class="p">;</span><span class="w"></span>
 
-<span class="o">%</span> <span class="n">Let</span> <span class="n">us</span> <span class="n">look</span> <span class="n">at</span> <span class="n">the</span> <span class="n">data</span> <span class="n">we</span> <span class="n">have</span> <span class="n">obtained</span>
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRDatared</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRDatared</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="s1">&#39;I^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;S^*(t) + I^*(t) + R^*(t)&#39;</span><span class="p">)</span>
+<span class="c">% Let us look at the data we have obtained</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRDatared</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s">&#39;*&#39;</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRDatared</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s">&#39;x&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;t&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;I^*(t)&#39;</span><span class="p">,</span><span class="s">&#39;S^*(t) + I^*(t) + R^*(t)&#39;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/parameterfitting_11_0.png" src="_images/parameterfitting_11_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -746,8 +769,8 @@ for <span class="math notranslate nohighlight">\(I(t)\)</span> and <span class="
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIRthetaSol</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">sirSOL</span><span class="p">([</span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span><span class="n">IC</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
-<span class="n">objective</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span> <span class="p">(</span><span class="n">SIRthetaSol</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">tdata</span><span class="p">)</span> <span class="o">-</span> <span class="n">SIRDatared</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="p">));</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">SIRthetaSol</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">theta</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">1</span><span class="w"> </span><span class="s">1</span><span class="w"> </span><span class="s">1]*sirSOL([theta(1)</span><span class="w"> </span><span class="s">theta(2)],IC,t)</span><span class="p">;</span><span class="w"></span>
+<span class="n">objective</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">SIRthetaSol</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">tdata</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">SIRDatared</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="w"> </span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -759,9 +782,163 @@ to print some information on the procedure, and we request that the parameters
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">optimset</span><span class="p">(</span><span class="s1">&#39;Display&#39;</span><span class="p">,</span><span class="s1">&#39;iter&#39;</span><span class="p">);</span>
-<span class="p">[</span><span class="n">SIRtheta</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
-    <span class="n">fmincon</span><span class="p">(</span><span class="n">objective</span><span class="p">,[</span><span class="mf">0.1</span> <span class="mi">4</span><span class="p">],[],[],[],[],[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span> <span class="mi">4</span><span class="p">],[],</span><span class="n">options</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">optimset</span><span class="p">(</span><span class="s">&#39;Display&#39;</span><span class="p">,</span><span class="s">&#39;iter&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="n">SIRtheta</span><span class="p">,</span><span class="w"> </span><span class="n">fval</span><span class="p">,</span><span class="w"> </span><span class="n">exitflag</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">fmincon</span><span class="p">(</span><span class="n">objective</span><span class="p">,[</span><span class="mf">0.1</span><span class="w"> </span><span class="mi">4</span><span class="p">],[],[],[],[],[</span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">],[],</span><span class="n">options</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial point X0 is not between bounds LB and UB; 
+FMINCON shifted X0 to strictly satisfy the bounds.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                            First-order      Norm of
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Iter F-count            f(x)  Feasibility   optimality         step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    0       3    7.527718e+03    0.000e+00    3.951e+01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    1       6    7.516116e+03    0.000e+00    1.819e+03    9.864e-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    2       9    7.516075e+03    0.000e+00    6.074e+01    8.219e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    3      12    7.515294e+03    0.000e+00    1.149e+02    1.059e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    4      15    7.508059e+03    0.000e+00    5.941e+02    2.065e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    5      25    7.506838e+03    0.000e+00    1.392e+01    2.104e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    6      28    7.503699e+03    0.000e+00    4.009e+02    9.717e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    7      31    7.502020e+03    0.000e+00    4.160e+02    1.542e-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    8      34    6.257635e+03    0.000e+00    2.477e+05    3.827e+00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    9      40    5.486048e+03    0.000e+00    5.992e+04    4.682e-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   10      50    5.364982e+03    0.000e+00    9.336e+04    1.793e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   11      53    2.821310e+03    0.000e+00    1.527e+06    4.628e-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   12      58    1.174280e+03    0.000e+00    1.647e+04    1.735e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   13      61    1.089969e+03    0.000e+00    3.271e+05    1.275e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   14      64    3.673265e+02    0.000e+00    7.934e+03    6.099e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   15      75    2.999335e+02    0.000e+00    4.166e+03    2.358e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   16      78    2.935125e+02    0.000e+00    1.041e+04    5.328e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   17      81    2.934616e+02    0.000e+00    9.851e+03    5.052e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   18      84    2.932380e+02    0.000e+00    7.123e+03    2.771e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   19      87    2.929818e+02    0.000e+00    2.525e+02    1.504e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   20      90    2.929815e+02    0.000e+00    6.330e+00    1.030e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   21      93    2.929815e+02    0.000e+00    1.325e-02    3.758e-07
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Local minimum possible. Constraints satisfied.
+
+fmincon stopped because the size of the current step is less than
+the value of the step size tolerance and constraints are 
+satisfied to within the value of the constraint tolerance.
 </pre></div>
 </div>
 </div>
@@ -771,22 +948,25 @@ to print some information on the procedure, and we request that the parameters
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tsol</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">tdata</span><span class="p">),</span><span class="mi">400</span><span class="p">);</span>
-<span class="n">SIRSOL</span> <span class="o">=</span> <span class="n">sirSOL</span><span class="p">(</span><span class="n">SIRtheta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">tsol</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">tsol</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">tdata</span><span class="p">),</span><span class="mi">400</span><span class="p">);</span><span class="w"></span>
+<span class="n">SIRSOL</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sirSOL</span><span class="p">(</span><span class="n">SIRtheta</span><span class="p">,</span><span class="n">IC</span><span class="p">,</span><span class="n">tsol</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s1">&#39;b*&#39;</span><span class="p">,</span><span class="o">...</span>
-    <span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s1">&#39;rx&#39;</span><span class="p">,</span><span class="o">...</span>
-    <span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s1">&#39;g^&#39;</span><span class="p">,</span><span class="o">...</span>
-    <span class="n">tdata</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">SIRData</span><span class="p">),</span><span class="s1">&#39;k.&#39;</span><span class="p">,</span><span class="o">...</span>
-    <span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="o">...</span>
-    <span class="n">tsol</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">SIRSOL</span><span class="p">),</span><span class="s1">&#39;k--&#39;</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">({</span><span class="s1">&#39;S^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;I^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;R^*(t)&#39;</span><span class="p">,</span><span class="s1">&#39;N^*(t)&#39;</span><span class="p">,</span><span class="o">...</span>
-    <span class="s1">&#39;S(t)&#39;</span><span class="p">,</span><span class="s1">&#39;I(t)&#39;</span><span class="p">,</span><span class="s1">&#39;R(t)&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">},</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span><span class="s1">&#39;eastoutside&#39;</span><span class="p">)</span>
-<span class="n">axis</span> <span class="n">tight</span>
+<span class="nb">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s">&#39;b*&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s">&#39;rx&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">tdata</span><span class="p">,</span><span class="n">SIRData</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s">&#39;g^&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">tdata</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">SIRData</span><span class="p">),</span><span class="s">&#39;k.&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s">&#39;b-&#39;</span><span class="p">,</span><span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s">&#39;r-&#39;</span><span class="p">,</span><span class="n">tsol</span><span class="p">,</span><span class="n">SIRSOL</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s">&#39;g-&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">tsol</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">SIRSOL</span><span class="p">),</span><span class="s">&#39;k--&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;t&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">({</span><span class="s">&#39;S^*(t)&#39;</span><span class="p">,</span><span class="s">&#39;I^*(t)&#39;</span><span class="p">,</span><span class="s">&#39;R^*(t)&#39;</span><span class="p">,</span><span class="s">&#39;N^*(t)&#39;</span><span class="p">,</span><span class="k">...</span><span class="w"></span>
+<span class="w">    </span><span class="s">&#39;S(t)&#39;</span><span class="p">,</span><span class="s">&#39;I(t)&#39;</span><span class="p">,</span><span class="s">&#39;R(t)&#39;</span><span class="p">,</span><span class="s">&#39;N&#39;</span><span class="p">},</span><span class="s">&#39;Location&#39;</span><span class="p">,</span><span class="s">&#39;eastoutside&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">axis</span><span class="w"> </span><span class="n">tight</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/parameterfitting_17_0.png" src="_images/parameterfitting_17_0.png" />
 </div>
 </div>
 </section>
